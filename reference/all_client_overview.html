@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed":"#07006c","tertiary-fixed":"#eaddff","secondary-fixed":"#6ffbbe","inverse-on-surface":"#eef0ff","surface-container-low":"#f2f3ff","surface-container":"#ebedfc","secondary-fixed-dim":"#4edea3","on-tertiary-fixed":"#25005a","on-surface-variant":"#464554","tertiary-fixed-dim":"#d2bbff","tertiary":"#712ae2","primary-fixed":"#e1e0ff","on-error-container":"#93000a","inverse-surface":"#2c303b","on-secondary-fixed-variant":"#005236","error-container":"#ffdad6","on-secondary":"#ffffff","on-secondary-fixed":"#002113","surface-container-highest":"#dfe2f1","primary-fixed-dim":"#c0c1ff","on-background":"#171b26","background":"#faf8ff","tertiary-container":"#8a4cfc","on-tertiary-container":"#fffbff","surface-container-lowest":"#ffffff","secondary":"#006c49","on-secondary-container":"#00714d","outline":"#767586","surface-bright":"#faf8ff","on-error":"#ffffff","surface-dim":"#d7d9e8","on-surface":"#171b26","on-primary-container":"#fffbff","secondary-container":"#6cf8bb","on-primary-fixed-variant":"#2f2ebe","outline-variant":"#c7c4d7","on-tertiary":"#ffffff","inverse-primary":"#c0c1ff","on-tertiary-fixed-variant":"#5a00c6","surface":"#faf8ff","surface-variant":"#dfe2f1","primary":"#4648d4","primary-container":"#6063ee","surface-tint":"#494bd6","surface-container-high":"#e5e7f6","on-primary":"#ffffff","error":"#ba1a1a"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-sm":"0.5rem","space-xl":"2rem","margin":"1rem","space-lg":"1.25rem","gutter":"1.25rem","space-xs":"0.25rem","margin-desktop":"2rem","gutter-desktop":"1.5rem","space-md":"0.75rem"},fontFamily:{"headline-xl-mobile":["Plus Jakarta Sans"],"body-lg":["Inter"],"badge-status":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-code-sm":["JetBrains Mono"],"headline-sm":["Plus Jakarta Sans"],"label-code-lg":["JetBrains Mono"],"headline-xl":["Plus Jakarta Sans"]},fontSize:{"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"-0.011em","fontWeight":"400"}],"badge-status":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"-0.006em","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-code-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],"headline-sm":["15px",{"lineHeight":"22px","letterSpacing":"-0.005em","fontWeight":"600"}],"label-code-lg":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-inverse-surface text-inverse-on-surface shadow-[0_1px_8px_rgba(0,0,0,0.06)]"><div class="h-14 px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><img alt="SEO Studio by CreativHeads Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W-VoUSnZlcPOf8vU8fLCvtF2T3GnRwtlFjwBlmTuhFQNo_5bd4oV8GzIfZaeNcDAixesVWCLcEYC_pvyJUERThRUqaBHdvTiRmHQqr65KjUW7PRbvOTDqe1ZesAKUrx5z7DLqBe7qZ1666mVeZs9qYQA-s1yrHWwYN2ohbXNujZUUkMf3kw7nwmZiStG9jD3rFhdFuVL1_uYSzr06q2SAESwPT4NUC0yUA7TueqBUxsA"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-surface-container-lowest leading-none tracking-tight">SEO Studio</span><span class="font-label-code-sm text-label-code-sm text-outline-variant uppercase tracking-wider">CreativHeads Agency</span></div></div><div class="h-6 w-px bg-outline/40"></div><button class="flex items-center gap-space-sm bg-surface-container-lowest/10 hover:bg-surface-container-lowest/20 px-space-md py-1.5 rounded-xl transition-colors text-left"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span><span class="font-headline-sm text-headline-sm text-surface-container-lowest text-xs font-semibold">Lumina Health Care</span></div><span class="font-label-code-sm text-label-code-sm text-outline-variant text-[10px]">luminahealth.io</span></div><span class="material-symbols-outlined text-outline-variant text-[18px]">unfold_more</span></button><div class="hidden xl:flex items-center gap-space-sm bg-surface-container-lowest/5 px-space-md py-1 rounded-full font-label-code-sm text-label-code-sm text-surface-container-high"><span class="w-2 h-2 rounded-full bg-secondary-fixed animate-ping"></span><span>GSC: Connected</span><span class="text-outline">•</span><span>GA4: Connected</span><span class="text-outline">•</span><span class="text-primary-fixed">WP: Draft Mode</span><span class="text-outline">•</span><span class="text-secondary-fixed">KB: Synced</span></div></div><div class="flex items-center gap-space-md"><div class="hidden lg:flex items-center gap-space-xs bg-error-container text-on-error-container px-space-md py-1 rounded-lg font-badge-status text-badge-status"><span class="material-symbols-outlined text-[15px]">lock</span><span>SAFE MODE: Drafts &amp; Staging Only</span></div><div class="flex items-center gap-space-sm bg-surface-container-lowest/10 px-space-md py-1.5 rounded-lg text-outline-variant hover:text-surface-container-lowest cursor-pointer"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-body-sm text-body-sm hidden sm:inline">Global Search</span><kbd class="font-label-code-sm text-label-code-sm bg-surface-container-lowest/20 px-1 rounded text-surface-container-lowest text-[10px]">⌘K</kbd></div><button class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary px-space-md py-1.5 rounded-xl font-headline-sm text-headline-sm text-xs transition-colors shadow-[0_1px_4px_rgba(0,0,0,0.12)]"><span class="material-symbols-outlined text-[16px]">auto_awesome</span><span class="hidden md:inline">Ask Studio AI</span></button><button class="relative p-1.5 text-outline-variant hover:text-surface-container-lowest transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-4 h-4 bg-error text-on-error font-label-code-sm text-label-code-sm text-[10px] rounded-full flex items-center justify-center font-bold">3</span></button><div class="h-6 w-px bg-outline/40"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right hidden sm:flex"><span class="font-headline-sm text-headline-sm text-xs text-surface-container-lowest">Marcus Vance</span><span class="font-label-code-sm text-label-code-sm text-[10px] text-primary-fixed font-semibold">Head of SEO</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><aside class="fixed left-0 top-14 bottom-0 w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex flex-col justify-between"><div class="flex flex-col py-space-md overflow-y-auto"><div class="px-space-md pb-space-sm text-outline font-label-code-sm text-label-code-sm uppercase tracking-wider">Workspace Engine</div><nav class="flex flex-col gap-0.5 px-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-sm"><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="client-dashboard" href="#"><span class="font-body-md text-body-md">Client Dashboard</span></a><a aria-current="page" class="flex items-center px-space-md py-2 rounded-xl transition-all bg-primary-container text-on-primary-container font-semibold shadow-sm" data-path="all-clients" href="#"><span class="font-body-md text-body-md">All Clients</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="keyword-research" href="#"><span class="font-body-md text-body-md">Keyword Research</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="site-audit" href="#"><span class="font-body-md text-body-md">Site Audit</span></a><a class="flex items-center justify-between px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="fixes-and-approvals" href="#"><span class="font-body-md text-body-md">Fixes &amp; Approvals</span><span class="bg-error-container text-on-error-container font-label-code-sm text-label-code-sm px-1.5 py-0.5 rounded-full text-[10px]">4 Pending</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="developer-tickets" href="#"><span class="font-body-md text-body-md">Developer Tickets</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="content-studio" href="#"><span class="font-body-md text-body-md">Content Studio</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="aeo-visibility" href="#"><span class="font-body-md text-body-md">AEO Visibility</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="schema-generator" href="#"><span class="font-body-md text-body-md">Schema Generator</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="monthly-plan" href="#"><span class="font-body-md text-body-md">Monthly Plan</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="reports-and-admin" href="#"><span class="font-body-md text-body-md">Reports &amp; Admin</span></a></nav></div><div class="p-space-md bg-surface-container-low rounded-t-xl mx-space-sm mb-space-sm"><div class="flex items-center justify-between text-outline-variant font-label-code-sm text-label-code-sm mb-1"><span class="text-on-surface font-semibold">Health Score</span><span class="text-secondary font-bold">94.2%</span></div><div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden"><div class="bg-secondary h-full rounded-full" style="width: 94.2%"></div></div><div class="flex items-center justify-between text-[11px] text-outline mt-1.5"><span>Sync: 2m ago</span><span class="text-primary font-medium hover:underline cursor-pointer">Inspect</span></div></div></aside><div class="pl-64"><main class="w-full pt-14 bg-background min-h-screen px-gutter-desktop py-margin-desktop"><div class="flex flex-col w-full">
+<!-- Top Executive Bar & Operational Header -->
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-inverse-surface via-[#1e2330] to-inverse-surface p-space-lg shadow-md mb-space-lg text-surface-container-lowest">
+<div class="relative z-10 flex flex-col xl:flex-row xl:items-center justify-between gap-space-lg">
+<div class="max-w-2xl">
+<div class="flex items-center gap-space-sm mb-1.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/20 text-primary-fixed font-label-code-sm text-label-code-sm uppercase tracking-wide">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed animate-ping"></span>
+            Agency Control Deck
+          </span>
+<span class="text-outline-variant font-label-code-sm text-label-code-sm">v4.18 Live Multi-Tenant</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-surface-container-lowest tracking-tight">All Clients Portfolio Overview</h1>
+<p class="font-body-md text-body-md text-surface-container-high mt-1">
+          Monitoring 12 enterprise accounts across Organic SEO &amp; AI Engine Visibility (AEO). Safe Mode enabled across all staging environments.
+        </p>
+</div>
+<!-- Action Trigger Buttons -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="inline-flex items-center gap-space-xs bg-surface-container-lowest/10 hover:bg-surface-container-lowest/20 text-surface-container-lowest font-headline-sm text-headline-sm text-xs px-space-md py-2 rounded-xl transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">cloud_sync</span>
+<span>Trigger Global Audit</span>
+</button>
+<button class="inline-flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-headline-sm text-xs px-space-md py-2 rounded-xl transition-all shadow-md">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span id="metric-batch-signoff">Batch Sign-Off (18)</span>
+</button>
+</div>
+</div>
+<!-- Micro Stats Rail inside Banner -->
+<div class="relative z-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-space-md mt-space-lg pt-space-md border-t-0 bg-surface-container-lowest/5 -mx-space-lg -mb-space-lg px-space-lg pb-space-lg rounded-b-xl">
+<!-- KPI 1 -->
+<div class="flex flex-col">
+<span class="font-label-code-sm text-label-code-sm text-surface-container-high uppercase tracking-wider">Total Organic Clicks</span>
+<div class="flex items-baseline gap-space-xs mt-0.5">
+<span id="metric-clicks" class="font-headline-lg text-headline-lg font-bold text-surface-container-lowest">1.48M</span>
+<span class="font-label-code-sm text-label-code-sm text-secondary-fixed font-semibold flex items-center">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>14.2%
+          </span>
+</div>
+<span class="font-body-sm text-body-sm text-outline-variant mt-0.5">30-day aggregate rolling</span>
+</div>
+<!-- KPI 2 -->
+<div class="flex flex-col">
+<span class="font-label-code-sm text-label-code-sm text-surface-container-high uppercase tracking-wider">Total AI Citations</span>
+<div class="flex items-baseline gap-space-xs mt-0.5">
+<span id="metric-citations" class="font-headline-lg text-headline-lg font-bold text-tertiary-fixed">42.8K</span>
+<span class="font-label-code-sm text-label-code-sm text-tertiary-fixed-dim font-semibold flex items-center">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>AEO
+          </span>
+</div>
+<span class="font-body-sm text-body-sm text-outline-variant mt-0.5">ChatGPT, Perplexity, Gemini</span>
+</div>
+<!-- KPI 3 -->
+<div class="flex flex-col">
+<span class="font-label-code-sm text-label-code-sm text-surface-container-high uppercase tracking-wider">Avg Site Health</span>
+<div class="flex items-baseline gap-space-xs mt-0.5">
+<span id="metric-health" class="font-headline-lg text-headline-lg font-bold text-surface-container-lowest">88.4</span>
+<span class="font-label-code-sm text-label-code-sm text-surface-container-highest">/ 100</span>
+</div>
+<div class="w-28 bg-surface-container-lowest/20 h-1.5 rounded-full overflow-hidden mt-1">
+<div id="metric-health-bar" class="bg-secondary-fixed h-full rounded-full" style="width: 88.4%;"></div>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="flex flex-col">
+<span class="font-label-code-sm text-label-code-sm text-surface-container-high uppercase tracking-wider">Critical Issues</span>
+<div class="flex items-baseline gap-space-xs mt-0.5">
+<span id="metric-critical-issues" class="font-headline-lg text-headline-lg font-bold text-error-container">9</span>
+<span id="metric-critical-clients" class="font-body-sm text-body-sm text-error-container font-medium">in 4 clients</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline-variant mt-0.5">Auth loops &amp; 5xx errors</span>
+</div>
+<!-- KPI 5 -->
+<div class="flex flex-col">
+<span class="font-label-code-sm text-label-code-sm text-surface-container-high uppercase tracking-wider">Pending Sign-Off</span>
+<div class="flex items-baseline gap-space-xs mt-0.5">
+<span id="metric-pending-approvals" class="font-headline-lg text-headline-lg font-bold text-primary-fixed">18</span>
+<span class="font-label-code-sm text-label-code-sm text-primary-fixed-dim">Action required</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline-variant mt-0.5">Awaiting Head of SEO</span>
+</div>
+</div>
+</div>
+<!-- Operational Filter Strip & Quick Status Tabs -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-md">
+<!-- Filter Tabs -->
+<div class="flex items-center gap-1 overflow-x-auto pb-1 md:pb-0 bg-surface-container-low p-1 rounded-xl shadow-sm">
+<button class="px-space-md py-1.5 rounded-lg bg-surface-container-lowest text-on-surface font-headline-sm text-headline-sm text-xs shadow-sm flex items-center gap-1.5 whitespace-nowrap">
+<span>All Clients</span>
+<span class="px-1.5 py-0.2 rounded-full bg-primary-fixed text-on-primary-fixed font-label-code-sm text-label-code-sm text-[10px]">12</span>
+</button>
+<button class="px-space-md py-1.5 rounded-lg hover:bg-surface-container-lowest/60 text-on-surface-variant font-headline-sm text-headline-sm text-xs transition-colors flex items-center gap-1.5 whitespace-nowrap">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span>Needs Attention</span>
+<span class="px-1.5 py-0.2 rounded-full bg-error-container text-on-error-container font-label-code-sm text-label-code-sm text-[10px]">4</span>
+</button>
+<button class="px-space-md py-1.5 rounded-lg hover:bg-surface-container-lowest/60 text-on-surface-variant font-headline-sm text-headline-sm text-xs transition-colors flex items-center gap-1.5 whitespace-nowrap">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>Pending Approvals</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-highest text-on-surface font-label-code-sm text-label-code-sm text-[10px]">7</span>
+</button>
+<button class="px-space-md py-1.5 rounded-lg hover:bg-surface-container-lowest/60 text-on-surface-variant font-headline-sm text-headline-sm text-xs transition-colors flex items-center gap-1.5 whitespace-nowrap">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>High Growth</span>
+<span class="px-1.5 py-0.2 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-code-sm text-label-code-sm text-[10px]">5</span>
+</button>
+<button class="px-space-md py-1.5 rounded-lg hover:bg-surface-container-lowest/60 text-on-surface-variant font-headline-sm text-headline-sm text-xs transition-colors flex items-center gap-1.5 whitespace-nowrap">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span>Auth Error</span>
+<span class="px-1.5 py-0.2 rounded-full bg-error-container text-on-error-container font-label-code-sm text-label-code-sm text-[10px]">1</span>
+</button>
+</div>
+<!-- Right utility controls -->
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code-sm text-label-code-sm text-outline-variant hidden sm:inline">Last global sync: 3m ago</span>
+<button class="p-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant transition-colors" title="Reload status">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+</button>
+<button class="inline-flex items-center gap-space-xs bg-surface-container-lowest hover:bg-surface-container-low text-on-surface px-space-md py-1.5 rounded-xl font-headline-sm text-headline-sm text-xs shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Export CSV</span>
+</button>
+</div>
+</div>
+<!-- Search & Structured Filter Bar -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm mb-space-lg flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-md">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-[18px]">search</span>
+<input class="w-full bg-surface-container-low pl-10 pr-4 py-2 rounded-xl text-on-surface font-body-sm text-body-sm outline-none placeholder:text-outline focus:bg-surface-container-lowest shadow-inner transition-all" placeholder="Search client name, domain (e.g. luminahealth.io), or assigned lead..." type="text"/>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Platform Filter -->
+<div class="relative">
+<select class="appearance-none bg-surface-container-low text-on-surface font-body-sm text-body-sm pl-3 pr-8 py-2 rounded-xl outline-none cursor-pointer">
+<option>All CMS Platforms</option>
+<option>WordPress (Headless/REST)</option>
+<option>Shopify Plus</option>
+<option>Next.js / Vercel Edge</option>
+<option>Webflow</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2.5 pointer-events-none text-outline text-[18px]">expand_more</span>
+</div>
+<!-- SEO Owner Filter -->
+<div class="relative">
+<select class="appearance-none bg-surface-container-low text-on-surface font-body-sm text-body-sm pl-3 pr-8 py-2 rounded-xl outline-none cursor-pointer">
+<option>All SEO Leads</option>
+<option>Marcus Vance (Head of SEO)</option>
+<option>Elena Rostova (Technical Lead)</option>
+<option>Dave Kalu (AEO &amp; Content)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2.5 pointer-events-none text-outline text-[18px]">expand_more</span>
+</div>
+<!-- Health Threshold Filter -->
+<div class="relative">
+<select class="appearance-none bg-surface-container-low text-on-surface font-body-sm text-body-sm pl-3 pr-8 py-2 rounded-xl outline-none cursor-pointer">
+<option>Health Score: All</option>
+<option>&gt; 90% Optimum</option>
+<option>75% - 90% Moderate</option>
+<option>&lt; 75% Critical Alert</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2.5 pointer-events-none text-outline text-[18px]">filter_list</span>
+</div>
+</div>
+</div>
+<!-- Main Grid: Clients Analytical Table + Right Operational Rail -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- Table Container (8 or 9 cols on desktop) -->
+<div class="xl:col-span-9 flex flex-col gap-space-md">
+<!-- Critical Warning Notification Card -->
+<div class="p-space-md rounded-xl bg-amber-50/80 bg-surface-container-low flex items-start justify-between gap-space-md shadow-sm">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-amber-600 text-[22px] mt-0.5">warning</span>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-xs font-bold text-on-surface">Urgent Action: Google Search Console Token Expiring</span>
+<span class="bg-error-container text-on-error-container font-label-code-sm text-label-code-sm px-1.5 py-0.2 rounded-full text-[10px]">OAuth 2.0</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+<strong class="text-on-surface">Apex Fintech (apexfin.co)</strong> API token will disconnect in 6 hours. Crawl diffing and keyword impression tracking are paused.
+            </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-1.5 rounded-lg bg-surface-container-lowest text-on-surface font-headline-sm text-headline-sm text-xs shadow-sm hover:bg-surface-container transition-all whitespace-nowrap">
+            Reconnect GSC
+          </button>
+</div>
+</div>
+<!-- Main Analytical Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="p-space-md flex items-center justify-between bg-surface-container-lowest">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface">Active Client Fleet</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high font-label-code-sm text-label-code-sm text-on-surface-variant">Showing 5 of 12</span>
+</div>
+<div class="flex items-center gap-space-sm text-outline-variant font-label-code-sm text-label-code-sm text-xs">
+<span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span> GSC/GA4 Active</span>
+<span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-error"></span> Auth Required</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-code-sm text-label-code-sm uppercase tracking-wider">
+<th class="py-3 px-space-md font-semibold">Client &amp; Domain</th>
+<th class="py-3 px-space-md font-semibold">SEO Lead</th>
+<th class="py-3 px-space-md font-semibold text-right">30d Clicks</th>
+<th class="py-3 px-space-md font-semibold text-center">Health</th>
+<th class="py-3 px-space-md font-semibold text-center">Critical Issues</th>
+<th class="py-3 px-space-md font-semibold text-center">Approvals</th>
+<th class="py-3 px-space-md font-semibold">WP Content Sprint</th>
+<th class="py-3 px-space-md font-semibold text-right">AEO Citation</th>
+<th class="py-3 px-space-md font-semibold text-center">Stack Sync</th>
+<th class="py-3 px-space-md font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- ROW 1: Lumina Health Care -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center font-bold text-on-primary-fixed text-xs font-headline-sm">
+                      LH
+                    </div>
+<div class="flex flex-col">
+<a class="font-headline-sm text-headline-sm text-xs font-semibold text-on-surface group-hover:text-primary transition-colors" href="#">Lumina Health Care</a>
+<span class="font-label-code-sm text-label-code-sm text-outline text-[11px] flex items-center gap-1">
+                        luminahealth.io
+                        <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-1.5">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed text-[10px] font-bold">
+                      MV
+                    </div>
+<span class="font-body-sm text-body-sm text-on-surface">Marcus Vance</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right font-label-code-sm">
+<div class="flex flex-col items-end">
+<span class="font-bold text-on-surface text-[13px]">412.8K</span>
+<div class="flex items-center gap-1 text-[11px] text-secondary">
+<svg class="w-12 h-3.5 text-secondary" fill="none" viewbox="0 0 48 14">
+<path d="M1 11L12 9L24 12L36 5L47 2" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span>+18.4%</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<div class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-secondary-fixed/30 text-secondary font-label-code-sm font-bold text-xs" title="Optimum Health 94.2%">
+                    94%
+                  </div>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-code-sm text-label-code-sm text-[11px]">
+                    0 Critical
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<button class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-code-sm text-label-code-sm text-[11px] hover:bg-primary hover:text-on-primary transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                    4 waiting
+                  </button>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col gap-1 w-32">
+<div class="flex items-center justify-between text-[11px] font-label-code-sm text-on-surface-variant">
+<span>Drafts</span>
+<span class="font-semibold text-on-surface">6 / 8</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 75%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right font-label-code-sm">
+<div class="flex flex-col items-end">
+<span class="font-bold text-tertiary text-[13px]">42.6%</span>
+<span class="text-[10px] text-outline">Perplexity Top 3</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-surface-container-high text-[10px] font-label-code-sm" title="GSC, GA4, WP, KnowledgeBase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary transition-colors text-on-surface-variant" title="Client Workspace">
+<span class="material-symbols-outlined text-[16px]">dashboard</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant transition-colors" title="Review Schema &amp; Meta Changes">
+<span class="material-symbols-outlined text-[16px]">rule</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 2: Apex Fintech (With Critical Error Alert) -->
+<tr class="bg-error-container/10 hover:bg-error-container/20 transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-error-container flex items-center justify-center font-bold text-on-error-container text-xs font-headline-sm">
+                      AF
+                    </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<a class="font-headline-sm text-headline-sm text-xs font-semibold text-on-surface group-hover:text-primary transition-colors" href="#">Apex Fintech</a>
+<span class="w-2 h-2 rounded-full bg-error" title="Requires Attention"></span>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-outline text-[11px] flex items-center gap-1">
+                        apexfin.co
+                        <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-1.5">
+<div class="w-6 h-6 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed text-[10px] font-bold">
+                      ER
+                    </div>
+<span class="font-body-sm text-body-sm text-on-surface">Elena Rostova</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right font-label-code-sm">
+<div class="flex flex-col items-end">
+<span class="font-bold text-on-surface text-[13px]">189.4K</span>
+<div class="flex items-center gap-1 text-[11px] text-error">
+<svg class="w-12 h-3.5 text-error" fill="none" viewbox="0 0 48 14">
+<path d="M1 2L12 4L24 3L36 9L47 12" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span>-6.2%</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<div class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-error-container text-on-error-container font-label-code-sm font-bold text-xs" title="Site Health Alert">
+                    68%
+                  </div>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-code-sm text-label-code-sm text-[11px] font-bold">
+<span class="material-symbols-outlined text-[14px]">error</span>
+                    3 Loop 5xx
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<button class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-code-sm text-label-code-sm text-[11px]">
+                    2 waiting
+                  </button>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col gap-1 w-32">
+<div class="flex items-center justify-between text-[11px] font-label-code-sm text-on-surface-variant">
+<span>Drafts</span>
+<span class="font-semibold text-on-surface">2 / 10</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 20%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right font-label-code-sm">
+<div class="flex flex-col items-end">
+<span class="font-bold text-on-surface text-[13px]">19.1%</span>
+<span class="text-[10px] text-outline">ChatGPT Zero-click</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-surface-container-high text-[10px] font-label-code-sm" title="GSC Auth Error">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2 py-1 rounded-lg bg-error-container text-on-error-container font-headline-sm text-headline-sm text-[11px] hover:bg-error hover:text-on-error transition-colors">
+                      Fix Auth
+                    </button>
+</div>
+</td>
+</tr>
+<!-- ROW 3: CloudScale DevOps -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center font-bold text-on-surface text-xs font-headline-sm">
+                      CS
+                    </div>
+<div class="flex flex-col">
+<a class="font-headline-sm text-headline-sm text-xs font-semibold text-on-surface group-hover:text-primary transition-colors" href="#">CloudScale DevOps</a>
+<span class="font-label-code-sm text-label-code-sm text-outline text-[11px] flex items-center gap-1">
+                        cloudscale.tech
+                        <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-1.5">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed text-[10px] font-bold">
+                      MV
+                    </div>
+<span class="font-body-sm text-body-sm text-on-surface">Marcus Vance</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right font-label-code-sm">
+<div class="flex flex-col items-end">
+<span class="font-bold text-on-surface text-[13px]">328.1K</span>
+<div class="flex items-center gap-1 text-[11px] text-secondary">
+<svg class="w-12 h-3.5 text-secondary" fill="none" viewbox="0 0 48 14">
+<path d="M1 12L12 10L24 7L36 4L47 1" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span>+24.7%</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<div class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-secondary-fixed/30 text-secondary font-label-code-sm font-bold text-xs" title="Health 96%">
+                    96%
+                  </div>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-code-sm text-label-code-sm text-[11px]">
+                    0 Critical
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<button class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-code-sm text-label-code-sm text-[11px]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                    6 waiting
+                  </button>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col gap-1 w-32">
+<div class="flex items-center justify-between text-[11px] font-label-code-sm text-on-surface-variant">
+<span>Drafts</span>
+<span class="font-semibold text-on-surface">8 / 8</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right font-label-code-sm">
+<div class="flex flex-col items-end">
+<span class="font-bold text-tertiary text-[13px]">51.8%</span>
+<span class="text-[10px] text-outline">Claude &amp; GPT-4o</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-surface-container-high text-[10px] font-label-code-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">dashboard</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[16px]">rule</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 4: Nordic Home Decor -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container/20 flex items-center justify-center font-bold text-primary text-xs font-headline-sm">
+                      NH
+                    </div>
+<div class="flex flex-col">
+<a class="font-headline-sm text-headline-sm text-xs font-semibold text-on-surface group-hover:text-primary transition-colors" href="#">Nordic Home Decor</a>
+<span class="font-label-code-sm text-label-code-sm text-outline text-[11px] flex items-center gap-1">
+                        nordichome.se
+                        <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-1.5">
+<div class="w-6 h-6 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed text-[10px] font-bold">
+                      DK
+                    </div>
+<span class="font-body-sm text-body-sm text-on-surface">Dave Kalu</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right font-label-code-sm">
+<div class="flex flex-col items-end">
+<span class="font-bold text-on-surface text-[13px]">295.0K</span>
+<div class="flex items-center gap-1 text-[11px] text-secondary">
+<svg class="w-12 h-3.5 text-secondary" fill="none" viewbox="0 0 48 14">
+<path d="M1 9L12 8L24 5L36 6L47 3" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span>+8.9%</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<div class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-secondary-fixed/30 text-secondary font-label-code-sm font-bold text-xs" title="Health 89%">
+                    89%
+                  </div>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-code-sm text-label-code-sm text-[11px]">
+                    2 Schema Err
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<button class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-code-sm text-label-code-sm text-[11px]">
+                    3 waiting
+                  </button>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col gap-1 w-32">
+<div class="flex items-center justify-between text-[11px] font-label-code-sm text-on-surface-variant">
+<span>Drafts</span>
+<span class="font-semibold text-on-surface">4 / 6</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 66%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right font-label-code-sm">
+<div class="flex flex-col items-end">
+<span class="font-bold text-tertiary text-[13px]">28.4%</span>
+<span class="text-[10px] text-outline">SearchGPT Index</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-surface-container-high text-[10px] font-label-code-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">dashboard</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[16px]">rule</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 5: Veloce Logistics -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center font-bold text-on-surface text-xs font-headline-sm">
+                      VL
+                    </div>
+<div class="flex flex-col">
+<a class="font-headline-sm text-headline-sm text-xs font-semibold text-on-surface group-hover:text-primary transition-colors" href="#">Veloce Logistics</a>
+<span class="font-label-code-sm text-label-code-sm text-outline text-[11px] flex items-center gap-1">
+                        velocelog.com
+                        <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-1.5">
+<div class="w-6 h-6 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed text-[10px] font-bold">
+                      ER
+                    </div>
+<span class="font-body-sm text-body-sm text-on-surface">Elena Rostova</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right font-label-code-sm">
+<div class="flex flex-col items-end">
+<span class="font-bold text-on-surface text-[13px]">255.3K</span>
+<div class="flex items-center gap-1 text-[11px] text-secondary">
+<svg class="w-12 h-3.5 text-secondary" fill="none" viewbox="0 0 48 14">
+<path d="M1 10L12 9L24 6L36 7L47 2" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span>+11.2%</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<div class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-secondary-fixed/30 text-secondary font-label-code-sm font-bold text-xs" title="Health 92%">
+                    92%
+                  </div>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-code-sm text-label-code-sm text-[11px]">
+                    0 Critical
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<button class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-code-sm text-label-code-sm text-[11px]">
+                    3 waiting
+                  </button>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col gap-1 w-32">
+<div class="flex items-center justify-between text-[11px] font-label-code-sm text-on-surface-variant">
+<span>Drafts</span>
+<span class="font-semibold text-on-surface">5 / 6</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 83%;"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right font-label-code-sm">
+<div class="flex flex-col items-end">
+<span class="font-bold text-tertiary text-[13px]">31.5%</span>
+<span class="text-[10px] text-outline">Supply Chain LLMs</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-surface-container-high text-[10px] font-label-code-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">dashboard</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[16px]">rule</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination & Bulk Status Footer -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm text-outline font-label-code-sm text-label-code-sm">
+<div class="flex items-center gap-space-sm">
+<span>Showing 1 to 5 of 12 enterprise accounts</span>
+<span class="text-outline/40">•</span>
+<span class="text-primary font-semibold cursor-pointer hover:underline">View 7 Archived Accounts</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm disabled:opacity-40">Previous</button>
+<button class="px-2.5 py-1 rounded bg-primary text-on-primary font-semibold">1</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container">2</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container">3</button>
+<button class="px-2 py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container">Next</button>
+</div>
+</div>
+</div>
+<!-- Quick Inspection Mini Split-Diff (Featured Client Approval Quick Glance) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">difference</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Live Approvals Drawer: Lumina Health Care</span>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-code-sm text-label-code-sm text-[10px]">Staging Diff</span>
+</div>
+<button class="font-label-code-sm text-label-code-sm text-primary font-semibold hover:underline flex items-center gap-1">
+            Open Full Fixes Matrix <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm font-label-code-sm text-label-code-sm">
+<!-- Before / Current -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-1">
+<div class="flex items-center justify-between text-outline text-[10px] uppercase font-semibold">
+<span>Production (Active)</span>
+<span class="text-error">Target: /pediatric-urgent-care</span>
+</div>
+<div class="bg-error-container/20 text-on-error-container p-2 rounded text-[11px] font-mono leading-relaxed overflow-x-auto">
+<span class="text-error font-bold">- &lt;title&gt;Urgent Care Pediatrics - Lumina Clinics&lt;/title&gt;</span><br/>
+<span class="text-error font-bold">- &lt;meta name="description" content="Visit our clinics for kids urgent care across Seattle."&gt;</span>
+</div>
+</div>
+<!-- After / Proposed with AEO Keywords -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-1">
+<div class="flex items-center justify-between text-outline text-[10px] uppercase font-semibold">
+<span>AI Optimized + FAQ Schema Added</span>
+<span class="text-secondary font-bold">+ AEO Optimized</span>
+</div>
+<div class="bg-secondary-fixed/20 text-on-secondary-fixed p-2 rounded text-[11px] font-mono leading-relaxed overflow-x-auto">
+<span class="text-secondary font-bold">+ &lt;title&gt;Pediatric Urgent Care in Seattle | Lumina Health Care&lt;/title&gt;</span><br/>
+<span class="text-secondary font-bold">+ &lt;meta name="description" content="Same-day pediatric urgent walk-in care in Seattle. Open 7 days for children and infants with zero wait times."&gt;</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-sm pt-space-sm bg-surface-container-low/40 px-space-sm rounded-lg">
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs">
+            Impact: Resolves intent mismatch for Perplexity &amp; Google AI Overviews.
+          </span>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-1 rounded-lg bg-surface-container-high text-on-surface font-headline-sm text-headline-sm text-xs hover:bg-surface-container-highest transition-colors">
+              Reject
+            </button>
+<button class="px-space-md py-1 rounded-lg bg-secondary text-on-secondary font-headline-sm text-headline-sm text-xs hover:bg-secondary-container hover:text-on-secondary-container transition-colors shadow-sm">
+              Approve to Staging
+            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Analytical Rail: Sprint Milestones & Team Distribution -->
+<div class="xl:col-span-3 flex flex-col gap-space-md">
+<!-- Safe Mode Status Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">Publishing Guardrails</span>
+<span class="material-symbols-outlined text-primary text-[20px]">shield</span>
+</div>
+<div class="p-space-sm rounded-lg bg-primary-fixed/20 flex flex-col gap-1 mb-space-sm">
+<div class="flex items-center gap-1.5 text-on-primary-fixed font-headline-sm text-headline-sm text-xs font-semibold">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span>Agency Safe Mode: Active</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-relaxed">
+            Direct database write-access to clients is blocked. All title, meta, schema, and robots.txt modifications publish to Staging Webhooks only until client approvals pass.
+          </p>
+</div>
+<div class="flex items-center justify-between text-outline font-label-code-sm text-label-code-sm text-[11px]">
+<span>Audit Log ID: #SEC-9844</span>
+<span class="text-secondary font-bold">100% Secure</span>
+</div>
+</div>
+<!-- Upcoming Milestones & Deliverables Panel -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary text-[20px]">event_upcoming</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Upcoming Milestones</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-code-sm text-label-code-sm text-[10px]">Sprint 24</span>
+</div>
+<div class="flex flex-col gap-space-md">
+<!-- Milestone 1 -->
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-error-container text-on-error-container flex flex-col items-center justify-center font-label-code-sm text-[10px] font-bold shrink-0">
+<span>04</span>
+<span class="text-[8px] uppercase">Days</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-xs font-semibold text-on-surface truncate">EOM Executive Reporting</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">Generate 12 client PDF decks &amp; AEO impact summaries.</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-code-sm text-label-code-sm text-outline text-[10px]">Due Oct 31, 23:59 UTC</span>
+</div>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-fixed text-on-primary-fixed flex flex-col items-center justify-center font-label-code-sm text-[10px] font-bold shrink-0">
+<span>18</span>
+<span class="text-[8px] uppercase">Hrs</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-xs font-semibold text-on-surface truncate">Lumina Health Deep Crawl</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">Scheduled ScreamingFrog + LLM citation benchmark run.</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-code-sm text-label-code-sm text-outline text-[10px]">Scheduled: Tonight 02:00</span>
+</div>
+</div>
+</div>
+<!-- Milestone 3 -->
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex flex-col items-center justify-center font-label-code-sm text-[10px] font-bold shrink-0">
+<span>03</span>
+<span class="text-[8px] uppercase">Briefs</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-xs font-semibold text-on-surface truncate">Content Brief Sign-offs</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">Nordic Home Decor &amp; Veloce Q4 Pillar clusters.</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-code-sm text-label-code-sm text-outline text-[10px]">Assigned to: Dave Kalu</span>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-space-md py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-headline-sm text-headline-sm text-xs font-semibold transition-colors flex items-center justify-center gap-1">
+<span>Open Sprint Roadmaps</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+<!-- Account Lead Distribution Matrix -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">Team Allocation</span>
+<span class="font-label-code-sm text-label-code-sm text-outline text-xs">3 Leads Active</span>
+</div>
+<div class="space-y-3">
+<!-- Marcus -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm text-xs font-semibold text-on-surface">Marcus Vance</span>
+<span class="text-outline text-[10px]">(Head of SEO)</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface font-semibold">5 Accounts</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 42%;"></div>
+</div>
+</div>
+<!-- Elena -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm text-xs font-semibold text-on-surface">Elena Rostova</span>
+<span class="text-outline text-[10px]">(Technical Lead)</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface font-semibold">4 Accounts</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 33%;"></div>
+</div>
+</div>
+<!-- Dave -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm text-xs font-semibold text-on-surface">Dave Kalu</span>
+<span class="text-outline text-[10px]">(AEO Specialist)</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface font-semibold">3 Accounts</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 25%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Agency Knowledge Base Synced status -->
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[22px]">auto_stories</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-xs font-semibold text-on-surface">AI Engine Core Knowledge</span>
+<span class="font-label-code-sm text-label-code-sm text-outline text-[10px]">12/12 Client Brand Books Linked</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">check_circle</span>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

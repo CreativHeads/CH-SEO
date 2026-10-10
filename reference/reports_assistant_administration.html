@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed":"#07006c","tertiary-fixed":"#eaddff","secondary-fixed":"#6ffbbe","inverse-on-surface":"#eef0ff","surface-container-low":"#f2f3ff","surface-container":"#ebedfc","secondary-fixed-dim":"#4edea3","on-tertiary-fixed":"#25005a","on-surface-variant":"#464554","tertiary-fixed-dim":"#d2bbff","tertiary":"#712ae2","primary-fixed":"#e1e0ff","on-error-container":"#93000a","inverse-surface":"#2c303b","on-secondary-fixed-variant":"#005236","error-container":"#ffdad6","on-secondary":"#ffffff","on-secondary-fixed":"#002113","surface-container-highest":"#dfe2f1","primary-fixed-dim":"#c0c1ff","on-background":"#171b26","background":"#faf8ff","tertiary-container":"#8a4cfc","on-tertiary-container":"#fffbff","surface-container-lowest":"#ffffff","secondary":"#006c49","on-secondary-container":"#00714d","outline":"#767586","surface-bright":"#faf8ff","on-error":"#ffffff","surface-dim":"#d7d9e8","on-surface":"#171b26","on-primary-container":"#fffbff","secondary-container":"#6cf8bb","on-primary-fixed-variant":"#2f2ebe","outline-variant":"#c7c4d7","on-tertiary":"#ffffff","inverse-primary":"#c0c1ff","on-tertiary-fixed-variant":"#5a00c6","surface":"#faf8ff","surface-variant":"#dfe2f1","primary":"#4648d4","primary-container":"#6063ee","surface-tint":"#494bd6","surface-container-high":"#e5e7f6","on-primary":"#ffffff","error":"#ba1a1a"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-sm":"0.5rem","space-xl":"2rem","margin":"1rem","space-lg":"1.25rem","gutter":"1.25rem","space-xs":"0.25rem","margin-desktop":"2rem","gutter-desktop":"1.5rem","space-md":"0.75rem"},fontFamily:{"headline-xl-mobile":["Plus Jakarta Sans"],"body-lg":["Inter"],"badge-status":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-code-sm":["JetBrains Mono"],"headline-sm":["Plus Jakarta Sans"],"label-code-lg":["JetBrains Mono"],"headline-xl":["Plus Jakarta Sans"]},fontSize:{"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"-0.011em","fontWeight":"400"}],"badge-status":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"-0.006em","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-code-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],"headline-sm":["15px",{"lineHeight":"22px","letterSpacing":"-0.005em","fontWeight":"600"}],"label-code-lg":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-inverse-surface text-inverse-on-surface shadow-[0_1px_8px_rgba(0,0,0,0.06)]"><div class="h-14 px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><img alt="SEO Studio by CreativHeads Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W-VoUSnZlcPOf8vU8fLCvtF2T3GnRwtlFjwBlmTuhFQNo_5bd4oV8GzIfZaeNcDAixesVWCLcEYC_pvyJUERThRUqaBHdvTiRmHQqr65KjUW7PRbvOTDqe1ZesAKUrx5z7DLqBe7qZ1666mVeZs9qYQA-s1yrHWwYN2ohbXNujZUUkMf3kw7nwmZiStG9jD3rFhdFuVL1_uYSzr06q2SAESwPT4NUC0yUA7TueqBUxsA"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-surface-container-lowest leading-none tracking-tight">SEO Studio</span><span class="font-label-code-sm text-label-code-sm text-outline-variant uppercase tracking-wider">CreativHeads Agency</span></div></div><div class="h-6 w-px bg-outline/40"></div><button class="flex items-center gap-space-sm bg-surface-container-lowest/10 hover:bg-surface-container-lowest/20 px-space-md py-1.5 rounded-xl transition-colors text-left"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span><span class="font-headline-sm text-headline-sm text-surface-container-lowest text-xs font-semibold">Lumina Health Care</span></div><span class="font-label-code-sm text-label-code-sm text-outline-variant text-[10px]">luminahealth.io</span></div><span class="material-symbols-outlined text-outline-variant text-[18px]">unfold_more</span></button><div class="hidden xl:flex items-center gap-space-sm bg-surface-container-lowest/5 px-space-md py-1 rounded-full font-label-code-sm text-label-code-sm text-surface-container-high"><span class="w-2 h-2 rounded-full bg-secondary-fixed animate-ping"></span><span class="">GSC: Connected</span><span class="text-outline">•</span><span class="">GA4: Connected</span><span class="text-outline">•</span><span class="text-primary-fixed">WP: Draft Mode</span><span class="text-outline">•</span><span class="text-secondary-fixed">KB: Synced</span></div></div><div class="flex items-center gap-space-md"><div class="hidden lg:flex items-center gap-space-xs bg-error-container text-on-error-container px-space-md py-1 rounded-lg font-badge-status text-badge-status"><span class="material-symbols-outlined text-[15px]">lock</span><span class="">SAFE MODE: Drafts &amp; Staging Only</span></div><div class="flex items-center gap-space-sm bg-surface-container-lowest/10 px-space-md py-1.5 rounded-lg text-outline-variant hover:text-surface-container-lowest cursor-pointer"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-body-sm text-body-sm hidden sm:inline">Global Search</span><kbd class="font-label-code-sm text-label-code-sm bg-surface-container-lowest/20 px-1 rounded text-surface-container-lowest text-[10px]">⌘K</kbd></div><button class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary px-space-md py-1.5 rounded-xl font-headline-sm text-headline-sm text-xs transition-colors shadow-[0_1px_4px_rgba(0,0,0,0.12)]"><span class="material-symbols-outlined text-[16px]">auto_awesome</span><span class="hidden md:inline">Ask Studio AI</span></button><button class="relative p-1.5 text-outline-variant hover:text-surface-container-lowest transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-4 h-4 bg-error text-on-error font-label-code-sm text-label-code-sm text-[10px] rounded-full flex items-center justify-center font-bold">3</span></button><div class="h-6 w-px bg-outline/40"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right hidden sm:flex"><span class="font-headline-sm text-headline-sm text-xs text-surface-container-lowest">Marcus Vance</span><span class="font-label-code-sm text-label-code-sm text-[10px] text-primary-fixed font-semibold">Head of SEO</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><aside class="fixed left-0 top-14 bottom-0 w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex flex-col justify-between"><div class="flex flex-col py-space-md overflow-y-auto"><div class="px-space-md pb-space-sm text-outline font-label-code-sm text-label-code-sm uppercase tracking-wider">Workspace Engine</div><nav class="flex flex-col gap-0.5 px-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-sm"><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="client-dashboard" href="#"><span class="font-body-md text-body-md">Client Dashboard</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="all-clients" href="#"><span class="font-body-md text-body-md">All Clients</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="keyword-research" href="#"><span class="font-body-md text-body-md">Keyword Research</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="site-audit" href="#"><span class="font-body-md text-body-md">Site Audit</span></a><a class="flex items-center justify-between px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="fixes-and-approvals" href="#"><span class="font-body-md text-body-md">Fixes &amp; Approvals</span><span class="bg-error-container text-on-error-container font-label-code-sm text-label-code-sm px-1.5 py-0.5 rounded-full text-[10px]">4 Pending</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="developer-tickets" href="#"><span class="font-body-md text-body-md">Developer Tickets</span></a><a aria-current="page" class="flex items-center px-space-md py-2 rounded-xl transition-all bg-primary-container text-on-primary-container font-semibold shadow-sm" data-path="content-studio" href="#"><span class="font-body-md text-body-md">Content Studio</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="aeo-visibility" href="#"><span class="font-body-md text-body-md">AEO Visibility</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="schema-generator" href="#"><span class="font-body-md text-body-md">Schema Generator</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="monthly-plan" href="#"><span class="font-body-md text-body-md">Monthly Plan</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="reports-and-admin" href="#"><span class="font-body-md text-body-md">Reports &amp; Admin</span></a></nav></div><div class="p-space-md bg-surface-container-low rounded-t-xl mx-space-sm mb-space-sm"><div class="flex items-center justify-between text-outline-variant font-label-code-sm text-label-code-sm mb-1"><span class="text-on-surface font-semibold">Health Score</span><span class="text-secondary font-bold">94.2%</span></div><div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden"><div class="bg-secondary h-full rounded-full" style="width: 94.2%"></div></div><div class="flex items-center justify-between text-[11px] text-outline mt-1.5"><span class="">Sync: 2m ago</span><span class="text-primary font-medium hover:underline cursor-pointer">Inspect</span></div></div></aside><div class="pl-64"><main class="w-full pt-14 bg-background min-h-screen px-gutter-desktop py-margin-desktop"><div class="flex flex-col w-full gap-space-xl">
+<!-- Top Control Banner & Title -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-lg">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary uppercase tracking-wider">Lumina Health Care // Operational Tier 1</span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+<span class="font-label-code-sm text-label-code-sm text-secondary font-semibold">Governance Status: Enforced</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Executive Reporting, Studio AI Assistant &amp; Administration</h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Compile board-level monthly organic and AEO impact decks, query verified historical telemetry via AI, and manage agency governance.</p>
+</div>
+<!-- Global Screen Actions -->
+<div class="flex flex-wrap items-center gap-space-sm self-start xl:self-auto">
+<button class="flex items-center gap-space-xs bg-surface-container-lowest hover:bg-surface-container-high text-on-surface px-space-md py-2 rounded-xl font-headline-sm text-headline-sm text-xs shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[18px] text-primary">download</span>
+<span>Download Approved PDF Report</span>
+</button>
+<button class="flex items-center gap-space-xs bg-surface-container-highest hover:bg-surface-container text-on-surface px-space-md py-2 rounded-xl font-headline-sm text-headline-sm text-xs shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[18px]">add_notes</span>
+<span>Generate New Monthly Deck</span>
+</button>
+<button class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary px-space-md py-2 rounded-xl font-headline-sm text-headline-sm text-xs shadow-md transition-all" onclick="document.getElementById('tab-assistant-btn').click();">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+<span>Ask Studio AI</span>
+</button>
+</div>
+</div>
+<!-- Perspective Navigation Tabs -->
+<div class="flex items-center gap-space-xs bg-surface-container-low p-1.5 rounded-xl self-start">
+<button class="tab-pill flex items-center gap-space-xs px-space-md py-1.5 rounded-lg font-headline-sm text-headline-sm text-xs bg-surface-container-lowest text-on-surface shadow-sm transition-all" id="tab-deck-btn" onclick="switchTab('deck')">
+<span class="material-symbols-outlined text-[16px] text-primary">analytics</span>
+<span>Executive Deck Preview (Oct 2024)</span>
+<span class="bg-secondary-container text-on-secondary-container px-1.5 py-0.5 rounded-full font-label-code-sm text-label-code-sm text-[10px] font-bold">Approved</span>
+</button>
+<button class="tab-pill flex items-center gap-space-xs px-space-md py-1.5 rounded-lg font-headline-sm text-headline-sm text-xs text-on-surface-variant hover:text-on-surface transition-all" id="tab-assistant-btn" onclick="switchTab('assistant')">
+<span class="material-symbols-outlined text-[16px]">psychology</span>
+<span>Studio AI Diagnostic Assistant</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</button>
+<button class="tab-pill flex items-center gap-space-xs px-space-md py-1.5 rounded-lg font-headline-sm text-headline-sm text-xs text-on-surface-variant hover:text-on-surface transition-all" id="tab-admin-btn" onclick="switchTab('admin')">
+<span class="material-symbols-outlined text-[16px]">shield_person</span>
+<span>System Governance &amp; Telemetry</span>
+</button>
+</div>
+<!-- PANEL A: Monthly Executive Deck Preview -->
+<div class="tab-panel flex flex-col gap-space-xl" id="panel-deck">
+<!-- Manual Export Security Notice -->
+<div class="flex items-center justify-between gap-space-md bg-surface-container-low px-space-lg py-space-md rounded-xl shadow-sm">
+<div class="flex items-center gap-space-md">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-[20px]">lock_clock</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-xs text-on-surface">Agency Manual Guardrail Enforced</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Reports are compiled exclusively for manual executive review and verified PDF export; client automailers are strictly disabled per SLA.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs font-label-code-sm text-label-code-sm text-secondary bg-secondary-fixed/20 px-space-md py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span>Validated Oct 31, 2024</span>
+</div>
+</div>
+<!-- Deck Document Canvas -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- Deck Sub-Header & Metadata -->
+<div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container-high/50 px-space-lg py-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center font-headline-lg text-headline-lg shadow-sm">
+<span class="material-symbols-outlined">slideshow</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-headline-md text-on-surface">Lumina Health Care — October 2024 Organic Growth &amp; AEO Deck</span>
+<span class="font-label-code-sm text-label-code-sm text-primary bg-primary-fixed px-1.5 py-0.5 rounded">v3.4 Final</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Presented to: Chief Marketing Officer &amp; VP of Digital Transformation // Reporting Scope: 31 Days</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm font-label-code-sm text-label-code-sm">
+<span class="bg-surface-container-lowest px-space-md py-1.5 rounded-lg text-on-surface-variant shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-outline">history</span>
+            Last saved: 14 mins ago
+          </span>
+<button class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-1.5 rounded-lg shadow-sm flex items-center gap-1 transition-all">
+<span class="material-symbols-outlined text-[15px]">print</span>
+            Export Slide PDF
+          </button>
+</div>
+</div>
+<!-- Main Deck Body -->
+<div class="p-space-lg flex flex-col gap-space-xl">
+<!-- Performance KPI Mosaic -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Total Clicks -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Total Organic Clicks</span>
+<span class="material-symbols-outlined text-primary text-[18px]">ads_click</span>
+</div>
+<div class="my-space-sm flex items-baseline justify-between">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-headline-xl">284.5k</span>
+<span class="font-label-code-sm text-label-code-sm text-secondary bg-secondary-fixed/20 px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">trending_up</span>
+                +18.4%
+              </span>
+</div>
+<div class="h-6 w-full flex items-end">
+<svg class="w-full h-5 text-secondary" fill="none" viewbox="0 0 100 25">
+<path d="M0 20 L15 17 L30 19 L45 12 L60 14 L75 8 L90 5 L100 2" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<path d="M0 20 L15 17 L30 19 L45 12 L60 14 L75 8 L90 5 L100 2 V25 H0 Z" fill="currentColor" fill-opacity="0.12"></path>
+</svg>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant mt-1">+44,210 clicks vs September baseline</span>
+</div>
+<!-- AEO Citations -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Answer Engine Citations</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]">smart_toy</span>
+</div>
+<div class="my-space-sm flex items-baseline justify-between">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-headline-xl">38.6%</span>
+<span class="font-label-code-sm text-label-code-sm text-secondary bg-secondary-fixed/20 px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">trending_up</span>
+                +11.2%
+              </span>
+</div>
+<div class="h-6 w-full flex items-end">
+<svg class="w-full h-5 text-tertiary" fill="none" viewbox="0 0 100 25">
+<path d="M0 22 L20 18 L40 15 L60 16 L80 9 L100 3" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<path d="M0 22 L20 18 L40 15 L60 16 L80 9 L100 3 V25 H0 Z" fill="currentColor" fill-opacity="0.12"></path>
+</svg>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant mt-1">Perplexity &amp; ChatGPT Search verified</span>
+</div>
+<!-- Applied Fixes -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Applied Deployments</span>
+<span class="material-symbols-outlined text-primary text-[18px]">rule_folder</span>
+</div>
+<div class="my-space-sm flex items-baseline justify-between">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-headline-xl">24</span>
+<span class="font-label-code-sm text-label-code-sm text-primary bg-primary-fixed px-1.5 py-0.5 rounded-full">
+                100% Passed
+              </span>
+</div>
+<div class="h-6 w-full flex items-center gap-1">
+<div class="h-2 flex-1 bg-secondary rounded-sm"></div>
+<div class="h-2 flex-1 bg-secondary rounded-sm"></div>
+<div class="h-2 flex-1 bg-secondary rounded-sm"></div>
+<div class="h-2 flex-1 bg-secondary rounded-sm"></div>
+<div class="h-2 flex-1 bg-primary rounded-sm"></div>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant mt-1">18 Technical Schema + 6 SSG fixes</span>
+</div>
+<!-- Rollback Count -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Rollbacks &amp; Regressions</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">verified_user</span>
+</div>
+<div class="my-space-sm flex items-baseline justify-between">
+<span class="font-headline-xl text-headline-xl text-secondary tracking-tight font-headline-xl">0</span>
+<span class="font-label-code-sm text-label-code-sm text-secondary bg-secondary-fixed/20 px-1.5 py-0.5 rounded-full">
+                Zero Defect
+              </span>
+</div>
+<div class="h-6 w-full flex items-center justify-start text-secondary">
+<span class="font-label-code-sm text-label-code-sm flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[15px]">check_circle</span>
+                SLA Staging Verified
+              </span>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant mt-1">100% sandbox simulation match</span>
+</div>
+</div>
+<!-- Editable Executive Summary Section -->
+<div class="flex flex-col gap-space-sm bg-surface-container-low p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center justify-between flex-wrap gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">edit_note</span>
+<span class="font-headline-md text-headline-md text-on-surface">Executive Narrative &amp; Algorithmic Takeaways</span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">(Editable Board Deck Intro)</span>
+</div>
+<!-- Rich Text Controls Bar -->
+<div class="flex items-center gap-1 bg-surface-container-lowest p-1 rounded-lg shadow-sm">
+<button class="p-1 hover:bg-surface-container text-on-surface-variant rounded transition-colors" title="Bold">
+<span class="material-symbols-outlined text-[16px]">format_bold</span>
+</button>
+<button class="p-1 hover:bg-surface-container text-on-surface-variant rounded transition-colors" title="Italic">
+<span class="material-symbols-outlined text-[16px]">format_italic</span>
+</button>
+<button class="p-1 hover:bg-surface-container text-on-surface-variant rounded transition-colors" title="List">
+<span class="material-symbols-outlined text-[16px]">format_list_bulleted</span>
+</button>
+<div class="w-px h-4 bg-surface-variant"></div>
+<button class="p-1 hover:bg-surface-container text-on-surface-variant rounded transition-colors" title="Insert Stat Metric">
+<span class="material-symbols-outlined text-[16px]">data_object</span>
+</button>
+<button class="p-1 hover:bg-surface-container text-primary rounded transition-colors" title="Regenerate with AI">
+<span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+</button>
+</div>
+</div>
+<!-- Rich Textarea Canvas -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="outline-none font-body-md text-body-md text-on-surface leading-relaxed min-h-[110px] space-y-2" contenteditable="true">
+<p>Lumina Health Care achieved an unprecedented <strong class="text-primary font-semibold">+44.2k organic click lift (+18.4% MoM)</strong> during October following our rapid triage of Next.js hydration crawl bottlenecks and systematic rollout of nested <span class="bg-primary-fixed text-on-primary-fixed px-1 py-0.5 rounded font-label-code-sm text-label-code-sm">MedicalWebPage</span> and <span class="bg-primary-fixed text-on-primary-fixed px-1 py-0.5 rounded font-label-code-sm text-label-code-sm">Physician</span> JSON-LD entities across 114 regional clinic subdomains.</p>
+<p>Crucially, citation share in emerging conversational search engines surged to <strong class="text-tertiary font-semibold">38.6% across Perplexity AI and ChatGPT Search</strong>, establishing Lumina as the authoritative reference for queries including pediatric urgent care, preventive cardiology diagnostics, and high-deductible telehealth alternatives.</p>
+</div>
+</div>
+<div class="flex items-center justify-between text-outline font-label-code-sm text-label-code-sm">
+<span>Markdown &amp; HTML entities preserved for PDF compiler</span>
+<span class="text-secondary font-medium">Autosaved to Master Deck Record</span>
+</div>
+</div>
+<!-- Completed Work & Telemetry Impact Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg">
+<!-- Merged Technical & Content Tickets -->
+<div class="flex flex-col gap-space-sm bg-surface-container-low p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">task_alt</span>
+<span class="font-headline-md text-headline-md text-on-surface">Completed Initiatives (October)</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">24 of 24 Delivered</span>
+</div>
+<div class="flex flex-col gap-space-xs mt-1">
+<div class="flex items-center justify-between p-space-sm bg-surface-container-lowest rounded-lg shadow-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-label-code-sm text-label-code-sm bg-secondary-fixed/30 text-on-secondary-fixed-variant px-1.5 py-0.5 rounded font-semibold">LUM-892</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium truncate">MedicalWebPage structured data graph deployment</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Embedded 114 board-certified clinician credential nodes</span>
+</div>
+</div>
+<div class="text-right whitespace-nowrap pl-2">
+<span class="font-label-code-sm text-label-code-sm text-secondary font-semibold">+22% Rich Snippet rate</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-space-sm bg-surface-container-lowest rounded-lg shadow-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-label-code-sm text-label-code-sm bg-secondary-fixed/30 text-on-secondary-fixed-variant px-1.5 py-0.5 rounded font-semibold">LUM-904</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium truncate">Next.js edge SSR rendering pipeline migration</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Eliminated client-side bot timeout for Googlebot</span>
+</div>
+</div>
+<div class="text-right whitespace-nowrap pl-2">
+<span class="font-label-code-sm text-label-code-sm text-secondary font-semibold">-480ms TTFB Index</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-space-sm bg-surface-container-lowest rounded-lg shadow-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-label-code-sm text-label-code-sm bg-secondary-fixed/30 text-on-secondary-fixed-variant px-1.5 py-0.5 rounded font-semibold">LUM-911</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium truncate">Cardiology Pillar Hub authority revamp</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Published 8 clinician-authored preventive diagnostic guides</span>
+</div>
+</div>
+<div class="text-right whitespace-nowrap pl-2">
+<span class="font-label-code-sm text-label-code-sm text-secondary font-semibold">+9 top-3 positions</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-space-sm bg-surface-container-lowest rounded-lg shadow-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-label-code-sm text-label-code-sm bg-secondary-fixed/30 text-on-secondary-fixed-variant px-1.5 py-0.5 rounded font-semibold">LUM-918</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium truncate">Canonical audit on multi-location telemedicine routes</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Purged 310 duplicate parameter URLs from GSC crawl index</span>
+</div>
+</div>
+<div class="text-right whitespace-nowrap pl-2">
+<span class="font-label-code-sm text-label-code-sm text-secondary font-semibold">0 Index Bloat</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Planned Next Steps for Q4 -->
+<div class="flex flex-col gap-space-sm bg-surface-container-low p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">upcoming</span>
+<span class="font-headline-md text-headline-md text-on-surface">Target Roadmap &amp; Q4 Strategic Priorities</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm bg-primary-fixed text-primary px-2 py-0.5 rounded-full font-semibold">Next Sprint: Nov 4</span>
+</div>
+<div class="flex flex-col gap-space-xs mt-1">
+<div class="p-space-sm bg-surface-container-lowest rounded-lg shadow-sm flex items-start gap-space-sm">
+<div class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center font-headline-sm text-headline-sm text-xs mt-0.5 shrink-0">1</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Answer Engine Direct Citation Expansion</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Format 45 high-intent clinical symptom guides with explicit concise definition boxes optimized for Perplexity Pro Citation extraction.</span>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-lowest rounded-lg shadow-sm flex items-start gap-space-sm">
+<div class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center font-headline-sm text-headline-sm text-xs mt-0.5 shrink-0">2</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Internal Linking Knowledge Graph Orchestration</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Automate contextual bidirectional links between physician profile dossiers and specialized clinic facility treatments.</span>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-lowest rounded-lg shadow-sm flex items-start gap-space-sm">
+<div class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center font-headline-sm text-headline-sm text-xs mt-0.5 shrink-0">3</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Automated Core Web Vitals Staging Regressions</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Implement CI/CD Lighthouse score threshold gates in client Vercel pipelines to prevent CLS regressions during marketing banner drops.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Approval Sign-off Box -->
+<div class="flex flex-col md:flex-row items-center justify-between gap-space-md bg-inverse-surface text-inverse-on-surface p-space-lg rounded-xl shadow-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-surface-container-lowest">Executive Agency Sign-Off Confirmed</span>
+<span class="font-body-sm text-body-sm text-inverse-on-surface/80">Head of SEO Sign-Off: <strong class="text-surface-container-lowest">Marcus Vance</strong> (Approved Oct 31, 2024 at 16:42 UTC)</span>
+<span class="font-label-code-sm text-label-code-sm text-secondary-fixed text-[11px] mt-0.5">SHA-256 Digest: 98fa11...b3e8 [Cryptographically Stamped]</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 text-surface-container-lowest px-space-md py-2 rounded-xl font-headline-sm text-headline-sm text-xs transition-colors">
+              Revoke &amp; Re-edit
+            </button>
+<button class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-2 rounded-xl font-headline-sm text-headline-sm text-xs shadow-md transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+              Download PDF Report
+            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- PANEL B: Studio AI Assistant -->
+<div class="tab-panel hidden flex flex-col gap-space-lg" id="panel-assistant">
+<!-- Assistant Intro Frame -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md bg-surface-container-low p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[26px]">psychology</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-headline-md text-on-surface">Studio AI Telemetry Agent</span>
+<span class="font-label-code-sm text-label-code-sm bg-secondary-fixed/40 text-on-secondary-fixed-variant px-2 py-0.5 rounded-full font-bold">Grounded &amp; Synced</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-time LLM agent with direct read-only query capabilities across Google Search Console API, GA4 BigQuery events, and Live Bot crawl caches.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm font-label-code-sm text-label-code-sm text-on-surface-variant">
+<span class="bg-surface-container-lowest px-space-md py-1.5 rounded-lg shadow-sm">Telemetry Lag: <strong>4 mins</strong></span>
+<span class="bg-surface-container-lowest px-space-md py-1.5 rounded-lg shadow-sm">Context Window: <strong>64k Tokens</strong></span>
+</div>
+</div>
+<!-- Main Chat Canvas & History -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- Grounded Query Dialogue History -->
+<div class="p-space-lg flex flex-col gap-space-lg max-h-[620px] overflow-y-auto">
+<!-- User Query 1 -->
+<div class="flex items-start gap-space-md max-w-3xl self-end flex-row-reverse">
+<div class="w-8 h-8 rounded-full bg-inverse-surface text-inverse-on-surface flex items-center justify-center shrink-0 text-xs font-bold">
+            MV
+          </div>
+<div class="bg-surface-container-high text-on-surface p-space-md rounded-2xl rounded-tr-sm shadow-sm flex flex-col gap-1">
+<span class="font-label-code-sm text-label-code-sm text-outline">Marcus Vance • Today 11:24 AM</span>
+<p class="font-body-md text-body-md leading-relaxed">Why did <code class="bg-surface-container-highest px-1.5 py-0.5 rounded font-label-code-sm text-label-code-sm">/services/telehealth-cardiology</code> drop 3 positions last week, and what specific schema fixes are pending verification?</p>
+</div>
+</div>
+<!-- Assistant Response 1 (Rich Evidence Citation) -->
+<div class="flex items-start gap-space-md max-w-4xl self-start">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+</div>
+<div class="bg-surface-container-low text-on-surface p-space-lg rounded-2xl rounded-tl-sm shadow-sm flex flex-col gap-space-md w-full">
+<div class="flex items-center justify-between border-b border-surface-variant/40 pb-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">format_image_left</span>
+                Studio AI Telemetry Agent (Grounded Model v4.1)
+              </span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">Timestamp: Oct 31, 2024 11:24:18 UTC</span>
+</div>
+<!-- Analysis Narrative -->
+<div class="font-body-md text-body-md text-on-surface space-y-2 leading-relaxed">
+<p>Based on automated crawl traces from Oct 24 through Oct 28 and verified GSC Search Analytics logs, the 3-position drop for <strong class="text-on-surface font-semibold">/services/telehealth-cardiology</strong> (from #4 to #7) was triggered by a combination of a temporary canonical loop and unverified schema modifications:</p>
+</div>
+<!-- Evidence Telemetry Box -->
+<div class="flex flex-col gap-space-xs bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<span class="font-label-code-sm text-label-code-sm text-outline uppercase tracking-wider">Historical Telemetry Evidence Log</span>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm mt-1">
+<div class="bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant block">GSC Impressions Delta</span>
+<span class="font-headline-sm text-headline-sm text-error">-14.2%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Oct 22 vs Oct 29 window</span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant block">Googlebot HTTP 301 Loops</span>
+<span class="font-headline-sm text-headline-sm text-primary">3,120 Events</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Trailing slash rewrites active</span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant block">Schema Rich Validator</span>
+<span class="font-headline-sm text-headline-sm text-error">Warning [E-119]</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Missing MedicalSpecialty field</span>
+</div>
+</div>
+</div>
+<!-- Actionable Next Steps -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-xs text-on-surface">Recommended Actions &amp; Direct Queues</span>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between p-space-sm bg-surface-container-lowest rounded-lg shadow-sm hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">build</span>
+<span class="font-body-sm text-body-sm text-on-surface">Deploy Trailing Slash Normalization via Cloudflare Edge Worker</span>
+</div>
+<button class="bg-primary hover:bg-primary-container text-on-primary font-label-code-sm text-label-code-sm px- space-md py-1 rounded shadow-sm">
+                    Open Ticket LUM-944
+                  </button>
+</div>
+<div class="flex items-center justify-between p-space-sm bg-surface-container-lowest rounded-lg shadow-sm hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="font-body-sm text-body-sm text-on-surface">Verify Pending MedicalWebPage Schema in Schema Generator</span>
+</div>
+<button class="bg-secondary hover:bg-on-secondary-container text-on-secondary font-label-code-sm text-label-code-sm px-space-md py-1 rounded shadow-sm">
+                    Inspect in Review Queue
+                  </button>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-outline font-label-code-sm text-label-code-sm pt-space-xs">
+<span>Citations: GSC API v3 • Edge Access Logs #8819 • Google Rich Results Engine</span>
+<div class="flex items-center gap-space-xs">
+<button class="hover:text-on-surface p-1"><span class="material-symbols-outlined text-[15px]">thumb_up</span></button>
+<button class="hover:text-on-surface p-1"><span class="material-symbols-outlined text-[15px]">thumb_down</span></button>
+<button class="hover:text-on-surface p-1"><span class="material-symbols-outlined text-[15px]">content_copy</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Suggested Prompt Pill Bar -->
+<div class="flex flex-wrap items-center gap-space-xs px-space-lg py-space-sm bg-surface-container-high/40">
+<span class="font-label-code-sm text-label-code-sm text-outline-variant font-medium">Quick Prompts:</span>
+<button class="bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant font-body-sm text-body-sm px-space-md py-1 rounded-full shadow-sm transition-colors">
+          Why did /services/telehealth-cardiology drop 3 positions last week?
+        </button>
+<button class="bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant font-body-sm text-body-sm px-space-md py-1 rounded-full shadow-sm transition-colors">
+          What schema fixes are pending verification?
+        </button>
+<button class="bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant font-body-sm text-body-sm px-space-md py-1 rounded-full shadow-sm transition-colors">
+          Summarize Perplexity citation count for urgent care keywords
+        </button>
+</div>
+<!-- Read-Only Studio AI Input Sandbox -->
+<div class="p-space-lg bg-surface-container-low border-t border-surface-variant/30 flex items-center gap-space-sm">
+<div class="relative flex-1">
+<input class="w-full bg-surface-container-lowest px-space-lg py-3 rounded-xl font-body-md text-body-md text-on-surface placeholder-outline outline-none shadow-sm focus:ring-2 focus:ring-primary/20" placeholder="Query historical organic telemetry, schema status, or crawl logs with natural language..." type="text"/>
+<div class="absolute right-3 top-2.5 flex items-center gap-1">
+<kbd class="font-label-code-sm text-label-code-sm bg-surface-container-high px-1.5 py-0.5 rounded text-outline-variant text-[10px]">ESC to Clear</kbd>
+</div>
+</div>
+<button class="bg-primary hover:bg-primary-container text-on-primary px-space-lg py-3 rounded-xl font-headline-sm text-headline-sm text-xs shadow-md flex items-center gap-1 transition-all">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Inquire</span>
+</button>
+</div>
+</div>
+</div>
+<!-- PANEL C: System Governance & Administration -->
+<div class="tab-panel hidden flex flex-col gap-space-xl" id="panel-admin">
+<!-- Row 1: Spend Cap & SSO Governance Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+<!-- Spend Cap Monitor -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">account_balance_wallet</span>
+<span class="font-headline-md text-headline-md text-on-surface">Client AI Compute Cap</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm bg-secondary-fixed/40 text-on-secondary-fixed-variant px-2 py-0.5 rounded-full font-bold">Within Budget</span>
+</div>
+<div class="my-space-md flex flex-col gap-space-xs">
+<div class="flex items-baseline justify-between">
+<span class="font-headline-xl text-headline-xl text-on-surface font-headline-xl">$1,420.80</span>
+<span class="font-body-md text-body-md text-outline">Cap: $2,500.00 / mo</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2.5 rounded-full overflow-hidden mt-1">
+<div class="bg-primary h-full rounded-full" style="width: 56.8%"></div>
+</div>
+<div class="flex justify-between font-label-code-sm text-label-code-sm text-on-surface-variant mt-1">
+<span>56.8% Consumed</span>
+<span>Billing cycle resets in 11 days</span>
+</div>
+</div>
+<button class="w-full bg-surface-container-low hover:bg-surface-container text-on-surface font-headline-sm text-headline-sm text-xs py-2 rounded-lg shadow-sm transition-colors text-center">
+          Adjust Monthly Compute Quota
+        </button>
+</div>
+<!-- Authentication & SSO Status -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">badge</span>
+<span class="font-headline-md text-headline-md text-on-surface">Corporate SSO / IAM</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm bg-secondary-fixed/30 text-on-secondary-fixed-variant px-2 py-0.5 rounded-full font-bold">Active</span>
+</div>
+<div class="my-space-sm flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined text-[20px]">corporate_fare</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-xs text-on-surface">Microsoft Entra ID (Azure AD)</span>
+<span class="font-label-code-sm text-label-code-sm text-outline">Tenant: luminahealthcare.onmicrosoft.com</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg mt-2 flex flex-col gap-1">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">SCIM Auto-Provisioning</span>
+<span class="text-secondary font-semibold">Enabled</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Required MFA Policy</span>
+<span class="text-on-surface font-semibold">FIDO2 Hardware Key</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-surface-container-low hover:bg-surface-container text-on-surface font-headline-sm text-headline-sm text-xs py-2 rounded-lg shadow-sm transition-colors text-center">
+          Audit Active Directory Tokens
+        </button>
+</div>
+<!-- Live Provider Telemetry Uptime -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">router</span>
+<span class="font-headline-md text-headline-md text-on-surface">Provider API Uptime</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm bg-secondary-fixed/30 text-on-secondary-fixed-variant px-2 py-0.5 rounded-full font-bold">All Operational</span>
+</div>
+<div class="my-space-sm flex flex-col gap-2">
+<!-- GSC -->
+<div class="flex items-center justify-between bg-surface-container-low p-2 rounded-lg">
+<div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Google Search Console API</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm font-semibold text-secondary">99.9%</span>
+</div>
+<!-- Perplexity -->
+<div class="flex items-center justify-between bg-surface-container-low p-2 rounded-lg">
+<div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Perplexity Citations API</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm font-semibold text-secondary">99.8%</span>
+</div>
+<!-- WP Staging Webhook -->
+<div class="flex items-center justify-between bg-surface-container-low p-2 rounded-lg">
+<div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>WP Staging Webhook Pipeline</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm font-semibold text-secondary">100.0%</span>
+</div>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-outline text-center block">Continuous 60s health pulse check</span>
+</div>
+</div>
+<!-- Row 2: Comprehensive Agency Audit Activity Log -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="p-space-lg flex items-center justify-between bg-surface-container-high/40">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">history_toggle_off</span>
+<span class="font-headline-md text-headline-md text-on-surface">Security &amp; Mutation Audit Trail</span>
+<span class="font-label-code-sm text-label-code-sm text-outline-variant">(Last 7 Days)</span>
+</div>
+<div class="flex items-center gap-space-sm font-label-code-sm text-label-code-sm">
+<input class="bg-surface-container-lowest px-space-md py-1 rounded-lg text-on-surface outline-none shadow-sm text-xs" placeholder="Filter actions, operators, or IPs..." type="text"/>
+<button class="bg-surface-container-lowest hover:bg-surface-container px-space-md py-1 rounded-lg shadow-sm text-on-surface transition-colors">
+            Export CSV
+          </button>
+</div>
+</div>
+<!-- Dense Audit Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low font-label-code-sm text-label-code-sm text-outline-variant">
+<th class="py-2.5 px-space-lg font-medium">Timestamp (UTC)</th>
+<th class="py-2.5 px-space-md font-medium">Operator</th>
+<th class="py-2.5 px-space-md font-medium">Action Event</th>
+<th class="py-2.5 px-space-md font-medium">Resource Target</th>
+<th class="py-2.5 px-space-md font-medium">Safe Mode</th>
+<th class="py-2.5 px-space-lg font-medium text-right">Result Digest</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-variant/30 font-body-sm text-body-sm text-on-surface">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-space-lg font-label-code-sm text-label-code-sm text-on-surface-variant">2024-10-31 16:42:19</td>
+<td class="py-2.5 px-space-md flex items-center gap-1.5 font-medium">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center text-[10px] font-bold">MV</span>
+<span>Marcus Vance</span>
+</td>
+<td class="py-2.5 px-space-md"><span class="bg-primary-fixed text-primary px-1.5 py-0.5 rounded font-label-code-sm text-label-code-sm">SIGN_OFF_EXECUTIVE_DECK</span></td>
+<td class="py-2.5 px-space-md font-label-code-sm text-label-code-sm">decks/2024-10-lumina.pdf</td>
+<td class="py-2.5 px-space-md"><span class="text-secondary font-semibold">Active (Drafts Only)</span></td>
+<td class="py-2.5 px-space-lg text-right font-label-code-sm text-label-code-sm text-secondary font-semibold">200 OK (Signed)</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-space-lg font-label-code-sm text-label-code-sm text-on-surface-variant">2024-10-31 14:18:02</td>
+<td class="py-2.5 px-space-md flex items-center gap-1.5 font-medium">
+<span class="w-5 h-5 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center text-[10px] font-bold">AI</span>
+<span>Studio AI Agent</span>
+</td>
+<td class="py-2.5 px-space-md"><span class="bg-surface-container-high text-on-surface px-1.5 py-0.5 rounded font-label-code-sm text-label-code-sm">GSC_TELEMETRY_REFRESH</span></td>
+<td class="py-2.5 px-space-md font-label-code-sm text-label-code-sm">api.search.google.com/v3</td>
+<td class="py-2.5 px-space-md"><span class="text-secondary font-semibold">Active</span></td>
+<td class="py-2.5 px-space-lg text-right font-label-code-sm text-label-code-sm text-secondary font-semibold">200 OK (+2.4k rows)</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-space-lg font-label-code-sm text-label-code-sm text-on-surface-variant">2024-10-30 09:12:44</td>
+<td class="py-2.5 px-space-md flex items-center gap-1.5 font-medium">
+<span class="w-5 h-5 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center text-[10px] font-bold">EK</span>
+<span>Elena Rostova</span>
+</td>
+<td class="py-2.5 px-space-md"><span class="bg-secondary-fixed/40 text-on-secondary-fixed-variant px-1.5 py-0.5 rounded font-label-code-sm text-label-code-sm">SCHEMA_STAGING_DEPLOY</span></td>
+<td class="py-2.5 px-space-md font-label-code-sm text-label-code-sm">staging-lumina.io/doctors/cardio</td>
+<td class="py-2.5 px-space-md"><span class="text-secondary font-semibold">Active (Drafts Only)</span></td>
+<td class="py-2.5 px-space-lg text-right font-label-code-sm text-label-code-sm text-secondary font-semibold">200 OK (114 Nodes)</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-space-lg font-label-code-sm text-label-code-sm text-on-surface-variant">2024-10-29 20:05:11</td>
+<td class="py-2.5 px-space-md flex items-center gap-1.5 font-medium">
+<span class="w-5 h-5 rounded-full bg-error text-on-error flex items-center justify-center text-[10px] font-bold">SYS</span>
+<span>Edge Worker Policy</span>
+</td>
+<td class="py-2.5 px-space-md"><span class="bg-error-container text-on-error-container px-1.5 py-0.5 rounded font-label-code-sm text-label-code-sm">BLOCKED_LIVE_PROD_WRITE</span></td>
+<td class="py-2.5 px-space-md font-label-code-sm text-label-code-sm">production.luminahealth.io/sitemap</td>
+<td class="py-2.5 px-space-md"><span class="text-error font-bold">INTERCEPTED</span></td>
+<td class="py-2.5 px-space-lg text-right font-label-code-sm text-label-code-sm text-error font-semibold">403 Safe Mode Block</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-between font-label-code-sm text-label-code-sm text-on-surface-variant">
+<span>Showing 4 of 1,289 verified immutable ledger entries</span>
+<div class="flex items-center gap-1">
+<button class="px-2 py-1 bg-surface-container-lowest rounded shadow-sm hover:bg-surface-container">Prev</button>
+<button class="px-2 py-1 bg-surface-container-lowest rounded shadow-sm hover:bg-surface-container">Next</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function switchTab(tabId) {
+    // Hide all panels
+    document.querySelectorAll('.tab-panel').forEach(function(el) {
+      el.classList.add('hidden');
+    });
+
+    // Reset all buttons
+    document.querySelectorAll('.tab-pill').forEach(function(btn) {
+      btn.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+      btn.classList.add('text-on-surface-variant');
+    });
+
+    // Show active panel
+    var activePanel = document.getElementById('panel-' + tabId);
+    if (activePanel) {
+      activePanel.classList.remove('hidden');
+    }
+
+    // Set active button styles
+    var activeBtn = document.getElementById('tab-' + tabId + '-btn');
+    if (activeBtn) {
+      activeBtn.classList.add('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+      activeBtn.classList.remove('text-on-surface-variant');
+    }
+  }
+
+  // Set the left sidebar navigation active state for Reports & Admin
+  document.addEventListener('DOMContentLoaded', function() {
+    var navLinks = document.querySelectorAll('aside nav a');
+    navLinks.forEach(function(link) {
+      if (link.getAttribute('data-path') === 'reports-and-admin') {
+        link.classList.add('bg-primary-container', 'text-on-primary-container', 'font-semibold', 'shadow-sm');
+        link.classList.remove('text-on-surface-variant');
+      } else {
+        link.classList.remove('bg-primary-container', 'text-on-primary-container', 'font-semibold', 'shadow-sm');
+      }
+    });
+  });
+</script></main></div>
+</body></html>

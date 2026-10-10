@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed":"#07006c","tertiary-fixed":"#eaddff","secondary-fixed":"#6ffbbe","inverse-on-surface":"#eef0ff","surface-container-low":"#f2f3ff","surface-container":"#ebedfc","secondary-fixed-dim":"#4edea3","on-tertiary-fixed":"#25005a","on-surface-variant":"#464554","tertiary-fixed-dim":"#d2bbff","tertiary":"#712ae2","primary-fixed":"#e1e0ff","on-error-container":"#93000a","inverse-surface":"#2c303b","on-secondary-fixed-variant":"#005236","error-container":"#ffdad6","on-secondary":"#ffffff","on-secondary-fixed":"#002113","surface-container-highest":"#dfe2f1","primary-fixed-dim":"#c0c1ff","on-background":"#171b26","background":"#faf8ff","tertiary-container":"#8a4cfc","on-tertiary-container":"#fffbff","surface-container-lowest":"#ffffff","secondary":"#006c49","on-secondary-container":"#00714d","outline":"#767586","surface-bright":"#faf8ff","on-error":"#ffffff","surface-dim":"#d7d9e8","on-surface":"#171b26","on-primary-container":"#fffbff","secondary-container":"#6cf8bb","on-primary-fixed-variant":"#2f2ebe","outline-variant":"#c7c4d7","on-tertiary":"#ffffff","inverse-primary":"#c0c1ff","on-tertiary-fixed-variant":"#5a00c6","surface":"#faf8ff","surface-variant":"#dfe2f1","primary":"#4648d4","primary-container":"#6063ee","surface-tint":"#494bd6","surface-container-high":"#e5e7f6","on-primary":"#ffffff","error":"#ba1a1a"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-sm":"0.5rem","space-xl":"2rem","margin":"1rem","space-lg":"1.25rem","gutter":"1.25rem","space-xs":"0.25rem","margin-desktop":"2rem","gutter-desktop":"1.5rem","space-md":"0.75rem"},fontFamily:{"headline-xl-mobile":["Plus Jakarta Sans"],"body-lg":["Inter"],"badge-status":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-code-sm":["JetBrains Mono"],"headline-sm":["Plus Jakarta Sans"],"label-code-lg":["JetBrains Mono"],"headline-xl":["Plus Jakarta Sans"]},fontSize:{"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"-0.011em","fontWeight":"400"}],"badge-status":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"-0.006em","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-code-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],"headline-sm":["15px",{"lineHeight":"22px","letterSpacing":"-0.005em","fontWeight":"600"}],"label-code-lg":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-inverse-surface text-inverse-on-surface shadow-[0_1px_8px_rgba(0,0,0,0.06)]"><div class="h-14 px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><img alt="SEO Studio by CreativHeads Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W-VoUSnZlcPOf8vU8fLCvtF2T3GnRwtlFjwBlmTuhFQNo_5bd4oV8GzIfZaeNcDAixesVWCLcEYC_pvyJUERThRUqaBHdvTiRmHQqr65KjUW7PRbvOTDqe1ZesAKUrx5z7DLqBe7qZ1666mVeZs9qYQA-s1yrHWwYN2ohbXNujZUUkMf3kw7nwmZiStG9jD3rFhdFuVL1_uYSzr06q2SAESwPT4NUC0yUA7TueqBUxsA"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-surface-container-lowest leading-none tracking-tight">SEO Studio</span><span class="font-label-code-sm text-label-code-sm text-outline-variant uppercase tracking-wider">CreativHeads Agency</span></div></div><div class="h-6 w-px bg-outline/40"></div><button class="flex items-center gap-space-sm bg-surface-container-lowest/10 hover:bg-surface-container-lowest/20 px-space-md py-1.5 rounded-xl transition-colors text-left"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span><span class="font-headline-sm text-headline-sm text-surface-container-lowest text-xs font-semibold">Lumina Health Care</span></div><span class="font-label-code-sm text-label-code-sm text-outline-variant text-[10px]">luminahealth.io</span></div><span class="material-symbols-outlined text-outline-variant text-[18px]">unfold_more</span></button><div class="hidden xl:flex items-center gap-space-sm bg-surface-container-lowest/5 px-space-md py-1 rounded-full font-label-code-sm text-label-code-sm text-surface-container-high"><span class="w-2 h-2 rounded-full bg-secondary-fixed animate-ping"></span><span>GSC: Connected</span><span class="text-outline">•</span><span>GA4: Connected</span><span class="text-outline">•</span><span class="text-primary-fixed">WP: Draft Mode</span><span class="text-outline">•</span><span class="text-secondary-fixed">KB: Synced</span></div></div><div class="flex items-center gap-space-md"><div class="hidden lg:flex items-center gap-space-xs bg-error-container text-on-error-container px-space-md py-1 rounded-lg font-badge-status text-badge-status"><span class="material-symbols-outlined text-[15px]">lock</span><span>SAFE MODE: Drafts &amp; Staging Only</span></div><div class="flex items-center gap-space-sm bg-surface-container-lowest/10 px-space-md py-1.5 rounded-lg text-outline-variant hover:text-surface-container-lowest cursor-pointer"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-body-sm text-body-sm hidden sm:inline">Global Search</span><kbd class="font-label-code-sm text-label-code-sm bg-surface-container-lowest/20 px-1 rounded text-surface-container-lowest text-[10px]">⌘K</kbd></div><button class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary px-space-md py-1.5 rounded-xl font-headline-sm text-headline-sm text-xs transition-colors shadow-[0_1px_4px_rgba(0,0,0,0.12)]"><span class="material-symbols-outlined text-[16px]">auto_awesome</span><span class="hidden md:inline">Ask Studio AI</span></button><button class="relative p-1.5 text-outline-variant hover:text-surface-container-lowest transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-4 h-4 bg-error text-on-error font-label-code-sm text-label-code-sm text-[10px] rounded-full flex items-center justify-center font-bold">3</span></button><div class="h-6 w-px bg-outline/40"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right hidden sm:flex"><span class="font-headline-sm text-headline-sm text-xs text-surface-container-lowest">Marcus Vance</span><span class="font-label-code-sm text-label-code-sm text-[10px] text-primary-fixed font-semibold">Head of SEO</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><aside class="fixed left-0 top-14 bottom-0 w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex flex-col justify-between"><div class="flex flex-col py-space-md overflow-y-auto"><div class="px-space-md pb-space-sm text-outline font-label-code-sm text-label-code-sm uppercase tracking-wider">Workspace Engine</div><nav class="flex flex-col gap-0.5 px-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-sm"><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="client-dashboard" href="#"><span class="font-body-md text-body-md">Client Dashboard</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="all-clients" href="#"><span class="font-body-md text-body-md">All Clients</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="keyword-research" href="#"><span class="font-body-md text-body-md">Keyword Research</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="site-audit" href="#"><span class="font-body-md text-body-md">Site Audit</span></a><a class="flex items-center justify-between px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="fixes-and-approvals" href="#"><span class="font-body-md text-body-md">Fixes &amp; Approvals</span><span class="bg-error-container text-on-error-container font-label-code-sm text-label-code-sm px-1.5 py-0.5 rounded-full text-[10px]">4 Pending</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="developer-tickets" href="#"><span class="font-body-md text-body-md">Developer Tickets</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="content-studio" href="#"><span class="font-body-md text-body-md">Content Studio</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="aeo-visibility" href="#"><span class="font-body-md text-body-md">AEO Visibility</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="schema-generator" href="#"><span class="font-body-md text-body-md">Schema Generator</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="monthly-plan" href="#"><span class="font-body-md text-body-md">Monthly Plan</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="reports-and-admin" href="#"><span class="font-body-md text-body-md">Reports &amp; Admin</span></a></nav></div><div class="p-space-md bg-surface-container-low rounded-t-xl mx-space-sm mb-space-sm"><div class="flex items-center justify-between text-outline-variant font-label-code-sm text-label-code-sm mb-1"><span class="text-on-surface font-semibold">Health Score</span><span class="text-secondary font-bold">94.2%</span></div><div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden"><div class="bg-secondary h-full rounded-full" style="width: 94.2%"></div></div><div class="flex items-center justify-between text-[11px] text-outline mt-1.5"><span>Sync: 2m ago</span><span class="text-primary font-medium hover:underline cursor-pointer">Inspect</span></div></div></aside><div class="pl-64"><main class="w-full pt-14 bg-background min-h-screen px-gutter-desktop py-margin-desktop"><div class="flex flex-col w-full">
+<!-- Top Command Context & Page Header -->
+<section class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg mb-space-xl">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-sm py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-code-sm text-label-code-sm uppercase tracking-wider font-semibold">Workspace Engine: Lumina Health Care</span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+<span class="text-on-surface-variant font-label-code-sm text-label-code-sm">GSC Query Matrix v4.2</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Keyword Intelligence &amp; Opportunity Radar</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Holistic organic search volume, generative query intent, and algorithmic striking distance for Lumina Health Care.
+      </p>
+</div>
+<!-- Actions Toolbar -->
+<div class="flex items-center flex-wrap gap-space-sm">
+<button class="inline-flex items-center gap-space-xs px-space-md py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-headline-sm text-headline-sm text-xs transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-primary">sync_alt</span>
+<span>Import GSC Queries</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-headline-sm text-headline-sm text-xs transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-outline">download</span>
+<span>Export CSV</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-lg py-2 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-headline-sm text-xs transition-all shadow-md hover:shadow-lg">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>Add Tracked Keywords</span>
+</button>
+</div>
+</section>
+<!-- Segmented Tabs Navigation -->
+<nav class="flex items-center overflow-x-auto no-scrollbar gap-1 p-1 bg-surface-container-low rounded-xl mb-space-lg shadow-sm">
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-lowest text-primary font-headline-sm text-headline-sm text-xs shadow-sm transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">radar</span>
+<span>Research &amp; Discovery</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/60 font-body-sm text-body-sm transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">monitoring</span>
+<span>Rank Tracking</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-code-sm text-label-code-sm text-[10px]">184</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/60 font-body-sm text-body-sm transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">troubleshoot</span>
+<span>Competitor Gaps</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-code-sm text-label-code-sm text-[10px]">42</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/60 font-body-sm text-body-sm transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">track_changes</span>
+<span>Striking Distance (Pos 4-10)</span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-code-sm text-label-code-sm text-[10px] font-semibold">28</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/60 font-body-sm text-body-sm transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">hub</span>
+<span>Topic Clusters</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-code-sm text-label-code-sm text-[10px]">12</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/60 font-body-sm text-body-sm transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px] text-error">warning</span>
+<span>Cannibalisation Radar</span>
+<span class="px-1.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-code-sm text-label-code-sm text-[10px] font-bold">6</span>
+</button>
+</nav>
+<!-- Top Metrics Bar (Command Bento Cards) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-md mb-space-xl">
+<!-- Card 1 -->
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tracked Keywords</span>
+<span class="material-symbols-outlined text-outline text-[20px]">manage_search</span>
+</div>
+<div>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">340</span>
+<span class="font-label-code-sm text-label-code-sm text-secondary font-semibold">+18 new</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-1">94% in medical entity index</p>
+</div>
+<div class="mt-space-sm pt-space-xs">
+<div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 76%"></div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Avg Ranking Position</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">trending_up</span>
+</div>
+<div>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">11.4</span>
+<span class="inline-flex items-center text-secondary font-label-code-sm text-label-code-sm font-semibold">
+            ▲ 2.3 pos
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-1">From 13.7 prior 30-day run</p>
+</div>
+<div class="mt-space-sm flex items-center gap-1">
+<span class="text-[10px] font-label-code-sm text-secondary font-medium">Top 3: 42</span>
+<span class="text-outline text-[10px]">•</span>
+<span class="text-[10px] font-label-code-sm text-primary font-medium">Top 10: 108</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Striking Distance Vol</span>
+<span class="px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-code-sm text-label-code-sm text-[10px] font-bold">Priority</span>
+</div>
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">48.2k</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/mo</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary font-semibold mt-1">28 URLs in positions 4-10</p>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-center justify-between text-[10px] font-label-code-sm text-outline mb-1">
+<span>Metadata quick-wins</span>
+<span class="font-semibold text-on-surface">19 ready</span>
+</div>
+<div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 68%"></div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Est. Monthly Traffic</span>
+<span class="material-symbols-outlined text-primary text-[20px]">insights</span>
+</div>
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-primary font-bold tracking-tight">+24.5k</span>
+<span class="font-label-code-sm text-label-code-sm text-outline">clicks</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Upon reaching Top 3 tier</p>
+</div>
+<div class="mt-space-sm">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-code-sm text-label-code-sm text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          Est. Value: $86.4k/mo
+        </span>
+</div>
+</div>
+<!-- Card 5 (AEO Intelligence) -->
+<div class="relative overflow-hidden bg-inverse-surface rounded-xl p-space-lg shadow-md text-inverse-on-surface flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-body-sm text-body-sm text-outline-variant">AEO Engine Query Overlap</span>
+<span class="material-symbols-outlined text-tertiary-fixed text-[20px]">auto_awesome</span>
+</div>
+<div>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-lg text-headline-lg text-surface-container-lowest font-bold tracking-tight">64%</span>
+<span class="font-label-code-sm text-label-code-sm text-secondary-fixed">Live Sync</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline-variant mt-1">Queries trigger AI Overviews</p>
+</div>
+<div class="mt-space-sm pt-1">
+<div class="flex items-center justify-between font-label-code-sm text-label-code-sm text-[10px] text-surface-container-highest">
+<span>Lumina Citation Share</span>
+<span class="text-tertiary-fixed font-bold">41.8%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Filtering & Search Command Bar -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm mb-space-lg flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- Search Input -->
+<div class="relative flex-1 min-w-[280px]">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low rounded-xl text-on-surface font-body-md text-body-md placeholder-outline focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary transition-all" placeholder="Filter keywords, query entities, or target URLs (e.g. cardiologist, telehealth, holter)..." type="text" value=""/>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
+<kbd class="px-1.5 py-0.5 rounded bg-surface-container font-label-code-sm text-label-code-sm text-[10px] text-outline">⌘F</kbd>
+</div>
+</div>
+<!-- Quick Action Controls & Bulk Dropdown -->
+<div class="flex items-center flex-wrap gap-space-sm">
+<div class="flex items-center gap-1 bg-surface-container-low px-2 py-1 rounded-xl">
+<span class="font-label-code-sm text-label-code-sm text-outline text-xs px-1">Selected:</span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface font-bold text-xs" id="selected-counter">0</span>
+<select class="bg-transparent text-primary font-headline-sm text-headline-sm text-xs py-1 px-2 focus:outline-none cursor-pointer">
+<option>Bulk Actions (Select rows)...</option>
+<option>Propose Metadata Change</option>
+<option>Create Content Brief</option>
+<option>Tag Entity Cluster</option>
+<option>Export Selected</option>
+</select>
+</div>
+<button class="inline-flex items-center gap-space-xs px-space-md py-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-headline-sm text-headline-sm text-xs transition-colors">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>More Filters</span>
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+</button>
+</div>
+</div>
+<!-- Second Filter Row (Intent, Difficulty, SERP Features, Volume) -->
+<div class="flex items-center flex-wrap gap-space-sm pt-space-xs">
+<!-- Intent Filter Pills -->
+<div class="flex items-center gap-1 bg-surface-container-low p-1 rounded-lg">
+<span class="font-label-code-sm text-label-code-sm text-outline px-2 text-[11px] uppercase">Intent:</span>
+<button class="px-2 py-1 rounded-md bg-surface-container-lowest font-label-code-sm text-label-code-sm text-[11px] text-on-surface font-semibold shadow-xs">All</button>
+<button class="px-2 py-1 rounded-md hover:bg-surface-container-lowest font-label-code-sm text-label-code-sm text-[11px] text-on-surface-variant transition-colors">Commercial (142)</button>
+<button class="px-2 py-1 rounded-md hover:bg-surface-container-lowest font-label-code-sm text-label-code-sm text-[11px] text-on-surface-variant transition-colors">Informational (118)</button>
+<button class="px-2 py-1 rounded-md hover:bg-surface-container-lowest font-label-code-sm text-label-code-sm text-[11px] text-on-surface-variant transition-colors">Transactional (64)</button>
+<button class="px-2 py-1 rounded-md hover:bg-surface-container-lowest font-label-code-sm text-label-code-sm text-[11px] text-on-surface-variant transition-colors">Navigational (16)</button>
+</div>
+<!-- Keyword Difficulty Filter Slider Simulation -->
+<div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-1.5 rounded-lg">
+<span class="font-label-code-sm text-label-code-sm text-outline text-[11px] uppercase">Difficulty:</span>
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-code-sm text-label-code-sm text-[10px] font-bold">&lt;40 Easy</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-code-sm text-label-code-sm text-[10px]">40-70 Med</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-outline font-label-code-sm text-label-code-sm text-[10px]">&gt;70 Hard</span>
+</div>
+</div>
+<!-- SERP Features Toggle -->
+<div class="flex items-center gap-1 bg-surface-container-low px-space-md py-1.5 rounded-lg">
+<span class="font-label-code-sm text-label-code-sm text-outline text-[11px] uppercase">Features:</span>
+<button class="flex items-center gap-1 px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-code-sm text-label-code-sm text-[10px] font-semibold">
+<span class="material-symbols-outlined text-[13px]">auto_awesome</span>
+          AI Overview
+        </button>
+<button class="px-2 py-0.5 rounded hover:bg-surface-container font-label-code-sm text-label-code-sm text-[10px] text-on-surface-variant">PAA</button>
+<button class="px-2 py-0.5 rounded hover:bg-surface-container font-label-code-sm text-label-code-sm text-[10px] text-on-surface-variant">Local Pack</button>
+<button class="px-2 py-0.5 rounded hover:bg-surface-container font-label-code-sm text-label-code-sm text-[10px] text-on-surface-variant">Rich Snippets</button>
+</div>
+<!-- Volume Filter Dropdown -->
+<div class="flex items-center gap-1 bg-surface-container-low px-space-md py-1.5 rounded-lg">
+<span class="font-label-code-sm text-label-code-sm text-outline text-[11px] uppercase">Vol:</span>
+<select class="bg-transparent font-label-code-sm text-label-code-sm text-[11px] text-on-surface focus:outline-none cursor-pointer font-medium">
+<option>All Volumes</option>
+<option>&gt; 10,000 /mo</option>
+<option>1,000 - 10,000 /mo</option>
+<option>&lt; 1,000 /mo</option>
+</select>
+</div>
+<button class="text-primary hover:text-primary-container font-label-code-sm text-label-code-sm text-xs ml-auto">
+        Reset filters
+      </button>
+</div>
+</section>
+<!-- Comprehensive Keyword Intelligence Table Container -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden mb-space-xl">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<!-- Table Header -->
+<thead class="bg-surface-container-low/70">
+<tr class="h-10 text-on-surface-variant font-label-code-sm text-label-code-sm uppercase tracking-wider text-[11px]">
+<th class="w-10 px-4 py-2 text-center">
+<input class="rounded bg-surface-container-lowest text-primary focus:ring-0 cursor-pointer" id="select-all" type="checkbox"/>
+</th>
+<th class="px-4 py-2 font-semibold">Keyword &amp; Entities</th>
+<th class="px-4 py-2 text-right font-semibold">Monthly Vol</th>
+<th class="px-4 py-2 text-right font-semibold">KD%</th>
+<th class="px-4 py-2 font-semibold">Search Intent</th>
+<th class="px-4 py-2 text-right font-semibold">Current Pos</th>
+<th class="px-4 py-2 font-semibold">Ranking Landing Page</th>
+<th class="px-4 py-2 font-semibold">SERP Features</th>
+<th class="px-4 py-2 text-center font-semibold">AEO Query?</th>
+<th class="px-4 py-2 text-right font-semibold">Est. Opp</th>
+<th class="px-4 py-2 text-center font-semibold">Quick Actions</th>
+</tr>
+</thead>
+<!-- Table Body -->
+<tbody class="divide-y divide-surface-container-low font-body-md text-body-md text-on-surface">
+<!-- Row 1: virtual cardiologist consultation -->
+<tr class="hover:bg-surface-container-low/50 transition-colors h-14 group">
+<td class="px-4 py-2 text-center">
+<input class="row-checkbox rounded bg-surface-container-lowest text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-4 py-2">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors flex items-center gap-1.5">
+                  virtual cardiologist consultation
+                  <span class="material-symbols-outlined text-outline text-[14px] cursor-pointer hover:text-primary">open_in_new</span>
+</span>
+<span class="font-label-code-sm text-label-code-sm text-outline text-[10px]">Entity: Telehealth Cardiology Services</span>
+</div>
+</td>
+<td class="px-4 py-2 text-right font-label-code-lg text-label-code-lg font-semibold text-on-surface">
+              14,200
+            </td>
+<td class="px-4 py-2 text-right">
+<div class="inline-flex items-center gap-1 font-label-code-sm text-label-code-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-bold text-on-surface">48%</span>
+</div>
+</td>
+<td class="px-4 py-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-code-sm text-label-code-sm text-[11px] font-medium">
+                Commercial
+              </span>
+</td>
+<td class="px-4 py-2 text-right">
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1 font-label-code-lg text-label-code-lg font-bold text-on-surface">
+                  #4
+                  <span class="text-secondary font-label-code-sm text-label-code-sm text-[11px]">▲ 2</span>
+</div>
+<span class="text-[10px] font-label-code-sm text-secondary font-semibold">Striking Distance</span>
+</div>
+</td>
+<td class="px-4 py-2 max-w-xs">
+<div class="flex items-center gap-1">
+<span class="font-label-code-sm text-label-code-sm text-primary font-medium truncate hover:underline cursor-pointer" title="/services/telehealth-cardiology">
+                  /services/telehealth-cardiology
+                </span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-outline text-[10px] font-label-code-sm">200 OK</span>
+</div>
+</td>
+<td class="px-4 py-2">
+<div class="flex items-center gap-1 flex-wrap max-w-xs">
+<span class="px-1.5 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-code-sm text-label-code-sm text-[10px] flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[11px]">auto_awesome</span> AI Overview
+                </span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-code-sm text-label-code-sm text-[10px]">FAQ</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-code-sm text-label-code-sm text-[10px]">Reviews</span>
+</div>
+</td>
+<td class="px-4 py-2 text-center">
+<span class="inline-flex items-center justify-center p-1 rounded-full bg-secondary-container text-on-secondary-container" title="Cited directly in Google AI Overview">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</span>
+</td>
+<td class="px-4 py-2 text-right">
+<span class="font-label-code-lg text-label-code-lg font-bold text-secondary">
+                +3,400
+              </span>
+<span class="block text-[10px] font-label-code-sm text-outline">clicks/mo</span>
+</td>
+<td class="px-4 py-2 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="px-2 py-1 rounded-lg bg-primary-fixed text-on-primary-fixed-variant hover:bg-primary hover:text-on-primary font-headline-sm text-headline-sm text-[11px] transition-colors" title="Propose schema and title optimization">
+                  Propose Metadata
+                </button>
+<button class="px-2 py-1 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-headline-sm text-headline-sm text-[11px] transition-colors" title="Generate AI content brief">
+                  Brief
+                </button>
+</div>
+</td>
+</tr>
+<!-- Row 2: online pediatric cardiologist -->
+<tr class="hover:bg-surface-container-low/50 transition-colors h-14 group">
+<td class="px-4 py-2 text-center">
+<input class="row-checkbox rounded bg-surface-container-lowest text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-4 py-2">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors flex items-center gap-1.5">
+                  online pediatric cardiologist
+                  <span class="material-symbols-outlined text-outline text-[14px] cursor-pointer hover:text-primary">open_in_new</span>
+</span>
+<span class="font-label-code-sm text-label-code-sm text-outline text-[10px]">Entity: Pediatric Heart Telehealth</span>
+</div>
+</td>
+<td class="px-4 py-2 text-right font-label-code-lg text-label-code-lg font-semibold text-on-surface">
+              8,100
+            </td>
+<td class="px-4 py-2 text-right">
+<div class="inline-flex items-center gap-1 font-label-code-sm text-label-code-sm">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></span>
+<span class="font-bold text-on-surface">36%</span>
+</div>
+</td>
+<td class="px-4 py-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-code-sm text-label-code-sm text-[11px] font-medium">
+                Commercial
+              </span>
+</td>
+<td class="px-4 py-2 text-right">
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1 font-label-code-lg text-label-code-lg font-bold text-on-surface">
+                  #6
+                  <span class="text-secondary font-label-code-sm text-label-code-sm text-[11px]">▲ 1</span>
+</div>
+<span class="text-[10px] font-label-code-sm text-secondary font-semibold">Striking Distance</span>
+</div>
+</td>
+<td class="px-4 py-2 max-w-xs">
+<div class="flex items-center gap-1">
+<span class="font-label-code-sm text-label-code-sm text-primary font-medium truncate hover:underline cursor-pointer" title="/services/pediatric-cardiology">
+                  /services/pediatric-cardiology
+                </span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-outline text-[10px] font-label-code-sm">200 OK</span>
+</div>
+</td>
+<td class="px-4 py-2">
+<div class="flex items-center gap-1 flex-wrap max-w-xs">
+<span class="px-1.5 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-code-sm text-label-code-sm text-[10px] flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[11px]">auto_awesome</span> AI Overview
+                </span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-code-sm text-label-code-sm text-[10px]">Local 3-Pack</span>
+</div>
+</td>
+<td class="px-4 py-2 text-center">
+<span class="inline-flex items-center justify-center p-1 rounded-full bg-secondary-container text-on-secondary-container" title="Cited in LLM Answer">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</span>
+</td>
+<td class="px-4 py-2 text-right">
+<span class="font-label-code-lg text-label-code-lg font-bold text-secondary">
+                +2,100
+              </span>
+<span class="block text-[10px] font-label-code-sm text-outline">clicks/mo</span>
+</td>
+<td class="px-4 py-2 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="px-2 py-1 rounded-lg bg-primary-fixed text-on-primary-fixed-variant hover:bg-primary hover:text-on-primary font-headline-sm text-headline-sm text-[11px] transition-colors">
+                  Propose Metadata
+                </button>
+<button class="px-2 py-1 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-headline-sm text-headline-sm text-[11px] transition-colors">
+                  Brief
+                </button>
+</div>
+</td>
+</tr>
+<!-- Row 3: holter monitor telehealth prescription -->
+<tr class="hover:bg-surface-container-low/50 transition-colors h-14 group">
+<td class="px-4 py-2 text-center">
+<input class="row-checkbox rounded bg-surface-container-lowest text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-4 py-2">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors flex items-center gap-1.5">
+                  holter monitor telehealth prescription
+                  <span class="material-symbols-outlined text-outline text-[14px] cursor-pointer hover:text-primary">open_in_new</span>
+</span>
+<span class="font-label-code-sm text-label-code-sm text-outline text-[10px]">Entity: Cardiac Diagnostic Devices</span>
+</div>
+</td>
+<td class="px-4 py-2 text-right font-label-code-lg text-label-code-lg font-semibold text-on-surface">
+              5,400
+            </td>
+<td class="px-4 py-2 text-right">
+<div class="inline-flex items-center gap-1 font-label-code-sm text-label-code-sm">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-bold text-on-surface">54%</span>
+</div>
+</td>
+<td class="px-4 py-2">
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-code-sm text-label-code-sm text-[11px] font-bold">
+                Transactional
+              </span>
+</td>
+<td class="px-4 py-2 text-right">
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1 font-label-code-lg text-label-code-lg font-bold text-on-surface">
+                  #8
+                  <span class="text-error font-label-code-sm text-label-code-sm text-[11px]">▼ 1</span>
+</div>
+<span class="text-[10px] font-label-code-sm text-secondary font-semibold">Striking Distance</span>
+</div>
+</td>
+<td class="px-4 py-2 max-w-xs">
+<div class="flex items-center gap-1">
+<span class="font-label-code-sm text-label-code-sm text-primary font-medium truncate hover:underline cursor-pointer" title="/devices/holter-monitoring">
+                  /devices/holter-monitoring
+                </span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-outline text-[10px] font-label-code-sm">200 OK</span>
+</div>
+</td>
+<td class="px-4 py-2">
+<div class="flex items-center gap-1 flex-wrap max-w-xs">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-code-sm text-label-code-sm text-[10px]">Rich Snippet</span>
+</div>
+</td>
+<td class="px-4 py-2 text-center">
+<span class="inline-flex items-center justify-center p-1 rounded-full bg-surface-container text-outline" title="Mention only / unverified citation">
+<span class="material-symbols-outlined text-[16px]">help</span>
+</span>
+</td>
+<td class="px-4 py-2 text-right">
+<span class="font-label-code-lg text-label-code-lg font-bold text-secondary">
+                +1,650
+              </span>
+<span class="block text-[10px] font-label-code-sm text-outline">clicks/mo</span>
+</td>
+<td class="px-4 py-2 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="px-2 py-1 rounded-lg bg-primary-fixed text-on-primary-fixed-variant hover:bg-primary hover:text-on-primary font-headline-sm text-headline-sm text-[11px] transition-colors">
+                  Propose Metadata
+                </button>
+<button class="px-2 py-1 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-headline-sm text-headline-sm text-[11px] transition-colors">
+                  Brief
+                </button>
+</div>
+</td>
+</tr>
+<!-- Row 4: best at-home blood pressure monitors with app sync -->
+<tr class="hover:bg-surface-container-low/50 transition-colors h-14 group">
+<td class="px-4 py-2 text-center">
+<input class="row-checkbox rounded bg-surface-container-lowest text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-4 py-2">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors flex items-center gap-1.5">
+                  best at-home blood pressure monitors with app sync
+                  <span class="material-symbols-outlined text-outline text-[14px] cursor-pointer hover:text-primary">open_in_new</span>
+</span>
+<span class="font-label-code-sm text-label-code-sm text-outline text-[10px]">Entity: Hypertension Tech &amp; Hardware</span>
+</div>
+</td>
+<td class="px-4 py-2 text-right font-label-code-lg text-label-code-lg font-semibold text-on-surface">
+              18,500
+            </td>
+<td class="px-4 py-2 text-right">
+<div class="inline-flex items-center gap-1 font-label-code-sm text-label-code-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-bold text-on-surface">62%</span>
+</div>
+</td>
+<td class="px-4 py-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-code-sm text-label-code-sm text-[11px] font-medium">
+                Informational
+              </span>
+</td>
+<td class="px-4 py-2 text-right">
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1 font-label-code-lg text-label-code-lg font-bold text-on-surface">
+                  #14
+                  <span class="text-secondary font-label-code-sm text-label-code-sm text-[11px]">▲ 4</span>
+</div>
+<span class="text-[10px] font-label-code-sm text-outline">Page 2 Contender</span>
+</div>
+</td>
+<td class="px-4 py-2 max-w-xs">
+<div class="flex items-center gap-1">
+<span class="font-label-code-sm text-label-code-sm text-primary font-medium truncate hover:underline cursor-pointer" title="/blog/blood-pressure-monitors">
+                  /blog/blood-pressure-monitors
+                </span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-outline text-[10px] font-label-code-sm">200 OK</span>
+</div>
+</td>
+<td class="px-4 py-2">
+<div class="flex items-center gap-1 flex-wrap max-w-xs">
+<span class="px-1.5 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-code-sm text-label-code-sm text-[10px] flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[11px]">auto_awesome</span> AI Overview
+                </span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-code-sm text-label-code-sm text-[10px]">Video</span>
+</div>
+</td>
+<td class="px-4 py-2 text-center">
+<span class="inline-flex items-center justify-center p-1 rounded-full bg-secondary-container text-on-secondary-container" title="Active AI Citation Verified">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</span>
+</td>
+<td class="px-4 py-2 text-right">
+<span class="font-label-code-lg text-label-code-lg font-bold text-secondary">
+                +4,800
+              </span>
+<span class="block text-[10px] font-label-code-sm text-outline">clicks/mo</span>
+</td>
+<td class="px-4 py-2 text-center">
+<div class="flex items-center justify-center">
+<button class="px-3 py-1 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-headline-sm text-[11px] transition-colors shadow-xs">
+                  Create Brief
+                </button>
+</div>
+</td>
+</tr>
+<!-- Row 5: can online doctors prescribe heart medication california -->
+<tr class="hover:bg-surface-container-low/50 transition-colors h-14 group">
+<td class="px-4 py-2 text-center">
+<input class="row-checkbox rounded bg-surface-container-lowest text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-4 py-2">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors flex items-center gap-1.5">
+                  can online doctors prescribe heart medication california
+                  <span class="material-symbols-outlined text-outline text-[14px] cursor-pointer hover:text-primary">open_in_new</span>
+</span>
+<span class="font-label-code-sm text-label-code-sm text-outline text-[10px]">Entity: California Telehealth Regulations</span>
+</div>
+</td>
+<td class="px-4 py-2 text-right font-label-code-lg text-label-code-lg font-semibold text-on-surface">
+              6,800
+            </td>
+<td class="px-4 py-2 text-right">
+<div class="inline-flex items-center gap-1 font-label-code-sm text-label-code-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-bold text-on-surface">41%</span>
+</div>
+</td>
+<td class="px-4 py-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-code-sm text-label-code-sm text-[11px] font-medium">
+                Informational
+              </span>
+</td>
+<td class="px-4 py-2 text-right">
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1 font-label-code-lg text-label-code-lg font-bold text-on-surface">
+                  #5
+                  <span class="text-secondary font-label-code-sm text-label-code-sm text-[11px]">▲ 3</span>
+</div>
+<span class="text-[10px] font-label-code-sm text-secondary font-semibold">Striking Distance</span>
+</div>
+</td>
+<td class="px-4 py-2 max-w-xs">
+<div class="flex items-center gap-1">
+<span class="font-label-code-sm text-label-code-sm text-primary font-medium truncate hover:underline cursor-pointer" title="/clinical-faq/ca-prescriptions">
+                  /clinical-faq/ca-prescriptions
+                </span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-outline text-[10px] font-label-code-sm">200 OK</span>
+</div>
+</td>
+<td class="px-4 py-2">
+<div class="flex items-center gap-1 flex-wrap max-w-xs">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-code-sm text-label-code-sm text-[10px]">People Also Ask</span>
+<span class="px-1.5 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-code-sm text-label-code-sm text-[10px] flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[11px]">auto_awesome</span> AI Overview
+                </span>
+</div>
+</td>
+<td class="px-4 py-2 text-center">
+<span class="inline-flex items-center justify-center p-1 rounded-full bg-secondary-container text-on-secondary-container" title="Key Answer Engine Source">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</span>
+</td>
+<td class="px-4 py-2 text-right">
+<span class="font-label-code-lg text-label-code-lg font-bold text-secondary">
+                +1,950
+              </span>
+<span class="block text-[10px] font-label-code-sm text-outline">clicks/mo</span>
+</td>
+<td class="px-4 py-2 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="px-2 py-1 rounded-lg bg-primary-fixed text-on-primary-fixed-variant hover:bg-primary hover:text-on-primary font-headline-sm text-headline-sm text-[11px] transition-colors">
+                  Propose Metadata
+                </button>
+<button class="px-2 py-1 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-headline-sm text-headline-sm text-[11px] transition-colors">
+                  Brief
+                </button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination / Status Bar -->
+<div class="px-space-lg py-space-sm bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm text-outline font-label-code-sm text-label-code-sm text-xs">
+<div class="flex items-center gap-space-sm">
+<span>Showing <strong class="text-on-surface">1 - 5</strong> of 340 keywords</span>
+<span>•</span>
+<span class="text-secondary font-semibold">28 in Striking Distance</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-2 py-1 rounded bg-surface-container-lowest text-outline-variant hover:text-on-surface cursor-not-allowed">Previous</button>
+<button class="px-2.5 py-1 rounded bg-primary text-on-primary font-bold">1</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container">2</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container">3</button>
+<span>...</span>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container">68</button>
+<button class="px-2 py-1 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container">Next</button>
+</div>
+</div>
+</section>
+<!-- Bottom Panel: Cannibalisation Alert Spotlight -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border-l-4 border-l-error mb-space-lg">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-md pb-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="p-2 rounded-lg bg-error-container text-on-error-container mt-0.5">
+<span class="material-symbols-outlined text-[20px]">call_split</span>
+</div>
+<div>
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-code-sm text-label-code-sm text-[10px] font-bold uppercase">
+              Algorithmic Conflict Detected
+            </span>
+<span class="font-label-code-sm text-label-code-sm text-outline">Confidence: 96%</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mt-0.5">
+            Cannibalisation Alert: <span class="text-error font-semibold">"telehealth heart doctor online"</span>
+</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Two distinct URLs are splitting rank equity, causing algorithmic CTR dilution and fluctuating SERP positioning between pos #7 and #18.
+          </p>
+</div>
+</div>
+<!-- Action Panel -->
+<div class="flex items-center gap-space-sm self-start lg:self-center">
+<button class="inline-flex items-center gap-space-xs px-space-lg py-2 rounded-xl bg-error hover:bg-error/90 text-on-error font-headline-sm text-headline-sm text-xs transition-colors shadow-sm" id="canonical-btn">
+<span class="material-symbols-outlined text-[16px]">link</span>
+<span>Apply 1-Click Canonicalize Suggestion</span>
+</button>
+<button class="px-space-md py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-headline-sm text-headline-sm text-xs transition-colors">
+          Inspect Diff
+        </button>
+</div>
+</div>
+<!-- Cannibalisation Split Inspector -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-xs">
+<!-- Competing URL A (Primary Candidate) -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-code-sm text-label-code-sm text-[10px] font-bold">
+            Target Hero Page (Recommended Canonical)
+          </span>
+<span class="font-label-code-sm text-label-code-sm text-secondary font-semibold">Higher Organic Clicks</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-primary break-all hover:underline cursor-pointer">
+          /services/telehealth-cardiology
+        </div>
+<div class="grid grid-cols-3 gap-2 mt-space-md pt-space-xs font-label-code-sm text-label-code-sm">
+<div>
+<span class="text-outline text-[10px] block">Current SERP</span>
+<span class="font-bold text-on-surface text-sm">#7 (Rank Leader)</span>
+</div>
+<div>
+<span class="text-outline text-[10px] block">Impressions</span>
+<span class="font-bold text-on-surface text-sm">24,300/mo</span>
+</div>
+<div>
+<span class="text-outline text-[10px] block">Inbound Links</span>
+<span class="font-bold text-on-surface text-sm">34 Domains</span>
+</div>
+</div>
+</div>
+<!-- Competing URL B (Cannibalizing Candidate) -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-code-sm text-label-code-sm text-[10px] font-bold">
+            Conflicting Duplicate Intent
+          </span>
+<span class="font-label-code-sm text-label-code-sm text-error font-semibold">Leaking Page Authority</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface break-all hover:underline cursor-pointer">
+          /specialties/cardiology
+        </div>
+<div class="grid grid-cols-3 gap-2 mt-space-md pt-space-xs font-label-code-sm text-label-code-sm">
+<div>
+<span class="text-outline text-[10px] block">Current SERP</span>
+<span class="font-bold text-error text-sm">#18 (Dilution)</span>
+</div>
+<div>
+<span class="text-outline text-[10px] block">Impressions</span>
+<span class="font-bold text-on-surface text-sm">9,120/mo</span>
+</div>
+<div>
+<span class="text-outline text-[10px] block">Proposed Action</span>
+<span class="font-bold text-primary text-sm">301 / rel=canonical</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Client-side Script -->
+<script>
+    (function initKeywordRadar() {
+      // Checkbox batch selection count
+      const selectAll = document.getElementById('select-all');
+      const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+      const counter = document.getElementById('selected-counter');
+
+      function updateCounter() {
+        const checkedCount = document.querySelectorAll('.row-checkbox:checked').length;
+        if (counter) counter.textContent = checkedCount;
+        if (selectAll) {
+          selectAll.checked = checkedCount > 0 && checkedCount === rowCheckboxes.length;
+          selectAll.indeterminate = checkedCount > 0 && checkedCount < rowCheckboxes.length;
+        }
+      }
+
+      if (selectAll) {
+        selectAll.addEventListener('change', (e) => {
+          rowCheckboxes.forEach((cb) => {
+            cb.checked = e.target.checked;
+          });
+          updateCounter();
+        });
+      }
+
+      rowCheckboxes.forEach((cb) => {
+        cb.addEventListener('change', updateCounter);
+      });
+
+      // Quick toast feedback for 1-click canonicalize
+      const canonicalBtn = document.getElementById('canonical-btn');
+      if (canonicalBtn) {
+        canonicalBtn.addEventListener('click', () => {
+          const originalText = canonicalBtn.innerHTML;
+          canonicalBtn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span><span>Submitting to Safe Mode Staging...</span>';
+          canonicalBtn.classList.remove('bg-error');
+          canonicalBtn.classList.add('bg-secondary');
+          setTimeout(() => {
+            canonicalBtn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check_circle</span><span>Canonical Tag Draft Queued in Fixes!</span>';
+          }, 900);
+        });
+      }
+    })();
+  </script>
+</div></main></div></body></html>

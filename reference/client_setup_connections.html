@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed":"#07006c","tertiary-fixed":"#eaddff","secondary-fixed":"#6ffbbe","inverse-on-surface":"#eef0ff","surface-container-low":"#f2f3ff","surface-container":"#ebedfc","secondary-fixed-dim":"#4edea3","on-tertiary-fixed":"#25005a","on-surface-variant":"#464554","tertiary-fixed-dim":"#d2bbff","tertiary":"#712ae2","primary-fixed":"#e1e0ff","on-error-container":"#93000a","inverse-surface":"#2c303b","on-secondary-fixed-variant":"#005236","error-container":"#ffdad6","on-secondary":"#ffffff","on-secondary-fixed":"#002113","surface-container-highest":"#dfe2f1","primary-fixed-dim":"#c0c1ff","on-background":"#171b26","background":"#faf8ff","tertiary-container":"#8a4cfc","on-tertiary-container":"#fffbff","surface-container-lowest":"#ffffff","secondary":"#006c49","on-secondary-container":"#00714d","outline":"#767586","surface-bright":"#faf8ff","on-error":"#ffffff","surface-dim":"#d7d9e8","on-surface":"#171b26","on-primary-container":"#fffbff","secondary-container":"#6cf8bb","on-primary-fixed-variant":"#2f2ebe","outline-variant":"#c7c4d7","on-tertiary":"#ffffff","inverse-primary":"#c0c1ff","on-tertiary-fixed-variant":"#5a00c6","surface":"#faf8ff","surface-variant":"#dfe2f1","primary":"#4648d4","primary-container":"#6063ee","surface-tint":"#494bd6","surface-container-high":"#e5e7f6","on-primary":"#ffffff","error":"#ba1a1a"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-sm":"0.5rem","space-xl":"2rem","margin":"1rem","space-lg":"1.25rem","gutter":"1.25rem","space-xs":"0.25rem","margin-desktop":"2rem","gutter-desktop":"1.5rem","space-md":"0.75rem"},fontFamily:{"headline-xl-mobile":["Plus Jakarta Sans"],"body-lg":["Inter"],"badge-status":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-code-sm":["JetBrains Mono"],"headline-sm":["Plus Jakarta Sans"],"label-code-lg":["JetBrains Mono"],"headline-xl":["Plus Jakarta Sans"]},fontSize:{"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"-0.011em","fontWeight":"400"}],"badge-status":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"-0.006em","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-code-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],"headline-sm":["15px",{"lineHeight":"22px","letterSpacing":"-0.005em","fontWeight":"600"}],"label-code-lg":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-inverse-surface text-inverse-on-surface shadow-[0_1px_8px_rgba(0,0,0,0.06)]"><div class="h-14 px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><img alt="SEO Studio by CreativHeads Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W-VoUSnZlcPOf8vU8fLCvtF2T3GnRwtlFjwBlmTuhFQNo_5bd4oV8GzIfZaeNcDAixesVWCLcEYC_pvyJUERThRUqaBHdvTiRmHQqr65KjUW7PRbvOTDqe1ZesAKUrx5z7DLqBe7qZ1666mVeZs9qYQA-s1yrHWwYN2ohbXNujZUUkMf3kw7nwmZiStG9jD3rFhdFuVL1_uYSzr06q2SAESwPT4NUC0yUA7TueqBUxsA"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-surface-container-lowest leading-none tracking-tight">SEO Studio</span><span class="font-label-code-sm text-label-code-sm text-outline-variant uppercase tracking-wider">CreativHeads Agency</span></div></div><div class="h-6 w-px bg-outline/40"></div><button class="flex items-center gap-space-sm bg-surface-container-lowest/10 hover:bg-surface-container-lowest/20 px-space-md py-1.5 rounded-xl transition-colors text-left"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span><span class="font-headline-sm text-headline-sm text-surface-container-lowest text-xs font-semibold">Lumina Health Care</span></div><span class="font-label-code-sm text-label-code-sm text-outline-variant text-[10px]">luminahealth.io</span></div><span class="material-symbols-outlined text-outline-variant text-[18px]">unfold_more</span></button><div class="hidden xl:flex items-center gap-space-sm bg-surface-container-lowest/5 px-space-md py-1 rounded-full font-label-code-sm text-label-code-sm text-surface-container-high"><span class="w-2 h-2 rounded-full bg-secondary-fixed animate-ping"></span><span class="">GSC: Connected</span><span class="text-outline">•</span><span class="">GA4: Connected</span><span class="text-outline">•</span><span class="text-primary-fixed">WP: Draft Mode</span><span class="text-outline">•</span><span class="text-secondary-fixed">KB: Synced</span></div></div><div class="flex items-center gap-space-md"><div class="hidden lg:flex items-center gap-space-xs bg-error-container text-on-error-container px-space-md py-1 rounded-lg font-badge-status text-badge-status"><span class="material-symbols-outlined text-[15px]">lock</span><span class="">SAFE MODE: Drafts &amp; Staging Only</span></div><div class="flex items-center gap-space-sm bg-surface-container-lowest/10 px-space-md py-1.5 rounded-lg text-outline-variant hover:text-surface-container-lowest cursor-pointer"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-body-sm text-body-sm hidden sm:inline">Global Search</span><kbd class="font-label-code-sm text-label-code-sm bg-surface-container-lowest/20 px-1 rounded text-surface-container-lowest text-[10px]">⌘K</kbd></div><button class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary px-space-md py-1.5 rounded-xl font-headline-sm text-headline-sm text-xs transition-colors shadow-[0_1px_4px_rgba(0,0,0,0.12)]"><span class="material-symbols-outlined text-[16px]">auto_awesome</span><span class="hidden md:inline">Ask Studio AI</span></button><button class="relative p-1.5 text-outline-variant hover:text-surface-container-lowest transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-4 h-4 bg-error text-on-error font-label-code-sm text-label-code-sm text-[10px] rounded-full flex items-center justify-center font-bold">3</span></button><div class="h-6 w-px bg-outline/40"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right hidden sm:flex"><span class="font-headline-sm text-headline-sm text-xs text-surface-container-lowest">Marcus Vance</span><span class="font-label-code-sm text-label-code-sm text-[10px] text-primary-fixed font-semibold">Head of SEO</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><aside class="fixed left-0 top-14 bottom-0 w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex flex-col justify-between"><div class="flex flex-col py-space-md overflow-y-auto"><div class="px-space-md pb-space-sm text-outline font-label-code-sm text-label-code-sm uppercase tracking-wider">Workspace Engine</div><nav class="flex flex-col gap-0.5 px-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-sm"><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="client-dashboard" href="#"><span class="font-body-md text-body-md">Client Dashboard</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="all-clients" href="#"><span class="font-body-md text-body-md">All Clients</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="keyword-research" href="#"><span class="font-body-md text-body-md">Keyword Research</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="site-audit" href="#"><span class="font-body-md text-body-md">Site Audit</span></a><a class="flex items-center justify-between px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="fixes-and-approvals" href="#"><span class="font-body-md text-body-md">Fixes &amp; Approvals</span><span class="bg-error-container text-on-error-container font-label-code-sm text-label-code-sm px-1.5 py-0.5 rounded-full text-[10px]">4 Pending</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="developer-tickets" href="#"><span class="font-body-md text-body-md">Developer Tickets</span></a><a aria-current="page" class="flex items-center px-space-md py-2 rounded-xl transition-all bg-primary-container text-on-primary-container font-semibold shadow-sm" data-path="content-studio" href="#"><span class="font-body-md text-body-md">Content Studio</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="aeo-visibility" href="#"><span class="font-body-md text-body-md">AEO Visibility</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="schema-generator" href="#"><span class="font-body-md text-body-md">Schema Generator</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="monthly-plan" href="#"><span class="font-body-md text-body-md">Monthly Plan</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="reports-and-admin" href="#"><span class="font-body-md text-body-md">Reports &amp; Admin</span></a></nav></div><div class="p-space-md bg-surface-container-low rounded-t-xl mx-space-sm mb-space-sm"><div class="flex items-center justify-between text-outline-variant font-label-code-sm text-label-code-sm mb-1"><span class="text-on-surface font-semibold">Health Score</span><span class="text-secondary font-bold">94.2%</span></div><div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden"><div class="bg-secondary h-full rounded-full" style="width: 94.2%"></div></div><div class="flex items-center justify-between text-[11px] text-outline mt-1.5"><span class="">Sync: 2m ago</span><span class="text-primary font-medium hover:underline cursor-pointer">Inspect</span></div></div></aside><div class="pl-64"><main class="w-full pt-14 bg-background min-h-screen px-gutter-desktop py-margin-desktop"><div class="flex flex-col w-full">
+<div class="flex flex-col gap-space-lg w-full">
+<!-- Top Action Bar & Infrastructure Context -->
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex items-start gap-space-md">
+<div class="relative w-14 h-14 rounded-xl bg-gradient-to-br from-primary-container to-primary flex items-center justify-center text-on-primary shadow-md overflow-hidden shrink-0">
+<span class="material-symbols-outlined text-[32px]">shield_with_heart</span>
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+</div>
+<div class="flex flex-col">
+<div class="flex flex-wrap items-center gap-space-sm">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Client Profile &amp; Infrastructure Settings</h1>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-badge-status text-badge-status px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+              PRODUCTION TENANT
+            </span>
+</div>
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 mt-1 text-on-surface-variant">
+<span class="font-headline-sm text-headline-sm text-primary">Lumina Health Care</span>
+<span class="font-label-code-sm text-label-code-sm text-outline">luminahealth.io</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm">Manage multi-tenant credentials, API sync health, crawler limits, team roles, and spending guardrails.</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm w-full sm:w-auto self-end lg:self-center">
+<button class="flex-1 sm:flex-initial flex items-center justify-center gap-space-xs bg-surface-container hover:bg-surface-container-high text-on-surface px-space-md py-2 rounded-xl font-headline-sm text-headline-sm text-xs transition-colors shadow-sm" id="test-all-btn">
+<span class="material-symbols-outlined text-[17px] text-primary">sync</span>
+<span>Test All Integrations</span>
+</button>
+<button class="flex-1 sm:flex-initial flex items-center justify-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary px-space-lg py-2 rounded-xl font-headline-sm text-headline-sm text-xs transition-colors shadow-md" id="save-all-btn">
+<span class="material-symbols-outlined text-[17px]">done_all</span>
+<span>Save All Changes</span>
+</button>
+</div>
+</div>
+<!-- Tab Strip -->
+<div class="flex items-center gap-space-xs bg-surface-container-low p-1.5 rounded-xl overflow-x-auto">
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-lowest text-primary font-headline-sm text-headline-sm text-xs shadow-sm whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>General &amp; Tracking</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/60 font-body-md text-body-md text-xs transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">cable</span>
+<span>Integrations &amp; API Connections</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/60 font-body-md text-body-md text-xs transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">speed</span>
+<span>Crawl &amp; Engine Budget Limits</span>
+<span class="bg-error-container text-on-error-container font-label-code-sm text-label-code-sm px-1.5 rounded-full text-[10px]">75%</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/60 font-body-md text-body-md text-xs transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">badge</span>
+<span>Team Access &amp; Roles</span>
+</button>
+</div>
+<!-- Safe Mode Operational Alert Banner -->
+<div class="bg-gradient-to-r from-surface-container-low via-surface-container to-surface-container-low p-space-md rounded-xl shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">lock_clock</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-xs text-on-surface">Safe-Mode Lockdown Active</span>
+<span class="font-label-code-sm text-label-code-sm text-primary px-1.5 py-0.2 bg-primary-fixed rounded">ENV: STAGING</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Production database writes disabled. All automated structured schema and meta updates route strictly to WordPress Draft queue.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<span class="font-label-code-sm text-label-code-sm text-outline">Enforced by Agency Policy</span>
+<button class="text-xs font-label-code-sm text-label-code-sm bg-surface-container-lowest px-space-md py-1.5 rounded-lg text-on-surface shadow-sm hover:bg-surface-container-highest transition-colors">
+          View Protocol
+        </button>
+</div>
+</div>
+<!-- Section 1: General & SEO Setup Bento Grid -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">corporate_fare</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">1. General &amp; SEO Setup</h2>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-outline uppercase tracking-wider">Configuration Scope // Global Client Schema</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Client Name & Domain -->
+<div class="flex flex-col gap-1.5 bg-surface-container-low p-space-md rounded-xl">
+<label class="font-label-code-sm text-label-code-sm text-outline uppercase">Client Legal Name &amp; Primary Domain</label>
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface">Lumina Health Care</span>
+<span class="font-label-code-sm text-label-code-sm text-primary bg-primary-fixed px-1.5 py-0.5 rounded">HTTPS/2</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">https://www.luminahealth.io</span>
+</div>
+<!-- Industry Vertical -->
+<div class="flex flex-col gap-1.5 bg-surface-container-low p-space-md rounded-xl">
+<label class="font-label-code-sm text-label-code-sm text-outline uppercase">Vertical / Healthcare Taxonomy</label>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">medical_services</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Telehealth &amp; Clinical Care</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">HIPAA Compliant / Clinical Knowledge Graph</span>
+</div>
+<!-- Primary CMS Stack -->
+<div class="flex flex-col gap-1.5 bg-surface-container-low p-space-md rounded-xl">
+<label class="font-label-code-sm text-label-code-sm text-outline uppercase">Architecture &amp; CMS Hook</label>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">code_blocks</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Headless WordPress + Next.js 14</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">WPGraphQL / Incremental Static Regeneration</span>
+</div>
+<!-- Target Geographies -->
+<div class="flex flex-col gap-1.5 bg-surface-container-low p-space-md rounded-xl">
+<label class="font-label-code-sm text-label-code-sm text-outline uppercase">Primary Target Geos</label>
+<div class="flex flex-wrap gap-1 mt-0.5">
+<span class="font-label-code-sm text-label-code-sm bg-surface-container-lowest px-2 py-1 rounded text-on-surface shadow-sm">United States</span>
+<span class="font-label-code-sm text-label-code-sm bg-surface-container-lowest px-2 py-1 rounded text-on-surface shadow-sm">California</span>
+<span class="font-label-code-sm text-label-code-sm bg-surface-container-lowest px-2 py-1 rounded text-on-surface shadow-sm">Texas</span>
+<span class="font-label-code-sm text-label-code-sm bg-surface-container-lowest px-2 py-1 rounded text-on-surface shadow-sm">New York</span>
+</div>
+</div>
+<!-- Target Locales -->
+<div class="flex flex-col gap-1.5 bg-surface-container-low p-space-md rounded-xl">
+<label class="font-label-code-sm text-label-code-sm text-outline uppercase">Target Locales &amp; hreflang</label>
+<div class="flex items-center gap-space-sm mt-1">
+<div class="flex items-center gap-1 bg-surface-container-lowest px-2.5 py-1 rounded-lg shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-code-sm text-label-code-sm font-semibold text-on-surface">en-US</span>
+<span class="font-body-sm text-body-sm text-outline">(Primary)</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-lowest px-2.5 py-1 rounded-lg shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-code-sm text-label-code-sm font-semibold text-on-surface">es-US</span>
+<span class="font-body-sm text-body-sm text-outline">(Hispano)</span>
+</div>
+</div>
+</div>
+<!-- Dedicated Agency Leads -->
+<div class="flex flex-col gap-1.5 bg-surface-container-low p-space-md rounded-xl">
+<label class="font-label-code-sm text-label-code-sm text-outline uppercase">Account Leadership Pair</label>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">assignment_ind</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-xs text-on-surface">Elena Rostova</span>
+<span class="font-label-code-sm text-label-code-sm text-[10px] text-outline">Lead Strategist</span>
+</div>
+</div>
+<div class="h-6 w-px bg-outline/20"></div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[18px]">verified_user</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-xs text-on-surface">Marcus Vance</span>
+<span class="font-label-code-sm text-label-code-sm text-[10px] text-outline">Head of SEO</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Competitor Monitoring Vector -->
+<div class="flex flex-col gap-space-sm bg-surface-container-high/40 p-space-md rounded-xl">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-outline text-[18px]">radar</span>
+<span class="font-headline-sm text-headline-sm text-xs text-on-surface">Monitored Competitive Domain Radar (AEO &amp; SERP Benchmarking)</span>
+</div>
+<button class="font-label-code-sm text-label-code-sm text-primary hover:underline flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">add</span> Add Competitor
+          </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="flex items-center justify-between bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded bg-surface-container-highest flex items-center justify-center font-label-code-sm text-label-code-sm text-on-surface font-bold">1</div>
+<div class="flex flex-col">
+<span class="font-label-code-sm text-label-code-sm font-semibold text-on-surface">teladoc.com</span>
+<span class="font-body-sm text-body-sm text-outline text-[11px]">Direct Telehealth Benchmark</span>
+</div>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-secondary font-semibold">Rank #2</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded bg-surface-container-highest flex items-center justify-center font-label-code-sm text-label-code-sm text-on-surface font-bold">2</div>
+<div class="flex flex-col">
+<span class="font-label-code-sm text-label-code-sm font-semibold text-on-surface">plushcare.com</span>
+<span class="font-body-sm text-body-sm text-outline text-[11px]">Primary Virtual Clinic</span>
+</div>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-secondary font-semibold">Rank #4</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded bg-surface-container-highest flex items-center justify-center font-label-code-sm text-label-code-sm text-on-surface font-bold">3</div>
+<div class="flex flex-col">
+<span class="font-label-code-sm text-label-code-sm font-semibold text-on-surface">clevelandclinic.org</span>
+<span class="font-body-sm text-body-sm text-outline text-[11px]">Clinical E-E-A-T Benchmark</span>
+</div>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-primary font-semibold">Authority #1</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Platform Connection Health Grid -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[22px]">hub</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">2. Platform Connection Health Grid</h2>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code-sm text-label-code-sm text-outline">Real-time health ping</span>
+<span class="flex h-2.5 w-2.5 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-fixed opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span>
+</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg">
+<!-- Service 1: Google Search Console -->
+<div class="flex flex-col justify-between bg-surface-container-low p-space-lg rounded-xl shadow-sm gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-11 h-11 rounded-xl bg-primary-fixed text-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[24px]">troubleshoot</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Google Search Console</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-badge-status text-badge-status px-2 py-0.5 rounded-full">CONNECTED</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-outline mt-0.5">Service Account: gsc-ingest@seo-studio-lumina.iam.gserviceaccount.com</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-outline">Protocol: OAuth2 JWT Bearer</span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface font-medium">Last full indexing diff: 12m ago (34,180 URLs)</span>
+</div>
+<div class="text-right">
+<span class="font-label-code-sm text-label-code-sm text-secondary font-bold">Latency 84ms</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-xs">
+<button class="px-space-md py-1.5 bg-surface-container hover:bg-surface-container-highest text-on-surface rounded-lg font-label-code-sm text-label-code-sm transition-colors">
+              Re-authenticate
+            </button>
+<button class="px-space-md py-1.5 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-code-sm text-label-code-sm transition-colors flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">sensors</span>
+              Test Connection
+            </button>
+</div>
+</div>
+<!-- Service 2: Google Analytics 4 -->
+<div class="flex flex-col justify-between bg-surface-container-low p-space-lg rounded-xl shadow-sm gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-11 h-11 rounded-xl bg-secondary-fixed-dim/40 text-on-secondary-fixed-variant flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[24px]">analytics</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Google Analytics 4 (GA4)</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-badge-status text-badge-status px-2 py-0.5 rounded-full">ACTIVE STREAM</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-outline mt-0.5">Measurement ID: G-84729104 | Property: 394820192</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-outline">Real-time Conversions &amp; Organic Funnel</span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface font-medium">8,421 organic sessions captured today</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-code-sm text-label-code-sm text-secondary font-bold">Stream Valid</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-xs">
+<button class="px-space-md py-1.5 bg-surface-container hover:bg-surface-container-highest text-on-surface rounded-lg font-label-code-sm text-label-code-sm transition-colors">
+              Configure Conversion Events
+            </button>
+<button class="px-space-md py-1.5 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-code-sm text-label-code-sm transition-colors flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">query_stats</span>
+              Test Stream
+            </button>
+</div>
+</div>
+<!-- Service 3: WordPress Staging & Production -->
+<div class="flex flex-col justify-between bg-surface-container-low p-space-lg rounded-xl shadow-sm gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-11 h-11 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[24px]">terminal</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">WordPress CMS Bridge</span>
+<span class="bg-error-container text-on-error-container font-badge-status text-badge-status px-2 py-0.5 rounded-full">REST API / APPLICATION PASSWORDS</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-outline mt-0.5">Endpoint: https://cms.luminahealth.io/wp-json/wp/v2</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">Safe Mode Enforcement State:</span>
+<span class="font-label-code-sm text-label-code-sm text-error font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span> Direct Prod Writes Blocked
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Staging write active. Title tag &amp; JSON-LD patches serialize into wp_posts as status: 'draft' for human verification.</p>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-xs">
+<button class="px-space-md py-1.5 bg-surface-container hover:bg-surface-container-highest text-on-surface rounded-lg font-label-code-sm text-label-code-sm transition-colors">
+              Rotate Key
+            </button>
+<button class="px-space-md py-1.5 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-code-sm text-label-code-sm transition-colors flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">format_image_left</span>
+              Verify Safe-Mode Hook
+            </button>
+</div>
+</div>
+<!-- Service 4: Vector Knowledgebase & LLM Embeddings -->
+<div class="flex flex-col justify-between bg-surface-container-low p-space-lg rounded-xl shadow-sm gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-11 h-11 rounded-xl bg-primary-fixed-dim text-on-primary-fixed flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[24px]">model_training</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Pinecone Vector Knowledgebase</span>
+<span class="bg-primary-fixed text-on-primary-fixed font-badge-status text-badge-status px-2 py-0.5 rounded-full">INDEX: lumina-aeo-prod</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-outline mt-0.5">Model: text-embedding-3-large (1536 dims) | Pinecone Serverless</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-outline">Clinical Content Corpus Sync</span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface font-medium">142 clinical docs indexed &amp; verified</span>
+</div>
+<div class="text-right">
+<span class="font-label-code-sm text-label-code-sm text-secondary font-bold">100% Synced</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-xs">
+<button class="px-space-md py-1.5 bg-surface-container hover:bg-surface-container-highest text-on-surface rounded-lg font-label-code-sm text-label-code-sm transition-colors">
+              Inspect Vectors
+            </button>
+<button class="px-space-md py-1.5 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-code-sm text-label-code-sm transition-colors flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">autorenew</span>
+              Re-index Knowledgebase
+            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Crawl Limits & Spend Guardrails -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-tertiary text-[22px]">account_balance_wallet</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">3. Crawl Limits &amp; Spend Guardrails</h2>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-outline">Monthly Cycle: Mar 1 - Mar 31</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
+<!-- Monthly AI Spend Cap Card -->
+<div class="flex flex-col justify-between bg-surface-container-low p-space-lg rounded-xl gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-code-sm text-label-code-sm text-outline uppercase">AI / AEO Prompt Spend Cap</span>
+<span class="bg-error-container text-on-error-container font-label-code-sm text-label-code-sm px-2 py-0.5 rounded-full">
+              75% Consumed
+            </span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl text-on-surface">$450.00</span>
+<span class="font-body-md text-body-md text-outline">/ $600.00 cap</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Includes Perplexity, Claude 3.5 Sonnet &amp; OpenAI citation probe costs.</span>
+</div>
+<!-- Spend Progress Ring / Bar Graphic -->
+<div class="flex flex-col gap-1.5">
+<div class="w-full bg-surface-container-highest h-3 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full transition-all duration-500" style="width: 75%"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] font-label-code-sm text-label-code-sm text-outline">
+<span>$0.00</span>
+<span class="text-error font-semibold">$150.00 buffer left</span>
+<span>$600.00</span>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Hard stop trigger</span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface font-semibold bg-surface-container-lowest px-2 py-0.5 rounded shadow-sm">ENABLED</span>
+</div>
+</div>
+<!-- ScreamingFrog Chromium Cadence Card -->
+<div class="flex flex-col justify-between bg-surface-container-low p-space-lg rounded-xl gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-code-sm text-label-code-sm text-outline uppercase">Chromium Crawl Engine</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-code-sm text-label-code-sm px-2 py-0.5 rounded-full">
+              SCHEDULED
+            </span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-headline-lg text-headline-lg text-on-surface">Weekly Cadence</span>
+<span class="font-label-code-sm text-label-code-sm text-primary font-semibold">Every Tuesday @ 02:00 UTC</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1">Headless Chromium rendering Javascript hydration, canonical checks &amp; schema trees.</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-outline">data_exploration</span>
+<span class="font-body-sm text-body-sm text-on-surface">URL Crawl Depth Ceiling:</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm font-bold text-on-surface">10,000 URLs</span>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Worker instance</span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface font-semibold bg-surface-container-lowest px-2 py-0.5 rounded shadow-sm">us-east-crawl-03</span>
+</div>
+</div>
+<!-- Automated Alert Threshold & Notification Targets -->
+<div class="flex flex-col justify-between bg-surface-container-low p-space-lg rounded-xl gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-code-sm text-label-code-sm text-outline uppercase">Alert Guardrails &amp; Routing</span>
+<span class="bg-surface-container-highest text-on-surface-variant font-label-code-sm text-label-code-sm px-2 py-0.5 rounded-full">
+              THRESHOLD: &lt;20%
+            </span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Automated Alert Dispatch</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Notify via Email, Slack &amp; In-App alert when API balance or credits drop below 20%:</span>
+<div class="flex flex-col gap-1.5 mt-1">
+<div class="flex items-center gap-space-xs bg-surface-container-lowest px-2.5 py-1.5 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">notification_important</span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface">Marcus Vance (Head of SEO)</span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-lowest px-2.5 py-1.5 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">notification_important</span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface">Elena Rostova (Lead Strategist)</span>
+</div>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Slack Webhook</span>
+<span class="font-label-code-sm text-label-code-sm text-secondary font-semibold">#seo-alerts-lumina</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 4: Role Permissions Matrix -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">policy</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">4. Multi-Tenant Role Permissions Matrix</h2>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-outline">Least Privilege Policy Enforced</span>
+</div>
+<!-- Permission Table -->
+<div class="overflow-x-auto rounded-xl bg-surface-container-low shadow-inner">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-high/60 text-outline font-label-code-sm text-label-code-sm uppercase">
+<th class="px-space-lg py-3">Role Tier</th>
+<th class="px-space-md py-3 text-center">Propose Fix (Draft)</th>
+<th class="px-space-md py-3 text-center">Approve Staging</th>
+<th class="px-space-md py-3 text-center">Deploy Staging</th>
+<th class="px-space-md py-3 text-center">Deploy Production</th>
+<th class="px-space-md py-3 text-center">View Analytics Only</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<!-- Row 1: Head of SEO -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors">
+<td class="px-space-lg py-3.5">
+<div class="flex items-center gap-space-sm">
+<span class="bg-primary-fixed text-on-primary-fixed-variant font-label-code-sm text-label-code-sm font-semibold px-2 py-0.5 rounded">
+                    Head of SEO
+                  </span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">(Marcus Vance)</span>
+</div>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-error text-[20px]" title="Production Locked by Safe Mode">lock</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</td>
+</tr>
+<!-- Row 2: SEO Lead -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors">
+<td class="px-space-lg py-3.5">
+<div class="flex items-center gap-space-sm">
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant font-label-code-sm text-label-code-sm font-semibold px-2 py-0.5 rounded">
+                    SEO Lead
+                  </span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">(Elena Rostova)</span>
+</div>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-outline text-[18px]">block</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</td>
+</tr>
+<!-- Row 3: Agency Staff -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors">
+<td class="px-space-lg py-3.5">
+<div class="flex items-center gap-space-sm">
+<span class="bg-surface-container-highest text-on-surface-variant font-label-code-sm text-label-code-sm font-semibold px-2 py-0.5 rounded">
+                    Agency Staff / Content
+                  </span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">(Writers &amp; Tech Staff)</span>
+</div>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-outline text-[18px]">block</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-outline text-[18px]">block</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-outline text-[18px]">block</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</td>
+</tr>
+<!-- Row 4: Client Viewer -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors">
+<td class="px-space-lg py-3.5">
+<div class="flex items-center gap-space-sm">
+<span class="bg-surface-container-highest text-outline font-label-code-sm text-label-code-sm font-semibold px-2 py-0.5 rounded">
+                    Client Stakeholder
+                  </span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">(Lumina Exec Team)</span>
+</div>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-outline text-[18px]">block</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-outline text-[18px]">block</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-outline text-[18px]">block</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-outline text-[18px]">block</span>
+</td>
+<td class="px-space-md py-3.5 text-center">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer Info Strip -->
+<div class="flex flex-col sm:flex-row items-center justify-between p-space-md bg-surface-container-low rounded-xl gap-space-sm">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-primary">history</span>
+<span>Last modified by Marcus Vance (Head of SEO) on Mar 14, 2025 at 09:12 EST.</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="font-label-code-sm text-label-code-sm text-primary hover:underline">
+            Export Security Audit Log (.csv)
+          </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Feedback toast for interactive action buttons
+  document.getElementById('test-all-btn')?.addEventListener('click', function() {
+    const originalText = this.innerHTML;
+    this.innerHTML = '<span class="material-symbols-outlined text-[17px] animate-spin text-primary">progress_activity</span><span>Testing 4 Endpoints...</span>';
+    setTimeout(() => {
+      this.innerHTML = '<span class="material-symbols-outlined text-[17px] text-secondary">check_circle</span><span>All 4 Systems Online</span>';
+      setTimeout(() => {
+        this.innerHTML = originalText;
+      }, 2500);
+    }, 1200);
+  });
+
+  document.getElementById('save-all-btn')?.addEventListener('click', function() {
+    const originalText = this.innerHTML;
+    this.innerHTML = '<span class="material-symbols-outlined text-[17px] animate-spin">progress_activity</span><span>Saving Config...</span>';
+    setTimeout(() => {
+      this.innerHTML = '<span class="material-symbols-outlined text-[17px]">task_alt</span><span>Saved Successfully</span>';
+      setTimeout(() => {
+        this.innerHTML = originalText;
+      }, 2000);
+    }, 900);
+  });
+</script></main></div>
+</body></html>

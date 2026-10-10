@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed":"#07006c","tertiary-fixed":"#eaddff","secondary-fixed":"#6ffbbe","inverse-on-surface":"#eef0ff","surface-container-low":"#f2f3ff","surface-container":"#ebedfc","secondary-fixed-dim":"#4edea3","on-tertiary-fixed":"#25005a","on-surface-variant":"#464554","tertiary-fixed-dim":"#d2bbff","tertiary":"#712ae2","primary-fixed":"#e1e0ff","on-error-container":"#93000a","inverse-surface":"#2c303b","on-secondary-fixed-variant":"#005236","error-container":"#ffdad6","on-secondary":"#ffffff","on-secondary-fixed":"#002113","surface-container-highest":"#dfe2f1","primary-fixed-dim":"#c0c1ff","on-background":"#171b26","background":"#faf8ff","tertiary-container":"#8a4cfc","on-tertiary-container":"#fffbff","surface-container-lowest":"#ffffff","secondary":"#006c49","on-secondary-container":"#00714d","outline":"#767586","surface-bright":"#faf8ff","on-error":"#ffffff","surface-dim":"#d7d9e8","on-surface":"#171b26","on-primary-container":"#fffbff","secondary-container":"#6cf8bb","on-primary-fixed-variant":"#2f2ebe","outline-variant":"#c7c4d7","on-tertiary":"#ffffff","inverse-primary":"#c0c1ff","on-tertiary-fixed-variant":"#5a00c6","surface":"#faf8ff","surface-variant":"#dfe2f1","primary":"#4648d4","primary-container":"#6063ee","surface-tint":"#494bd6","surface-container-high":"#e5e7f6","on-primary":"#ffffff","error":"#ba1a1a"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-sm":"0.5rem","space-xl":"2rem","margin":"1rem","space-lg":"1.25rem","gutter":"1.25rem","space-xs":"0.25rem","margin-desktop":"2rem","gutter-desktop":"1.5rem","space-md":"0.75rem"},fontFamily:{"headline-xl-mobile":["Plus Jakarta Sans"],"body-lg":["Inter"],"badge-status":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-code-sm":["JetBrains Mono"],"headline-sm":["Plus Jakarta Sans"],"label-code-lg":["JetBrains Mono"],"headline-xl":["Plus Jakarta Sans"]},fontSize:{"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"-0.011em","fontWeight":"400"}],"badge-status":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"-0.006em","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-code-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],"headline-sm":["15px",{"lineHeight":"22px","letterSpacing":"-0.005em","fontWeight":"600"}],"label-code-lg":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-inverse-surface text-inverse-on-surface shadow-[0_1px_8px_rgba(0,0,0,0.06)]"><div class="h-14 px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><img alt="SEO Studio by CreativHeads Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W-VoUSnZlcPOf8vU8fLCvtF2T3GnRwtlFjwBlmTuhFQNo_5bd4oV8GzIfZaeNcDAixesVWCLcEYC_pvyJUERThRUqaBHdvTiRmHQqr65KjUW7PRbvOTDqe1ZesAKUrx5z7DLqBe7qZ1666mVeZs9qYQA-s1yrHWwYN2ohbXNujZUUkMf3kw7nwmZiStG9jD3rFhdFuVL1_uYSzr06q2SAESwPT4NUC0yUA7TueqBUxsA"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-surface-container-lowest leading-none tracking-tight">SEO Studio</span><span class="font-label-code-sm text-label-code-sm text-outline-variant uppercase tracking-wider">CreativHeads Agency</span></div></div><div class="h-6 w-px bg-outline/40"></div><button class="flex items-center gap-space-sm bg-surface-container-lowest/10 hover:bg-surface-container-lowest/20 px-space-md py-1.5 rounded-xl transition-colors text-left"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span><span class="font-headline-sm text-headline-sm text-surface-container-lowest text-xs font-semibold">Lumina Health Care</span></div><span class="font-label-code-sm text-label-code-sm text-outline-variant text-[10px]">luminahealth.io</span></div><span class="material-symbols-outlined text-outline-variant text-[18px]">unfold_more</span></button><div class="hidden xl:flex items-center gap-space-sm bg-surface-container-lowest/5 px-space-md py-1 rounded-full font-label-code-sm text-label-code-sm text-surface-container-high"><span class="w-2 h-2 rounded-full bg-secondary-fixed animate-ping"></span><span>GSC: Connected</span><span class="text-outline">•</span><span>GA4: Connected</span><span class="text-outline">•</span><span class="text-primary-fixed">WP: Draft Mode</span><span class="text-outline">•</span><span class="text-secondary-fixed">KB: Synced</span></div></div><div class="flex items-center gap-space-md"><div class="hidden lg:flex items-center gap-space-xs bg-error-container text-on-error-container px-space-md py-1 rounded-lg font-badge-status text-badge-status"><span class="material-symbols-outlined text-[15px]">lock</span><span>SAFE MODE: Drafts &amp; Staging Only</span></div><div class="flex items-center gap-space-sm bg-surface-container-lowest/10 px-space-md py-1.5 rounded-lg text-outline-variant hover:text-surface-container-lowest cursor-pointer"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-body-sm text-body-sm hidden sm:inline">Global Search</span><kbd class="font-label-code-sm text-label-code-sm bg-surface-container-lowest/20 px-1 rounded text-surface-container-lowest text-[10px]">⌘K</kbd></div><button class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary px-space-md py-1.5 rounded-xl font-headline-sm text-headline-sm text-xs transition-colors shadow-[0_1px_4px_rgba(0,0,0,0.12)]"><span class="material-symbols-outlined text-[16px]">auto_awesome</span><span class="hidden md:inline">Ask Studio AI</span></button><button class="relative p-1.5 text-outline-variant hover:text-surface-container-lowest transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-4 h-4 bg-error text-on-error font-label-code-sm text-label-code-sm text-[10px] rounded-full flex items-center justify-center font-bold">3</span></button><div class="h-6 w-px bg-outline/40"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right hidden sm:flex"><span class="font-headline-sm text-headline-sm text-xs text-surface-container-lowest">Marcus Vance</span><span class="font-label-code-sm text-label-code-sm text-[10px] text-primary-fixed font-semibold">Head of SEO</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><aside class="fixed left-0 top-14 bottom-0 w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex flex-col justify-between"><div class="flex flex-col py-space-md overflow-y-auto"><div class="px-space-md pb-space-sm text-outline font-label-code-sm text-label-code-sm uppercase tracking-wider">Workspace Engine</div><nav class="flex flex-col gap-0.5 px-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-sm"><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="client-dashboard" href="#"><span class="font-body-md text-body-md">Client Dashboard</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="all-clients" href="#"><span class="font-body-md text-body-md">All Clients</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="keyword-research" href="#"><span class="font-body-md text-body-md">Keyword Research</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="site-audit" href="#"><span class="font-body-md text-body-md">Site Audit</span></a><a class="flex items-center justify-between px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="fixes-and-approvals" href="#"><span class="font-body-md text-body-md">Fixes &amp; Approvals</span><span class="bg-error-container text-on-error-container font-label-code-sm text-label-code-sm px-1.5 py-0.5 rounded-full text-[10px]">4 Pending</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="developer-tickets" href="#"><span class="font-body-md text-body-md">Developer Tickets</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="content-studio" href="#"><span class="font-body-md text-body-md">Content Studio</span></a><a aria-current="page" class="flex items-center px-space-md py-2 rounded-xl transition-all bg-primary-container text-on-primary-container font-semibold shadow-sm" data-path="aeo-visibility" href="#"><span class="font-body-md text-body-md">AEO Visibility</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="schema-generator" href="#"><span class="font-body-md text-body-md">Schema Generator</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="monthly-plan" href="#"><span class="font-body-md text-body-md">Monthly Plan</span></a><a class="flex items-center px-space-md py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all" data-path="reports-and-admin" href="#"><span class="font-body-md text-body-md">Reports &amp; Admin</span></a></nav></div><div class="p-space-md bg-surface-container-low rounded-t-xl mx-space-sm mb-space-sm"><div class="flex items-center justify-between text-outline-variant font-label-code-sm text-label-code-sm mb-1"><span class="text-on-surface font-semibold">Health Score</span><span class="text-secondary font-bold">94.2%</span></div><div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden"><div class="bg-secondary h-full rounded-full" style="width: 94.2%"></div></div><div class="flex items-center justify-between text-[11px] text-outline mt-1.5"><span>Sync: 2m ago</span><span class="text-primary font-medium hover:underline cursor-pointer">Inspect</span></div></div></aside><div class="pl-64"><main class="w-full pt-14 bg-background min-h-screen px-gutter-desktop py-margin-desktop"><div class="flex flex-col w-full gap-space-xl">
+<!-- Top Command Context Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pb-space-xs">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code-sm text-label-code-sm uppercase tracking-wider text-primary font-semibold bg-surface-container-high px-2 py-0.5 rounded-lg">Operational Radar // Live Pipeline</span>
+<span class="inline-flex items-center gap-1.5 font-label-code-sm text-label-code-sm text-secondary bg-surface-container px-2 py-0.5 rounded-lg">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+          Engine Sync: Realtime (Perplexity / SearchGPT / Gemini)
+        </span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">AEO Visibility &amp; AI Answer Engine Radar</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+        Monitoring generative engine citations, brand mentions, and verbatim response share across <span class="font-semibold text-on-surface">140 healthcare queries</span> for <span class="text-primary font-medium">Lumina Health Care</span>.
+      </p>
+</div>
+<!-- Engine Multi-Select / Filter Switches -->
+<div class="flex flex-wrap items-center gap-1.5 p-1 bg-surface-container-high rounded-xl self-start lg:self-auto shadow-sm">
+<button class="engine-tab active px-3 py-1.5 rounded-lg font-headline-sm text-headline-sm text-xs bg-primary text-on-primary shadow-sm transition-all flex items-center gap-1.5" data-engine="all">
+<span class="material-symbols-outlined text-[15px]">select_all</span>
+        All Engines (5)
+      </button>
+<button class="engine-tab px-3 py-1.5 rounded-lg font-headline-sm text-headline-sm text-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest transition-all flex items-center gap-1.5" data-engine="chatgpt">
+<span class="material-symbols-outlined text-[15px] text-secondary">bolt</span>
+        SearchGPT
+      </button>
+<button class="engine-tab px-3 py-1.5 rounded-lg font-headline-sm text-headline-sm text-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest transition-all flex items-center gap-1.5" data-engine="perplexity">
+<span class="material-symbols-outlined text-[15px] text-tertiary">explore</span>
+        Perplexity Pro
+      </button>
+<button class="engine-tab px-3 py-1.5 rounded-lg font-headline-sm text-headline-sm text-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest transition-all flex items-center gap-1.5" data-engine="gemini">
+<span class="material-symbols-outlined text-[15px] text-primary">psychology</span>
+        Gemini 1.5
+      </button>
+<button class="engine-tab px-3 py-1.5 rounded-lg font-headline-sm text-headline-sm text-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest transition-all flex items-center gap-1.5" data-engine="aioverview">
+<span class="material-symbols-outlined text-[15px] text-secondary-fixed-dim">overview_key</span>
+        AI Overviews
+      </button>
+</div>
+</div>
+<!-- Global AEO Scorecard & Kinetic Bento -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter-desktop">
+<!-- Card 1: Direct AI Citation Rate -->
+<div class="lg:col-span-3 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-secondary-container/20 pointer-events-none"></div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">AI Citation Rate</span>
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container font-label-code-sm text-label-code-sm px-2 py-0.5 rounded-full font-semibold">
+<span class="material-symbols-outlined text-[13px]">trending_up</span>+8.2%
+          </span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">38.6%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">54 / 140 prompts</span>
+</div>
+</div>
+<div class="mt-4 pt-3 bg-surface-container-low p-2.5 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">link</span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant text-[11px] leading-tight">
+          Direct hyperlinked URL presence inside engine footnotes.
+        </span>
+</div>
+</div>
+<!-- Card 2: AI Brand Mention Rate -->
+<div class="lg:col-span-3 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-tertiary-fixed/20 pointer-events-none"></div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">AI Brand Mention Rate</span>
+<span class="inline-flex items-center gap-1 bg-surface-container-highest text-on-surface-variant font-label-code-sm text-label-code-sm px-2 py-0.5 rounded-full font-semibold">
+<span class="material-symbols-outlined text-[13px]">arrow_upward</span>+4.1%
+          </span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">56.4%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">79 / 140 prompts</span>
+</div>
+</div>
+<div class="mt-4 pt-3 bg-surface-container-low p-2.5 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary">chat_bubble</span>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant text-[11px] leading-tight">
+          Verbatim entity mention without active hyperlinked source.
+        </span>
+</div>
+</div>
+<!-- Card 3: Competitor Citation Share Bar Comparison -->
+<div class="lg:col-span-4 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Competitive Generative Share</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Clinical cardiology &amp; virtual consult cluster</span>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-primary font-semibold bg-surface-container px-2 py-0.5 rounded">140 Prompts</span>
+</div>
+<!-- Comparison Progress Rows -->
+<div class="flex flex-col gap-2.5 my-auto">
+<!-- Lumina (Client) -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center font-label-code-sm text-label-code-sm">
+<span class="text-on-surface font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span> Lumina Health (You)
+            </span>
+<span class="text-primary font-bold">38.6% <span class="text-on-surface-variant font-normal">(54)</span></span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 38.6%"></div>
+</div>
+</div>
+<!-- Teladoc -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center font-label-code-sm text-label-code-sm">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-outline"></span> Teladoc Health
+            </span>
+<span class="text-on-surface font-semibold">42.1% <span class="text-on-surface-variant font-normal">(59)</span></span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-outline h-full rounded-full transition-all duration-500" style="width: 42.1%"></div>
+</div>
+</div>
+<!-- PlushCare -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center font-label-code-sm text-label-code-sm">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span> PlushCare
+            </span>
+<span class="text-on-surface font-semibold">29.4% <span class="text-on-surface-variant font-normal">(41)</span></span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-outline-variant h-full rounded-full transition-all duration-500" style="width: 29.4%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4: Quick Action & Safe State Pill -->
+<div class="lg:col-span-2 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+<span class="font-label-code-sm text-label-code-sm text-primary-fixed bg-on-primary-fixed/30 px-2 py-0.5 rounded">Weekly Run</span>
+</div>
+<div>
+<span class="font-label-code-sm text-label-code-sm uppercase tracking-wider text-primary-fixed">Engine Crawl</span>
+<div class="font-headline-lg text-headline-lg font-bold text-on-primary leading-tight mt-0.5">140 / 140</div>
+<p class="font-body-sm text-body-sm text-primary-fixed mt-1">Next scheduled LLM probe in 38h</p>
+</div>
+<button class="w-full bg-surface-container-lowest hover:bg-surface-container-low text-primary py-2 px-3 rounded-lg font-headline-sm text-headline-sm text-xs text-center transition-colors font-semibold shadow-sm flex items-center justify-center gap-1" onclick="triggerEngineAudit()">
+<span class="material-symbols-outlined text-[15px]">refresh</span>
+        Force Re-Probe
+      </button>
+</div>
+</div>
+<!-- Live AI Answer Excerpt Inspector & Verbatim Proof Section -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Header with tab triggers -->
+<div class="p-space-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-tertiary-container text-on-tertiary-container flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[22px]">smart_outlet</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md text-on-surface">Live Verbatim Engine Inspector</h2>
+<span class="bg-secondary-container text-on-secondary-container font-label-code-sm text-label-code-sm px-2 py-0.5 rounded-full font-bold text-[10px]">VERIFIED CITATION #1</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Direct capture of current Answer Engine syntheses with verified source footnote anchors.</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded-lg font-label-code-sm text-label-code-sm text-on-surface-variant text-[11px]">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+          Perplexity Pro API • Generated today, 09:14 AM EST
+        </div>
+<button class="flex items-center gap-1 bg-surface-container-lowest hover:bg-surface-container text-on-surface px-2.5 py-1.5 rounded-lg font-label-code-sm text-label-code-sm transition-all shadow-sm" id="copy-btn" onclick="copyExcerpt()">
+<span class="material-symbols-outlined text-[15px]">content_copy</span>
+<span>Copy Verbatim</span>
+</button>
+</div>
+</div>
+<!-- Inspector Split Content -->
+<div class="grid grid-cols-1 lg:grid-cols-12 p-space-lg gap-space-xl">
+<!-- Generative Answer Presentation -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<div class="flex flex-col gap-1 p-space-md bg-surface-container rounded-xl">
+<span class="font-label-code-sm text-label-code-sm uppercase tracking-wider text-outline">Target Clinical Prompt</span>
+<p class="font-headline-sm text-headline-sm text-on-surface italic">
+            "What is the best telehealth provider for urgent cardiology second opinions?"
+          </p>
+</div>
+<!-- Rendered Verbatim Container with Footnote Highlights -->
+<div class="flex flex-col gap-3 font-body-lg text-body-lg text-on-surface leading-relaxed p- space-md">
+<p>
+            When seeking an expedited second opinion for cardiovascular symptoms or abnormal telemetry readings, several virtual specialty networks provide rapid specialist intake.
+          </p>
+<div class="p-space-md bg-secondary-container/20 rounded-xl">
+<p class="font-body-lg text-body-lg text-on-surface">
+              Leading platforms such as <span class="bg-secondary-container text-on-secondary-container font-bold px-1.5 py-0.5 rounded-md inline-flex items-center gap-1">Lumina Health <a class="text-primary hover:underline font-label-code-sm font-semibold" href="#footnote-1">[1]</a></span> offer same-day board-certified cardiologist consultations integrated with electronic stethoscope telemetry and direct digital prescription routing. Unlike general primary-care telehealth apps, Lumina provides sub-specialty pediatric and electrophysiology triage within a verified 4-hour window <a class="text-primary hover:underline font-label-code-sm font-semibold" href="#footnote-1">[1]</a>.
+            </p>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md">
+            Alternative multi-state providers including Teladoc <span class="text-outline font-label-code-sm">[2]</span> and Cleveland Clinic Express Care <span class="text-outline font-label-code-sm">[3]</span> also furnish virtual appointments, though intake confirmation generally mandates a 24- to 48-hour records transfer interval.
+          </p>
+</div>
+<!-- Citation Pill Footnotes Row -->
+<div class="p-space-md bg-surface-container-low rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm" id="footnote-1">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-code-sm text-label-code-sm font-bold shrink-0">1</span>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-xs text-on-surface truncate">Lumina Health Care • Virtual Cardiology Intake</span>
+<a class="font-label-code-sm text-label-code-sm text-primary hover:underline text-[11px] truncate flex items-center gap-1" href="https://luminahealth.io/services/telehealth-cardiology" target="_blank">
+                luminahealth.io/services/telehealth-cardiology
+                <span class="material-symbols-outlined text-[13px]">open_in_new</span>
+</a>
+</div>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-code-sm text-label-code-sm px-2 py-0.5 rounded text-[10px] font-bold">HTTP 200 OK</span>
+<span class="bg-surface-container-highest text-on-surface-variant font-label-code-sm text-label-code-sm px-2 py-0.5 rounded text-[10px]">MedicalWebPage Schema Active</span>
+</div>
+</div>
+</div>
+<!-- Engine Inspector Side Metadata & Metrics -->
+<div class="lg:col-span-4 flex flex-col gap-space-md bg-surface-container-low p-space-md rounded-xl justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-sm bg-surface-container-lowest p-space-sm rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-code-sm text-label-code-sm text-outline uppercase">Engine Sentiment</span>
+<span class="font-headline-sm text-headline-sm text-secondary font-bold flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">verified_user</span> Strongly Positive
+              </span>
+</div>
+<div class="text-right">
+<span class="font-label-code-sm text-label-code-sm text-outline uppercase">Answer Rank</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold block mt-0.5">Position #1</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-code-sm text-label-code-sm uppercase tracking-wider text-outline">Engine Attribution Signals</span>
+<div class="flex items-center justify-between text-body-sm p-2 bg-surface-container-lowest rounded-lg">
+<span class="text-on-surface-variant">Citation Freshness</span>
+<span class="font-label-code-sm text-on-surface font-semibold">12h Index Cache</span>
+</div>
+<div class="flex items-center justify-between text-body-sm p-2 bg-surface-container-lowest rounded-lg">
+<span class="text-on-surface-variant">Snippet Anchor Match</span>
+<span class="font-label-code-sm text-secondary font-semibold">98.4% Exact Match</span>
+</div>
+<div class="flex items-center justify-between text-body-sm p-2 bg-surface-container-lowest rounded-lg">
+<span class="text-on-surface-variant">Medical Authority Score</span>
+<span class="font-label-code-sm text-primary font-semibold">High (E-E-A-T Tier 1)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm p-2 bg-surface-container-lowest rounded-lg">
+<span class="text-on-surface-variant">JSON-LD Detected</span>
+<span class="font-label-code-sm text-secondary font-semibold">Physician, FAQ, Offer</span>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container rounded-lg">
+<div class="flex items-center gap-1.5 text-tertiary font-headline-sm text-headline-sm text-xs mb-1">
+<span class="material-symbols-outlined text-[16px]">smart_toy</span>
+              Synthesis Notes
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[12px] leading-relaxed">
+              Perplexity extracted the specific "4-hour intake SLA" and the "board-certified pediatric cardiologist" tokens directly from your H2 section metadata.
+            </p>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-space-xs">
+<button class="flex-1 bg-primary text-on-primary font-headline-sm text-headline-sm text-xs py-2 rounded-lg text-center hover:bg-primary-container transition-colors shadow-sm">
+            Inspect Prompt Diff
+          </button>
+<button class="bg-surface-container hover:bg-surface-container-high text-on-surface p-2 rounded-lg transition-colors" title="Export Evidence PDF">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Question-by-Engine Performance Matrix -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm flex flex-col">
+<!-- Header Controls & Filters -->
+<div class="p-space-lg flex flex-col lg:flex-row lg:items-center justify-between gap-space-md bg-surface-container-low">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md text-on-surface">Target Prompt &amp; Engine Performance Matrix</h2>
+<span class="font-label-code-sm text-label-code-sm bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded-full font-bold">140 Monitored Prompts</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Comparative real-time matrix across major generative conversational search engines.</p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="relative min-w-[240px]">
+<span class="material-symbols-outlined text-[18px] text-outline absolute left-3 top-2.5">search</span>
+<input class="w-full bg-surface-container-lowest rounded-lg pl-9 pr-3 py-1.5 font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-0 shadow-sm" id="prompt-search" onkeyup="filterPrompts()" placeholder="Filter clinical prompts or keywords..." type="text"/>
+</div>
+<select class="bg-surface-container-lowest text-on-surface font-label-code-sm text-label-code-sm px-3 py-2 rounded-lg shadow-sm focus:outline-none cursor-pointer">
+<option>Sort: Query Vol (High to Low)</option>
+<option>Sort: Lumina Citations First</option>
+<option>Sort: Missing Citations First</option>
+</select>
+<button class="flex items-center gap-1 bg-surface-container hover:bg-surface-container-high text-on-surface px-3 py-2 rounded-lg font-headline-sm text-headline-sm text-xs shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+          Filters
+        </button>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse" id="matrix-table">
+<thead>
+<tr class="bg-surface-container-high font-label-code-sm text-label-code-sm text-on-surface-variant uppercase tracking-wider text-[11px]">
+<th class="py-3 px-space-md font-semibold">Target AI Clinical Prompt</th>
+<th class="py-3 px-space-sm text-right font-semibold">Mo. Search Vol</th>
+<th class="py-3 px-space-sm text-center font-semibold">SearchGPT</th>
+<th class="py-3 px-space-sm text-center font-semibold">Perplexity Pro</th>
+<th class="py-3 px-space-sm text-center font-semibold">Google AI Overview</th>
+<th class="py-3 px-space-sm text-center font-semibold">Gemini 1.5</th>
+<th class="py-3 px-space-md font-semibold">Cited Landing URL</th>
+<th class="py-3 px-space-md text-right font-semibold">Engine Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-body-sm text-body-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3.5 px-space-md font-medium text-on-surface max-w-xs">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5 shrink-0">check_circle</span>
+<span class="prompt-text font-headline-sm text-headline-sm text-xs font-semibold">What is the fastest way to get a virtual cardiology consult?</span>
+</div>
+</td>
+<td class="py-3.5 px-space-sm font-label-code-sm text-right text-on-surface font-semibold">
+              4,800 <span class="text-[10px] text-outline font-normal block">idx 92</span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">link</span> CITED (#1)
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">link</span> CITED (#2)
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">featured_play_list</span> FEATURED
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">star</span> TOP RECOM
+              </span>
+</td>
+<td class="py-3.5 px-space-md font-label-code-sm text-label-code-sm text-primary truncate max-w-[190px]">
+<span class="hover:underline cursor-pointer">/services/telehealth-cardiology</span>
+</td>
+<td class="py-3.5 px-space-md text-right whitespace-nowrap">
+<button class="bg-surface-container hover:bg-surface-container-high text-on-surface px-2.5 py-1 rounded-lg font-label-code-sm text-label-code-sm text-[11px] font-medium transition-colors" onclick="inspectRow('What is the fastest way to get a virtual cardiology consult?')">
+                Inspect Excerpt
+              </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3.5 px-space-md font-medium text-on-surface max-w-xs">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary mt-0.5 shrink-0">info</span>
+<span class="prompt-text font-headline-sm text-headline-sm text-xs font-semibold">Can online doctors prescribe heart medication legally in California?</span>
+</div>
+</td>
+<td class="py-3.5 px-space-sm font-label-code-sm text-right text-on-surface font-semibold">
+              3,200 <span class="text-[10px] text-outline font-normal block">idx 81</span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">format_quote</span> MENTIONED
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">link</span> CITED (#3)
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-error-container text-on-error-container font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">close</span> MISSING
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">format_quote</span> MENTIONED
+              </span>
+</td>
+<td class="py-3.5 px-space-md font-label-code-sm text-label-code-sm text-primary truncate max-w-[190px]">
+<span class="hover:underline cursor-pointer">/clinical-faq/ca-prescriptions</span>
+</td>
+<td class="py-3.5 px-space-md text-right whitespace-nowrap">
+<button class="bg-primary text-on-primary hover:bg-primary-container px-2.5 py-1 rounded-lg font-label-code-sm text-label-code-sm text-[11px] font-medium transition-colors" onclick="optimizeSchema('/clinical-faq/ca-prescriptions')">
+                Optimize Schema
+              </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3.5 px-space-md font-medium text-on-surface max-w-xs">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5 shrink-0">check_circle</span>
+<span class="prompt-text font-headline-sm text-headline-sm text-xs font-semibold">Best telehealth platforms for chronic blood pressure monitoring</span>
+</div>
+</td>
+<td class="py-3.5 px-space-sm font-label-code-sm text-right text-on-surface font-semibold">
+              6,100 <span class="text-[10px] text-outline font-normal block">idx 96</span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">link</span> CITED (#2)
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">link</span> CITED (#1)
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">featured_play_list</span> FEATURED
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">star</span> TOP RECOM
+              </span>
+</td>
+<td class="py-3.5 px-space-md font-label-code-sm text-label-code-sm text-primary truncate max-w-[190px]">
+<span class="hover:underline cursor-pointer">/programs/hypertension-remote</span>
+</td>
+<td class="py-3.5 px-space-md text-right whitespace-nowrap">
+<button class="bg-surface-container hover:bg-surface-container-high text-on-surface px-2.5 py-1 rounded-lg font-label-code-sm text-label-code-sm text-[11px] font-medium transition-colors" onclick="inspectRow('Best telehealth platforms for chronic blood pressure monitoring')">
+                Inspect Excerpt
+              </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3.5 px-space-md font-medium text-on-surface max-w-xs">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-error mt-0.5 shrink-0">warning</span>
+<span class="prompt-text font-headline-sm text-headline-sm text-xs font-semibold">How to get an urgent pediatric cardiologist second opinion online?</span>
+</div>
+</td>
+<td class="py-3.5 px-space-sm font-label-code-sm text-right text-on-surface font-semibold">
+              2,450 <span class="text-[10px] text-outline font-normal block">idx 74</span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-error-container text-on-error-container font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">close</span> MISSING
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-surface-container-high text-on-surface-variant font-label-code-sm text-[10px] font-semibold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">remove</span> CLEVELAND #1
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-error-container text-on-error-container font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">close</span> MISSING
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">format_quote</span> MENTIONED
+              </span>
+</td>
+<td class="py-3.5 px-space-md font-label-code-sm text-label-code-sm text-outline truncate max-w-[190px]">
+<span>None Cited (Competitor Held)</span>
+</td>
+<td class="py-3.5 px-space-md text-right whitespace-nowrap">
+<button class="bg-error-container text-on-error-container hover:bg-error hover:text-on-error px-2.5 py-1 rounded-lg font-label-code-sm text-label-code-sm text-[11px] font-bold transition-colors" onclick="createFactBrief('Pediatric Cardiology Second Opinion')">
+                Create Fact Brief
+              </button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3.5 px-space-md font-medium text-on-surface max-w-xs">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary mt-0.5 shrink-0">check_circle</span>
+<span class="prompt-text font-headline-sm text-headline-sm text-xs font-semibold">Virtual telemetry devices compatible with Medicare telehealth</span>
+</div>
+</td>
+<td class="py-3.5 px-space-sm font-label-code-sm text-right text-on-surface font-semibold">
+              1,890 <span class="text-[10px] text-outline font-normal block">idx 68</span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">link</span> CITED (#1)
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">format_quote</span> MENTIONED
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">featured_play_list</span> FEATURED
+              </span>
+</td>
+<td class="py-3.5 px-space-sm text-center">
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container font-label-code-sm text-[10px] font-bold px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">link</span> CITED
+              </span>
+</td>
+<td class="py-3.5 px-space-md font-label-code-sm text-label-code-sm text-primary truncate max-w-[190px]">
+<span class="hover:underline cursor-pointer">/devices/medicare-coverage</span>
+</td>
+<td class="py-3.5 px-space-md text-right whitespace-nowrap">
+<button class="bg-surface-container hover:bg-surface-container-high text-on-surface px-2.5 py-1 rounded-lg font-label-code-sm text-label-code-sm text-[11px] font-medium transition-colors" onclick="inspectRow('Virtual telemetry devices compatible with Medicare telehealth')">
+                Inspect Excerpt
+              </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination stats -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between text-body-sm text-body-sm text-on-surface-variant gap-2">
+<div class="flex items-center gap-2">
+<span class="font-label-code-sm text-label-code-sm">Showing 5 of 140 prompts</span>
+<span>•</span>
+<span class="text-secondary font-medium flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> 38.6% Citation Coverage
+        </span>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface font-label-code-sm text-label-code-sm disabled:opacity-40" disabled="">Previous</button>
+<button class="px-2.5 py-1 rounded-lg bg-primary text-on-primary font-label-code-sm text-label-code-sm font-bold">1</button>
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-code-sm text-label-code-sm">2</button>
+<button class="px-2.5 py-1 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-code-sm text-label-code-sm">3</button>
+<button class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-code-sm text-label-code-sm">Next</button>
+</div>
+</div>
+</div>
+<!-- AEO Strategic Gap Analysis & Action Dispatch Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop">
+<!-- Citations Lost to Competitors Column -->
+<div class="lg:col-span-5 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">person_cancel</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Citations Lost to Competitors</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">12 High-Value Healthcare Queries</p>
+</div>
+</div>
+<span class="font-label-code-sm text-label-code-sm bg-error-container text-on-error-container px-2 py-0.5 rounded-full font-bold">12 At Risk</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md leading-relaxed">
+          The following generative search topics regularly list Teladoc or Cleveland Clinic in Source Position #1 while Lumina is entirely omitted or unlinked:
+        </p>
+<div class="flex flex-col gap-2.5">
+<!-- Item 1 -->
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between gap-space-sm">
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-xs text-on-surface truncate">Urgent pediatric cardiologist second opinion</span>
+<span class="font-label-code-sm text-label-code-sm text-error text-[11px]">Cited: Cleveland Clinic • Volume: 2,450/mo</span>
+</div>
+<button class="shrink-0 bg-surface-container-lowest hover:bg-surface-container text-primary px-2.5 py-1 rounded-lg font-label-code-sm text-label-code-sm text-[11px] font-semibold transition-colors">
+              Claim Link
+            </button>
+</div>
+<!-- Item 2 -->
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between gap-space-sm">
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-xs text-on-surface truncate">Holter monitor telehealth prescription same-day</span>
+<span class="font-label-code-sm text-label-code-sm text-error text-[11px]">Cited: Teladoc Cardiology • Volume: 1,980/mo</span>
+</div>
+<button class="shrink-0 bg-surface-container-lowest hover:bg-surface-container text-primary px-2.5 py-1 rounded-lg font-label-code-sm text-label-code-sm text-[11px] font-semibold transition-colors">
+              Claim Link
+            </button>
+</div>
+<!-- Item 3 -->
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between gap-space-sm">
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-xs text-on-surface truncate">Does Medicare cover wearable ECG consultations?</span>
+<span class="font-label-code-sm text-label-code-sm text-error text-[11px]">Cited: PlushCare • Volume: 3,110/mo</span>
+</div>
+<button class="shrink-0 bg-surface-container-lowest hover:bg-surface-container text-primary px-2.5 py-1 rounded-lg font-label-code-sm text-label-code-sm text-[11px] font-semibold transition-colors">
+              Claim Link
+            </button>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm">
+<a class="font-headline-sm text-headline-sm text-xs text-primary hover:underline flex items-center gap-1 font-semibold" href="#">
+          View all 12 competitor attribution gaps
+          <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Strategic Recommendation & Schema Action Card -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden">
+<!-- Glow ambient accent -->
+<div class="absolute top-0 right-0 w-48 h-48 bg-primary/5 rounded-full blur-2xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary-fixed text-on-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">auto_fix_high</span>
+</div>
+<div>
+<span class="font-label-code-sm text-label-code-sm uppercase tracking-wider text-primary font-bold">Priority High-Impact Recommendation</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Inject FAQPage &amp; MedicalSpecialty JSON-LD</h3>
+</div>
+</div>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-code-sm text-label-code-sm px-2 py-0.5 rounded-full font-bold">+18.5% Projected Citations</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-2.5 mb-space-md">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">check_circle</span>
+<p class="font-body-md text-body-md text-on-surface">
+<span class="font-semibold">Action:</span> Append physician credentials and sub-specialty boards schema to the <code class="font-label-code-sm bg-surface-container-highest px-1 py-0.5 rounded text-primary text-[11px]">/services/pediatric-cardiology</code> landing page.
+            </p>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">insights</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Perplexity &amp; ChatGPT Search directly rely on Schema.org <code class="font-label-code-sm text-on-surface text-[11px]">MedicalCondition</code> &amp; <code class="font-label-code-sm text-on-surface text-[11px]">Physician</code> blocks to populate answer footnote cards for high-intent clinical diagnostics.
+            </p>
+</div>
+</div>
+<!-- Code Preview Box -->
+<div class="bg-inverse-surface text-inverse-on-surface p-space-md rounded-xl font-label-code-sm text-label-code-sm text-[11px] overflow-x-auto">
+<div class="flex justify-between items-center text-outline-variant pb-1.5 mb-1.5">
+<span class="text-tertiary-fixed font-semibold">// Target Schema Payload • Auto-Generated</span>
+<span>JSON-LD • Ready</span>
+</div>
+<pre class="text-surface-container-lowest leading-relaxed"><code>{
+  "@context": "https://schema.org",
+  "@type": ["MedicalWebPage", "FAQPage"],
+  "about": {
+    "@type": "MedicalSpecialty",
+    "name": "Pediatric Cardiology",
+    "relevantSpecialty": "PediatricCardiology"
+  },
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "How quickly can a pediatric cardiologist review ECG traces online?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Lumina Health provides virtual pediatric cardiology reviews in under 4 hours."
+    }
+  }]
+}</code></pre>
+</div>
+</div>
+<!-- Action Row -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md mt-space-lg pt-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-outline">verified</span>
+<span class="font-label-code-sm text-label-code-sm text-outline text-[11px]">Safe Mode Protected • Generates WordPress Draft</span>
+</div>
+<div class="flex items-center gap-2 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none bg-surface-container hover:bg-surface-container-high text-on-surface font-headline-sm text-headline-sm text-xs px-3.5 py-2 rounded-lg transition-colors" onclick="previewDiff()">
+            Preview Schema Diff
+          </button>
+<button class="flex-1 sm:flex-none bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-headline-sm text-xs px-4 py-2 rounded-lg transition-colors shadow-sm flex items-center justify-center gap-1 font-semibold" id="deploy-schema-btn" onclick="dispatchSchemaPush()">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+            Deploy Schema Draft
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Toast Container (Dynamic JS Target) -->
+<div class="fixed bottom-6 right-6 z-50 pointer-events-none transition-all duration-300 opacity-0 translate-y-2" id="toast-target"></div>
+</div>
+<script>
+  // Filter Engine Tabs
+  const engineTabs = document.querySelectorAll('.engine-tab');
+  engineTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      engineTabs.forEach(t => {
+        t.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+        t.classList.add('text-on-surface-variant');
+      });
+      tab.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+      tab.classList.remove('text-on-surface-variant');
+      showNotification(`Filtered dataset for engine: ${tab.dataset.engine.toUpperCase()}`);
+    });
+  });
+
+  // Table Keyword Filter
+  function filterPrompts() {
+    const input = document.getElementById('prompt-search');
+    const filter = input.value.toLowerCase();
+    const rows = document.querySelectorAll('#matrix-table tbody tr');
+
+    rows.forEach(row => {
+      const promptText = row.querySelector('.prompt-text')?.innerText.toLowerCase() || '';
+      if (promptText.includes(filter)) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  // Row inspection trigger
+  function inspectRow(promptText) {
+    showNotification(`Loading live generative proof for: "${promptText.substring(0, 36)}..."`);
+    window.scrollTo({ top: 320, behavior: 'smooth' });
+  }
+
+  // Optimize Schema Action
+  function optimizeSchema(urlPath) {
+    showNotification(`Drafting FAQ Schema patch for target URL: ${urlPath}`);
+  }
+
+  // Fact brief action
+  function createFactBrief(topic) {
+    showNotification(`Brief created: Competitive counter-content for ${topic}`);
+  }
+
+  // Force Re-probe
+  function triggerEngineAudit() {
+    showNotification('Re-querying Perplexity, ChatGPT Search, and Gemini APIs across 140 prompts...');
+  }
+
+  // Copy verbatim proof
+  function copyExcerpt() {
+    const text = "Leading platforms such as Lumina Health [1] offer same-day board-certified cardiologist consultations integrated with electronic stethoscope telemetry...";
+    navigator.clipboard?.writeText(text);
+    const btn = document.getElementById('copy-btn');
+    const origHtml = btn.innerHTML;
+    btn.innerHTML = '<span class="material-symbols-outlined text-[15px] text-secondary">check</span><span class="text-secondary font-bold">Copied!</span>';
+    setTimeout(() => {
+      btn.innerHTML = origHtml;
+    }, 2000);
+    showNotification('Generative excerpt copied to clipboard.');
+  }
+
+  // Preview Diff
+  function previewDiff() {
+    showNotification('Showing side-by-side JSON-LD validation schema diff.');
+  }
+
+  // Deploy Schema Draft
+  function dispatchSchemaPush() {
+    const btn = document.getElementById('deploy-schema-btn');
+    btn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span> Deploying...';
+    btn.classList.add('opacity-75');
+    setTimeout(() => {
+      btn.innerHTML = '<span class="material-symbols-outlined text-[16px] text-secondary-fixed">check</span> Draft Created';
+      showNotification('Schema draft deployed to WordPress Staging Engine. Awaiting approval.');
+    }, 1200);
+  }
+
+  // Toast Notification Utility
+  function showNotification(msg) {
+    const toast = document.getElementById('toast-target');
+    toast.innerHTML = `
+      <div class="bg-inverse-surface text-inverse-on-surface px-4 py-3 rounded-xl shadow-xl flex items-center gap-2 font-body-sm text-body-sm border border-outline-variant/30 pointer-events-auto">
+        <span class="material-symbols-outlined text-[18px] text-secondary-fixed">info</span>
+        <span>${msg}</span>
+      </div>
+    `;
+    toast.classList.remove('opacity-0', 'translate-y-2');
+    toast.classList.add('opacity-100', 'translate-y-0');
+    setTimeout(() => {
+      toast.classList.add('opacity-0', 'translate-y-2');
+      toast.classList.remove('opacity-100', 'translate-y-0');
+    }, 3200);
+  }
+</script></main></div></body></html>
