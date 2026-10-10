@@ -797,3 +797,23 @@ aside:not(:has(.side-nav))>*{visibility:hidden}
 ::view-transition-old(root){animation:120ms ease both fade-out}
 ::view-transition-new(root){animation:160ms ease both fade-in}
 @keyframes fade-out{to{opacity:0}}@keyframes fade-in{from{opacity:0}}
+
+/* Loading skeleton: shown until the real workspace data arrives (no sample content). */
+:root{--skel-a:#eceef5;--skel-b:#f6f7fb}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--skel-a:#22263a;--skel-b:#2b3048}}
+.skel{display:block;border-radius:10px;background:linear-gradient(90deg,var(--skel-a) 25%,var(--skel-b) 45%,var(--skel-a) 65%);background-size:300% 100%;animation:skel-shine 1.3s ease-in-out infinite}
+.skel-inline{display:inline-block;height:12px;vertical-align:middle;border-radius:6px;opacity:.35}
+@keyframes skel-shine{0%{background-position:100% 0}100%{background-position:0 0}}
+@media (prefers-reduced-motion:reduce){.skel{animation:none}}
+.skel-page{padding:28px 32px;display:grid;gap:16px;max-width:1280px}
+.skel-title{height:30px;width:min(360px,70%)}
+.skel-sub{height:14px;width:min(520px,90%);margin-bottom:8px}
+.skel-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.skel-kpis .skel{height:96px}
+.skel-panels{display:grid;grid-template-columns:2fr 1fr;gap:16px}.skel-big{height:260px}.skel-side{height:260px}
+.skel-row{height:48px}.skel-row.short{width:60%}
+@media (max-width:760px){.skel-page{padding:16px}.skel-kpis{grid-template-columns:repeat(2,1fr)}.skel-panels{grid-template-columns:1fr}}
+/* While booting, hide sample header details and show placeholder bars in the sidebar. */
+body.booting header [data-provider],body.booting header [data-provider]~span{visibility:hidden}
+body.booting aside nav,body.booting aside>div>div:first-child{visibility:hidden}
+body.booting aside{position:relative}
+body.booting aside::after{content:"";position:absolute;left:16px;right:16px;top:24px;height:420px;border-radius:8px;background:repeating-linear-gradient(to bottom,var(--skel-a) 0 34px,transparent 34px 48px);opacity:.9}
