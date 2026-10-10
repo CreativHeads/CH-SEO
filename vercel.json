@@ -5,10 +5,19 @@
   "buildCommand": "npm run build",
   "outputDirectory": "public",
   "functions": {
-    "api/index.js": { "maxDuration": 300, "includeFiles": "dist/server/**" }
+    "api/index.js": {
+      "maxDuration": 300,
+      "includeFiles": "dist/server/**"
+    }
   },
-    "rewrites": [
-    { "source": "/", "destination": "/api/index?__path=/" },
-    { "source": "/:path*", "destination": "/api/index?__path=/:path*" }
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/api/index?__path=/"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/api/index?__path=/:path*"
+    }
   ]
 }
