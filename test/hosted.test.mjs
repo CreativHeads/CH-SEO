@@ -7,8 +7,8 @@ const DB=await pgliteDatabase(fs.readFileSync('supabase/schema.sql','utf8'));
 await DB.prepare("INSERT INTO members(id,email,name,role,active,created_at) VALUES('m1','admin@creativheads.com','Admin','admin',1,'2026-01-01'),('m2','lead@creativheads.com','Lead','seo_lead',1,'2026-01-01'),('m3','gone@creativheads.com','Gone','staff',0,'2026-01-01')").run();
 const env={DB,CREDENTIAL_ENCRYPTION_KEY:KEY,SUPABASE_URL:'https://proj.supabase.co',SUPABASE_ANON_KEY:'anon'};
 const tokens={'tok-admin':'admin@creativheads.com','tok-lead':'Lead@CreativHeads.com','tok-gone':'gone@creativheads.com','tok-stranger':'someone@gmail.com'};
-const sent=[];const realFetch=globalThis.fetch;
-globalThis.fetch=async(u,o={})=>{u=String(u);if(u.startsWith(env.SUPABASE_URL+'/auth/v1/user')){const t=String(o.headers?.Authorization||'').replace('Bearer ','');return tokens[t]?new Response(JSON.stringify({email:tokens[t]})):new Response('{}',{status:401})}if(u.startsWith(env.SUPABASE_URL+'/auth/v1/otp')){sent.push(JSON.parse(o.body).email);return new Response('{}')}return realFetch(u,o)};
+const realFetch=globalThis.fetch;
+globalThis.fetch=async(u,o={})=>{u=String(u);if(u.startsWith(env.SUPABASE_URL+'/auth/v1/user')){const t=String(o.headers?.Authorization||'').replace('Bearer ','');return tokens[t]?new Response(JSON.stringify({email:tokens[t]})):new Response('{}',{status:401})}return realFetch(u,o)};
 const handle=createHosted({worker,env});
 const req=(path,{method='GET',body,cookie,headers={}}={})=>handle(new Request(origin+path,{method,headers:{...(cookie?{cookie}:{}),...(body?{'content-type':'application/json',origin}:{}),...headers},...(body?{body:JSON.stringify(body)}:{})}));
 const signIn=async token=>{const r=await req('/auth/session',{method:'POST',body:{access_token:token}});return{r,cookie:(r.headers.get('set-cookie')||'').split(';')[0]}};
@@ -35,9 +35,10 @@ await test('Team members sign in; others are refused',async()=>{
  const cross=await handle(new Request(origin+'/auth/session',{method:'POST',headers:{'content-type':'application/json',origin:'https://evil.example'},body:JSON.stringify({access_token:'tok-admin'})}));assert.equal(cross.status,403);
  const out=await req('/signout-with-chatgpt',{cookie:a.cookie});assert.equal(out.status,302);assert.match(out.headers.get('set-cookie'),/Max-Age=0/);
 });
-await test('Email links are only sent to active team members',async()=>{
- const r1=await req('/auth/email',{method:'POST',body:{email:'lead@creativheads.com'}}),r2=await req('/auth/email',{method:'POST',body:{email:'someone@gmail.com'}});
- assert.equal(r1.status,200);assert.equal(r2.status,200);assert.equal((await r1.json()).message,(await r2.json()).message);assert.deepEqual(sent,['lead@creativheads.com']);
+await test('Login page offers email + password and Google, and sends the password only to Supabase',async()=>{
+ const h=await(await req('/login?return_to=/keyword-research/')).text();
+ assert.match(h,/type="password"/);assert.ok(h.includes('proj.supabase.co/auth/v1/token?grant_type=password'));assert.match(h,/provider=google/);assert.ok(!h.includes('/auth/email'));
+ assert.notEqual((await req('/auth/email',{method:'POST',body:{email:'lead@creativheads.com'}})).status,200);
 });
 await test('Saving, history and stale-edit protection work on Postgres',async()=>{
  const {cookie}=await signIn('tok-admin');const call=async(path,method='GET',body)=>{const r=await req('/api/'+path,{method,cookie,...(body?{body}:{})});return{status:r.status,data:await r.json()}};

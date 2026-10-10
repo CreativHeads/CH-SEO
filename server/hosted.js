@@ -1,5 +1,5 @@
 // Online (Vercel + Supabase) front door for SEO Studio.
-// - Sign-in with Supabase Auth (Google, or an email link). Only active team members get in.
+// - Sign-in with Supabase Auth (email + password, or Google). Only active team members get in.
 // - Keeps a signed, HttpOnly session cookie and passes the verified email to the worker.
 // - Never trusts identity headers sent by the browser.
 import {createHmac,timingSafeEqual} from 'node:crypto';
@@ -44,12 +44,14 @@ input{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--lin
   const ret=safeReturn(url.searchParams.get('return_to'));
   const cb=`${url.origin}/auth/callback?return_to=${encodeURIComponent(ret)}`;
   const google=`${supa}/auth/v1/authorize?provider=google&redirect_to=${encodeURIComponent(cb)}`;
-  return page('Sign in',`<h1>Sign in</h1><p>Use the account your Admin added to SEO Studio.</p>
-<a class="btn pri" href="${esc(google)}">Continue with Google</a>
-<div class="or">or get a sign-in link by email</div>
-<form id="f"><input type="email" name="email" placeholder="you@company.com" required autocomplete="email"><button class="btn" type="submit">Email me a link</button></form>
-<div class="msg ${error?'err':''}" id="m">${esc(error)}</div>`,
-`document.getElementById('f').onsubmit=async e=>{e.preventDefault();const m=document.getElementById('m');m.className='msg';m.textContent='Sending…';try{const r=await fetch('/auth/email',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:e.target.email.value,return_to:${JSON.stringify(ret)}})});const d=await r.json();m.textContent=d.message||d.error;if(!r.ok)m.className='msg err'}catch{m.className='msg err';m.textContent='Could not send. Try again.'}}`);
+  return page('Sign in',`<h1>Sign in</h1><p>Use the email and password your Admin gave you.</p>
+<form id="f"><input type="email" name="email" placeholder="you@company.com" required autocomplete="username"><input type="password" name="password" placeholder="Password" required autocomplete="current-password" minlength="6"><button class="btn pri" type="submit">Sign in</button></form>
+<div class="msg ${error?'err':''}" id="m">${esc(error)}</div>
+<div class="or">or</div>
+<a class="btn" href="${esc(google)}">Continue with Google</a>
+<p class="msg">Forgot your password? Ask your Admin to reset it.</p>`,
+// The password goes straight to Supabase Auth; SEO Studio only receives the signed-in token.
+`const f=document.getElementById('f'),m=document.getElementById('m');f.onsubmit=async e=>{e.preventDefault();const b=f.querySelector('button');b.disabled=true;m.className='msg';m.textContent='Signing in…';try{const r=await fetch(${JSON.stringify(supa+'/auth/v1/token?grant_type=password')},{method:'POST',headers:{apikey:${JSON.stringify(anon)},'content-type':'application/json'},body:JSON.stringify({email:f.email.value.trim(),password:f.password.value})});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(r.status===429?'Too many attempts. Wait a few minutes and try again.':'Wrong email or password.');const s=await fetch('/auth/session',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({access_token:d.access_token})});const x=await s.json().catch(()=>({}));if(!s.ok)throw new Error(x.error||'Sign-in failed.');location.replace(${JSON.stringify(ret)})}catch(err){m.className='msg err';m.textContent=err.message;b.disabled=false}}`);
  }
 
  async function verifyToken(token){
@@ -74,17 +76,6 @@ input{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--lin
    const email=await verifyToken(String(body.access_token||''));if(!email)return json({error:'Sign-in could not be verified. Try again.'},401);
    const m=await member(email);if(!m||!m.active)return json({error:`${email} is not on the SEO Studio team. Ask your Admin to add this email.`},403);
    return json({ok:true},200,{'Set-Cookie':sessionCookie(email)});
-  }
-  if(p==='/auth/email'&&request.method==='POST'){
-   if(request.headers.get('origin')!==url.origin)return json({error:'Same-origin request required.'},403);
-   let body;try{body=await request.json()}catch{return json({error:'Invalid request.'},400)}
-   const email=String(body.email||'').trim().toLowerCase(),done={message:'If this email is on the SEO Studio team, a sign-in link is on its way. Check your inbox.'};
-   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return json({error:'Enter a valid email.'},400);
-   const m=await member(email);if(!m||!m.active)return json(done);
-   const cb=`${url.origin}/auth/callback?return_to=${encodeURIComponent(safeReturn(body.return_to))}`;
-   const r=await fetch(`${supa}/auth/v1/otp?redirect_to=${encodeURIComponent(cb)}`,{method:'POST',headers:{apikey:anon,'Content-Type':'application/json'},body:JSON.stringify({email,create_user:true})});
-   if(!r.ok)return json({error:'The email could not be sent right now. Use Continue with Google, or try again later.'},502);
-   return json(done);
   }
 
   // Everything else goes to SEO Studio with the verified email only.
