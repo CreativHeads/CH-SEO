@@ -48,3 +48,14 @@ Keep the repository **Private**.
 - Email sign-in links use Supabase's built-in email, which is very limited. Use Google sign-in, or add your own SMTP in Supabase → Authentication → Emails.
 - Every `git push` to `main` redeploys automatically.
 - Vercel Hobby is for non-commercial use; agency use needs Vercel Pro. Supabase Free pauses a project after a week without activity.
+
+## 6. Own address: seo.creativheads.com
+creativheads.com's DNS is managed in **Cloudflare**.
+1. Vercel → Project → **Settings → Domains** → add `seo.creativheads.com`. Vercel shows a **CNAME** value; copy it exactly.
+2. Cloudflare → creativheads.com → **DNS → Records → Add record**: Type **CNAME**, Name **seo**, Target = the value from Vercel, Proxy status **DNS only (grey cloud)**. Save.
+3. Wait until Vercel shows **Valid Configuration** (usually a few minutes); the HTTPS certificate is created automatically.
+4. Change the addresses to the new one:
+   - Supabase → Authentication → URL Configuration: Site URL `https://seo.creativheads.com`, Redirect URL `https://seo.creativheads.com/**`.
+   - Google Cloud → OAuth client: redirect URI `https://seo.creativheads.com/oauth/google/callback`.
+5. Optional: in Vercel → Domains, redirect the `.vercel.app` address to `seo.creativheads.com`.
+No code changes are needed: SEO Studio works out its address from each request.
