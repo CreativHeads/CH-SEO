@@ -817,3 +817,73 @@ body.booting header [data-provider],body.booting header [data-provider]~span{vis
 body.booting aside nav,body.booting aside>div>div:first-child{visibility:hidden}
 body.booting aside{position:relative}
 body.booting aside::after{content:"";position:absolute;left:16px;right:16px;top:24px;height:420px;border-radius:8px;background:repeating-linear-gradient(to bottom,var(--skel-a) 0 34px,transparent 34px 48px);opacity:.9}
+
+/* Laptop and phone: same Stitch shell, reflowed so the page itself never scrolls sideways.
+   Wide tables and the content board scroll inside their own frames. */
+body{overflow-x:clip}
+main.work-ui{box-sizing:border-box;min-width:0;max-width:100%}
+.work-ui .grid2>*,.work-ui .split>*,.work-ui .dash-split>*,.work-ui .pf-layout>*,.work-ui .cs-layout>*,.work-ui .sch-layout>*,.work-ui .audit-split>*,.work-ui .insp-grid>*,.work-ui .data-card,.work-ui .panel,.work-ui .table-wrap,.work-ui .toolbar,.work-ui .hero,.work-ui .dash-head{min-width:0;max-width:100%}
+.work-ui img,.work-ui svg,.work-ui pre,.work-ui canvas{max-width:100%}
+.work-ui .table-wrap,.work-ui .board,.work-ui .stepper,.work-ui .tabs,aside{scrollbar-width:thin;scrollbar-color:#c7c4d7 transparent}
+.work-ui .table-wrap::-webkit-scrollbar,.work-ui .board::-webkit-scrollbar,.work-ui .stepper::-webkit-scrollbar,.work-ui .tabs::-webkit-scrollbar,aside::-webkit-scrollbar{display:block;height:8px;width:8px}
+.work-ui .table-wrap::-webkit-scrollbar-thumb,.work-ui .board::-webkit-scrollbar-thumb,.work-ui .stepper::-webkit-scrollbar-thumb,.work-ui .tabs::-webkit-scrollbar-thumb,aside::-webkit-scrollbar-thumb{background:#c7c4d7;border-radius:8px}
+.studio-menu{display:none;position:fixed;z-index:80;left:10px;top:10px;width:36px;height:36px;padding:0;border:0;border-radius:10px;background:#ffffff18;color:#fff;align-items:center;justify-content:center;cursor:pointer}
+.studio-menu .material-symbols-outlined{font-size:22px}
+.studio-scrim{display:none;position:fixed;inset:0;z-index:35;border:0;padding:0;background:#0b0f1980;cursor:pointer}
+@media(max-width:1440px){
+ main.work-ui{padding-left:20px!important;padding-right:20px!important}
+ .work-ui .kpis,.work-ui .deck-kpis.six,.work-ui .ph-stats{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+ .work-ui .cs-board{grid-template-columns:repeat(7,minmax(200px,1fr))}
+ .work-ui .board{overflow-x:auto}
+ .work-ui .hero-actions,.work-ui .dash-head-side{flex-wrap:wrap;max-width:none;justify-content:flex-start}
+ .work-ui .dash-head h1,.work-ui .hero h1{font-size:30px;line-height:38px}
+}
+@media(max-width:1279px){
+ aside{width:220px!important}
+ main.work-ui{margin-left:220px;width:calc(100% - 220px)}
+ .work-ui .audit-kpis,.work-ui .aeo-kpis,.work-ui .deck-kpis,.work-ui .adm-kpis,.work-ui .plan-kpis,.work-ui .art-stats,.work-ui .kb-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .work-ui .set-grid,.work-ui .limit-grid{grid-template-columns:1fr 1fr}
+ .work-ui .conn-grid,.work-ui .grid2,.work-ui .dash-split,.work-ui .pf-layout,.work-ui .cs-layout,.work-ui .sch-layout,.work-ui .audit-split,.work-ui .insp-grid,.work-ui .snap-grid,.work-ui .diff-grid{grid-template-columns:1fr}
+ .work-ui .sch-side,.work-ui .audit-detail{position:static}
+ .work-ui .panel .table-wrap td:first-child,.work-ui .audit-list .table-wrap td:first-child{min-width:160px}
+ .work-ui .hero-top,.work-ui .dash-head{display:flex;flex-direction:column;align-items:stretch}
+ header>div{padding-left:16px!important;padding-right:16px!important}
+}
+@media(max-width:860px){
+ .studio-menu{display:inline-flex}
+ body.nav-open .studio-scrim{display:block}
+ aside{display:none!important;width:min(288px,88vw)!important;z-index:45!important}
+ body.nav-open aside{display:flex!important;box-shadow:20px 0 50px #0003}
+ main,main.work-ui{margin-left:0!important;width:100%!important;padding-left:max(16px,env(safe-area-inset-left))!important;padding-right:max(16px,env(safe-area-inset-right))!important}
+ header>div{padding-left:54px!important;padding-right:12px!important}
+ header>div>div:first-child>button{display:flex!important;max-width:46vw;min-width:0;padding-left:8px!important;padding-right:8px!important}
+ header>div>div:first-child>button div{min-width:0}
+ header kbd,header div:has(>kbd)>span:not(.material-symbols-outlined),header button>span:not(.material-symbols-outlined):not(.absolute){display:none!important}
+ body.nav-open{overflow:hidden}
+}
+@media(max-width:640px){
+ header img+div,header [data-client-domain]{display:none!important}
+ header [data-client-name]{max-width:42vw}
+ header>div>div:first-child>button{min-width:0}
+ .work-ui .stats,.work-ui .kpis,.work-ui .ph-stats,.work-ui .audit-kpis,.work-ui .aeo-kpis,.work-ui .deck-kpis,.work-ui .deck-kpis.six,.work-ui .adm-kpis,.work-ui .plan-kpis,.work-ui .set-grid,.work-ui .limit-grid,.work-ui .art-stats,.work-ui .kb-stats,.work-ui .score-tiles,.work-ui .cwv,.work-ui .life,.work-ui .detail-tiles,.work-ui .sf-grid{grid-template-columns:1fr 1fr}
+ .work-ui .toolbar,.work-ui .panel-top,.work-ui .brand-head,.work-ui .guard-banner,.work-ui .signoff,.work-ui .danger-zone,.work-ui .lift{flex-wrap:wrap}
+ .work-ui .search-field,.work-ui .kw-filter-top .search-field,.work-ui .pf-filters select{min-width:0!important;max-width:none;width:100%}
+ .work-ui .panel,.work-ui .dash-head{padding:16px}
+ .work-ui .article{padding:16px}
+ .work-ui .hero h1,.work-ui .dash-head h1{font-size:24px;line-height:32px}
+ .work-ui .kpi-value,.work-ui .stat-value{white-space:normal;font-size:22px;line-height:28px}
+ .work-ui .list-row{flex-direction:column;align-items:flex-start}
+ .work-ui .setup-head>div,.work-ui .brand-head>div:nth-child(2),.work-ui .signoff>div:first-of-type,.work-ui .crawler-strip div{min-width:0}
+ .work-ui .hero .btn,.work-ui .toolbar .btn,.work-ui .dash-head-side .btn,.studio-dialog .dialog-actions .btn{min-height:44px}
+ .studio-dialog{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border-radius:0;border-left:0;border-right:0}
+ .studio-dialog .fields,.studio-dialog .diff,.work-ui .grid2{grid-template-columns:1fr}
+ #studio-toast{left:12px;right:12px;bottom:max(16px,env(safe-area-inset-bottom));transform:none;width:auto;text-align:center}
+}
+@media(max-width:480px){
+ header [data-action="ask-ai"],header .w-px{display:none!important}
+ header>div>div:last-child{gap:6px!important}
+ header [data-client-name]{max-width:28vw}
+}
+@media(max-width:420px){
+ .work-ui .kpis,.work-ui .stats,.work-ui .deck-kpis,.work-ui .deck-kpis.six,.work-ui .ph-stats{grid-template-columns:1fr}
+}
