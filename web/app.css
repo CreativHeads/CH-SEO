@@ -1001,3 +1001,8 @@ header .tip{background:#ffffff33;color:#fff}
 .more-menu .more-list .btn:hover{background:#f2f3ff}
 .hero .more-menu .more-list .btn{color:#171b26!important;background:none!important;border-color:transparent!important}
 @media (max-width:767px){.more-menu .more-list{right:auto;left:0}}
+
+/* Keyword rows: Open / Brief / Plan; keyword links on content cards */
+.work-ui .kw-actions{display:flex;gap:6px;justify-content:flex-end;flex-wrap:nowrap}
+.work-ui .kw-actions .btn{padding:6px 9px}
+.work-ui .kw-link{color:#3a3cb8;text-decoration:underline;text-underline-offset:2px}
