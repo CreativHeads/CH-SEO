@@ -159,3 +159,17 @@ export async function proposeIssueFixes(env,user,client,issue){
   return{created,kind,pages:urls.length,skipped:skipped.length,skipped_detail:skipped.slice(0,5),remaining:Math.max(0,allUrls.length-urls.length),batch_id:batch};
  }catch(e){await run(env,"UPDATE usage_log SET status='needs_reconciliation' WHERE id=? AND status='reserved'",reservation);throw e}
 }
+
+// Fix form helper: find the WordPress post behind a URL on the client's own site and read its current live value.
+export async function wpLookup(client,url,kind){
+ const site=new URL(client.data.wp_url||client.url),u=new URL(httpsUrl(url));
+ const bare=h=>h.replace(/^www\./,'');insist(bare(u.hostname)===bare(site.hostname),`Use a page on ${site.hostname}.`);
+ let r=await publicFetch(u.href);
+ for(let hop=0;hop<3&&r.status>=300&&r.status<400&&r.headers.get('location');hop++){const next=new URL(r.headers.get('location'),u);insist(bare(next.hostname)===bare(site.hostname),'This page redirects to another website.');r=await publicFetch(next.href)}
+ insist(r.ok,`The page answered with HTTP ${r.status}.`);
+ const m=(r.headers.get('link')||'').match(/wp\/v2\/(pages|posts)\/(\d+)/),html=await r.text(),{document}=parseHTML(html);
+ const meta=n=>(document.querySelector(`meta[name="${n}"]`)?.getAttribute('content')||'').trim();
+ const current={title:(document.querySelector('title')?.textContent||'').trim(),meta_description:meta('description'),noindex:meta('robots')}[kind]??'';
+ return{post_id:m?Number(m[2]):null,post_type:m?m[1].replace(/s$/,''):null,current,page_title:(document.querySelector('title')?.textContent||'').trim(),
+  note:m?'':'No WordPress page ID found: this looks like a listing or archive page. Its title and description come from the SEO plugin settings.'};
+}
