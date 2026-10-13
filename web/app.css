@@ -980,3 +980,11 @@ aside .side-nav.grouped .nav-title{padding:6px 12px 2px;font:600 10.5px/14px Int
 .studio-dialog .sw-pending{font-size:12px;color:#5b5d72;white-space:nowrap;min-width:72px;text-align:right}.studio-dialog .sw-pending.on{color:#7a4f00;font-weight:600}
 .studio-dialog .sw-hint{margin-top:12px}
 .studio-dialog kbd{font:600 11px 'JetBrains Mono',monospace;background:#f1f2f7;border:1px solid #dfe0ef;border-bottom-width:2px;border-radius:5px;padding:1px 5px}
+
+/* Jargon tooltips */
+.tip{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;margin-left:5px;border-radius:50%;background:#e1e0ff;color:#3a3cb8;font:700 10px/1 Inter,sans-serif;font-style:normal;text-transform:none;letter-spacing:0;cursor:help;vertical-align:middle;flex:0 0 auto}
+.tip:hover,.tip:focus-visible{background:#6063ee;color:#fff;outline:0}
+header .tip{background:#ffffff33;color:#fff}
+#tipbox{position:fixed;z-index:300;background:#171b26;color:#fff;font:13px/1.5 Inter,sans-serif;padding:10px 12px;border-radius:8px;box-shadow:0 10px 30px #0004;pointer-events:none;text-transform:none;letter-spacing:0}
+#tipbox[hidden]{display:none}
+@media (pointer:coarse){.tip{width:22px;height:22px;font-size:12px}}
