@@ -906,3 +906,21 @@ main.work-ui{box-sizing:border-box;min-width:0;max-width:100%}
 #record-form :is(input,textarea,select):user-invalid{border-color:#ba1a1a!important;box-shadow:0 0 0 3px #ba1a1a1f}
 .lookup-status{grid-column:1/-1;margin:-4px 0 4px;font-size:13px}
 .lookup-status:empty{display:none}
+
+/* Feedback messages (toasts) and busy buttons */
+#studio-toast{display:flex;align-items:center;gap:10px;min-width:min(360px,90vw);max-width:min(560px,92vw);padding:10px 10px 10px 14px!important;border-left:4px solid #6063ee}
+#studio-toast[hidden]{display:none}
+#studio-toast.toast-success{border-left-color:#22c55e}#studio-toast.toast-error{border-left-color:#ef4444;background:#3a1d22!important}#studio-toast.toast-info{border-left-color:#6063ee}
+#studio-toast .toast-icon{font-size:20px;flex:0 0 auto}#studio-toast.toast-success .toast-icon{color:#4ade80}#studio-toast.toast-error .toast-icon{color:#fca5a5}#studio-toast.toast-info .toast-icon{color:#a5b4fc}
+#studio-toast .toast-text{flex:1;min-width:0;line-height:1.45;text-align:left}
+#studio-toast .toast-btn{flex:0 0 auto;border:1px solid #ffffff40;background:#ffffff14;color:#fff;border-radius:6px;padding:5px 10px;font:600 12px Inter,sans-serif;cursor:pointer}
+#studio-toast .toast-btn:hover{background:#ffffff26}
+#studio-toast .toast-x{flex:0 0 auto;background:none;border:0;color:#ffffffb0;font-size:14px;cursor:pointer;width:28px;height:28px;border-radius:6px}
+#studio-toast .toast-x:hover{background:#ffffff1a;color:#fff}
+.btn.is-busy{position:relative;color:transparent!important;pointer-events:none}
+.btn.is-busy::after{content:"";position:absolute;inset:0;margin:auto;width:14px;height:14px;border-radius:50%;border:2px solid currentColor;border-color:#6063ee #6063ee33 #6063ee33;animation:spin .7s linear infinite}
+.btn.primary.is-busy::after,.btn.green.is-busy::after{border-color:#fff #ffffff55 #ffffff55}
+.spinner{display:inline-block;width:16px;height:16px;border-radius:50%;border:2px solid #6063ee;border-right-color:transparent;animation:spin .7s linear infinite;flex:0 0 auto}
+.job-running{display:flex;align-items:center;gap:10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.btn.is-busy::after,.spinner{animation-duration:2s}}
