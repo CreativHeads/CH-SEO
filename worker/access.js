@@ -12,7 +12,7 @@ export const SECTIONS={
   schema:{label:'Schema',kinds:['schemas'],jobs:[]},
   reports:{label:'Reports',kinds:['reports'],jobs:['ask']}
 };
-export const LIMITS={ai_drafts:{label:'AI article drafts',job:'generate_draft'},ai_fixes:{label:'AI fix runs',job:'propose_fixes'},keyword_research:{label:'Keyword research searches',job:'keyword_research'},aeo_checks:{label:'AI visibility checks',job:'aeo_check'},full_crawls:{label:'Full site crawls',job:'full_audit'}};
+export const LIMITS={ai_drafts:{label:'AI article drafts',job:'generate_draft'},ai_fixes:{label:'AI fix runs',job:'propose_fixes'},keyword_research:{label:'Keyword research searches',job:'keyword_research'},aeo_checks:{label:'AI visibility checks',job:'aeo_check'},full_crawls:{label:'Full site crawls',job:'full_audit'},ai_questions:{label:'Ask Studio AI questions',job:'ask'}};
 const LEVEL={none:0,view:1,edit:2};
 
 const defaults=role=>Object.fromEntries(Object.keys(SECTIONS).map(k=>[k,role==='staff'?'view':'edit']));
