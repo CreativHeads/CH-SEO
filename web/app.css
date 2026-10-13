@@ -988,3 +988,16 @@ header .tip{background:#ffffff33;color:#fff}
 #tipbox{position:fixed;z-index:300;background:#171b26;color:#fff;font:13px/1.5 Inter,sans-serif;padding:10px 12px;border-radius:8px;box-shadow:0 10px 30px #0004;pointer-events:none;text-transform:none;letter-spacing:0}
 #tipbox[hidden]{display:none}
 @media (pointer:coarse){.tip{width:22px;height:22px;font-size:12px}}
+
+/* One primary button per page: the rest live under More. Paid actions are tagged. */
+.paid-badge{display:inline-flex;align-items:center;margin-left:6px;padding:1px 6px;border-radius:999px;background:#fff1d7;color:#7a4f00;font:700 10px/16px Inter,sans-serif;letter-spacing:.02em;text-transform:uppercase}
+.btn.primary .paid-badge{background:#ffffff2e;color:#fff}
+.more-menu{position:relative;display:inline-block}
+.more-menu>summary{list-style:none;cursor:pointer}
+.more-menu>summary::-webkit-details-marker{display:none}
+.more-menu[open]>summary{background:#f2f3ff;border-color:#c0c1ff}
+.more-menu .more-list{position:absolute;right:0;top:calc(100% + 6px);z-index:60;min-width:250px;display:flex;flex-direction:column;gap:2px;padding:6px;background:#fff;border:1px solid #e3e5ef;border-radius:10px;box-shadow:0 12px 32px #171b2626}
+.more-menu .more-list .btn{justify-content:flex-start;width:100%;border-color:transparent;background:none;color:#171b26;padding:9px 10px}
+.more-menu .more-list .btn:hover{background:#f2f3ff}
+.hero .more-menu .more-list .btn{color:#171b26!important;background:none!important;border-color:transparent!important}
+@media (max-width:767px){.more-menu .more-list{right:auto;left:0}}
