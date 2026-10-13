@@ -938,3 +938,27 @@ main.work-ui{box-sizing:border-box;min-width:0;max-width:100%}
 .work-ui .not-found h1{font-size:28px;margin-bottom:10px}
 .work-ui .not-found p{color:#464554;margin:0 auto 22px;line-height:1.7}
 @media (max-width:900px){.work-ui .settings-grid{grid-template-columns:1fr}.work-ui .settings-grid .list-row{flex-wrap:wrap}}
+
+/* Grouped sidebar (Overview · Client · Audit · Fix · Grow · ...) */
+aside .side-nav.grouped{gap:2px}
+aside .side-nav.grouped .nav-group{display:flex;flex-direction:column;gap:2px;margin-top:8px}
+aside .side-nav.grouped .nav-title{padding:6px 12px 2px;font:600 10.5px/14px Inter,sans-serif;letter-spacing:.06em;color:#5b5d72;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Agency overview: Needs you today */
+.work-ui .today{margin-top:18px}
+.work-ui .today-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:12px}
+.work-ui .today-head h2{display:flex;align-items:center;gap:8px;margin:0}
+.work-ui .today-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.work-ui .today-card{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:10px;align-items:center;padding:14px;border:1px solid #ecebf5;border-radius:12px;text-decoration:none;color:#171b26;background:#fff;transition:box-shadow .15s,border-color .15s}
+.work-ui .today-card:hover{border-color:#c0c1ff;box-shadow:0 4px 14px #4648d414}
+.work-ui .today-card .material-symbols-outlined{grid-row:1/3;font-size:26px;color:#6063ee}
+.work-ui .today-card b{font:700 24px 'Plus Jakarta Sans',sans-serif;line-height:1.1}
+.work-ui .today-card span:not(.material-symbols-outlined){color:#464554;font-size:13px}
+.work-ui .today-card em{grid-column:1/-1;font-style:normal;font-size:12px;color:#93000a;margin-top:6px}
+.work-ui .today-card.warn .material-symbols-outlined{color:#8a5a00}.work-ui .today-card.bad .material-symbols-outlined{color:#ba1a1a}.work-ui .today-card.ok .material-symbols-outlined{color:#006c49}
+.work-ui .today-table td{white-space:nowrap}
+.work-ui .today-n{display:inline-flex;min-width:30px;justify-content:center;padding:3px 10px;border-radius:999px;font:600 13px 'JetBrains Mono',monospace;background:#eef0ff;color:#3a3cb8;text-decoration:none}
+.work-ui .today-n.warn{background:#fff1d7;color:#7a4f00}.work-ui .today-n.bad{background:#ffdad6;color:#93000a}.work-ui .today-n.zero{background:none;color:#5b5d72}
+.work-ui a.today-n:hover{outline:2px solid currentColor;outline-offset:1px}
+.work-ui .today-table tr.calm td{color:#5b5d72}
+@media (max-width:900px){.work-ui .today-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
