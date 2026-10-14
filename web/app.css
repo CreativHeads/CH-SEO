@@ -1028,3 +1028,6 @@ header .tip{background:#ffffff33;color:#fff}
  .work-ui .hero-actions>.btn,.work-ui .hero-actions>.more-menu,.work-ui .hero-actions>.more-menu>summary,.work-ui .ph-actions>.btn{width:100%}
  .work-ui .hero-actions>.key-btn{display:none}
 }
+
+/* Connection status (GSC / GA4 / WordPress / knowledge base) is not shown in the header. */
+header div:has(> span.animate-ping){display:none!important}
