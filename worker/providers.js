@@ -125,7 +125,7 @@ export async function importGscQueries(env,user,client){insist(client.data.gsc_p
 export function fixKindForIssue(issue){const t=String(issue?.data?.issue_type||'')+' '+String(issue?.title||'');if(/alt/i.test(t))return'alt';if(/meta tags|duplicate_meta_tags/i.test(t))return null;if(/description|meta_length|missing_meta/i.test(t))return'meta_description';if(/title/i.test(t))return'title';return null}
 export async function proposeIssueFixes(env,user,client,issue){
  insist(issue?.kind==='issues','Choose an audit issue.');insist(issue.client_id===client.id,'Issue belongs to another client.');
- const kind=fixKindForIssue(issue);insist(kind,'This issue cannot be fixed automatically. Send it to a developer or writer instead.',409);
+ const kind=fixKindForIssue(issue);insist(kind,'This issue cannot be written to WordPress automatically. It stays in Site Audit.',409);
  insist(env.OPENAI_API_KEY&&env.OPENAI_MODEL,'Configure OpenAI first: AI writes the new values.',409);
  insist(client.data.wp_user,'Connect WordPress first (Settings, Connect WordPress).',409);
  const allUrls=[...new Set(String(issue.data.urls||'').split('\n').map(s=>s.trim().split('#')[0]).filter(Boolean))],urls=allUrls.slice(0,kind==='alt'?15:30);
