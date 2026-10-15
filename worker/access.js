@@ -3,7 +3,7 @@
 import {one,rows,run,insist,now} from './db.js';
 
 export const SECTIONS={
-  keywords:{label:'Keywords',kinds:['keywords'],jobs:['keyword_research','import_gsc_queries','rank_check']},
+  keywords:{label:'Keywords',kinds:['keywords'],jobs:['keyword_research','import_gsc_queries','rank_check','propose_keyword_fixes','create_landing_page','create_blog']},
   audit:{label:'Site Audit',kinds:['issues','audits'],jobs:['quick_audit','full_audit','poll_audit','pagespeed']},
   fixes:{label:'Fixes',kinds:['fixes'],jobs:['propose_fixes','apply_fix','rollback_fix']},
   tickets:{label:'Dev Tickets',kinds:['tickets'],jobs:[]},
@@ -38,11 +38,13 @@ export async function hiddenKinds(env,user){
 const monthStart=()=>{const m=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kolkata',year:'numeric',month:'2-digit'}).format(new Date());return m+'-01'};
 export async function usageFor(env,member){
   const counts=Object.fromEntries((await rows(env,"SELECT kind,COUNT(*) n FROM jobs WHERE actor=? AND created_at>=? AND status IN ('queued','running','succeeded') GROUP BY kind",member.email,monthStart())).map(r=>[r.kind,Number(r.n)]));
+  counts.propose_fixes=(counts.propose_fixes||0)+(counts.propose_keyword_fixes||0);counts.generate_draft=(counts.generate_draft||0)+(counts.create_landing_page||0)+(counts.create_blog||0);
   return Object.fromEntries(Object.entries(LIMITS).map(([k,v])=>[k,counts[v.job]||0]));
 }
 export async function checkLimit(env,user,job){
   if(user.role==='admin')return;
-  const key=Object.keys(LIMITS).find(k=>LIMITS[k].job===job);if(!key)return;
+  const mapped=job==='propose_keyword_fixes'?'propose_fixes':['create_landing_page','create_blog'].includes(job)?'generate_draft':job;
+  const key=Object.keys(LIMITS).find(k=>LIMITS[k].job===mapped);if(!key)return;
   const a=await accessFor(env,user);if(!a.limits[key])return;
   const used=(await usageFor(env,user))[key];
   insist(used<a.limits[key],`Monthly limit reached: ${LIMITS[key].label} (${used} of ${a.limits[key]}). Ask an Admin to raise your limit.`,429);
