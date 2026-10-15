@@ -1,6 +1,6 @@
 import {parseHTML} from 'linkedom';
 import {q,run,one,rows,id,now,Problem,insist,createRecord,updateRecord} from './db.js';
-import {httpsUrl,str,quality} from './validation.js';
+import {httpsUrl,str,quality,validateSchema} from './validation.js';
 const te=new TextEncoder();const b64=b=>btoa(String.fromCharCode(...new Uint8Array(b)));const unb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));const b64url=b=>b64(b).replaceAll('+','-').replaceAll('/','_').replace(/=+$/,'');
 const publicIP=ip=>{if(ip.includes(':'))return /^[23][0-9a-f]{3}:/i.test(ip)&&!/^2001:(db8|0):/i.test(ip);const n=ip.split('.').map(Number);return n.length===4&&n.every(x=>Number.isInteger(x)&&x>=0&&x<=255)&&![0,10,127].includes(n[0])&&n[0]<224&&!(n[0]===169&&n[1]===254)&&!(n[0]===172&&n[1]>=16&&n[1]<=31)&&!(n[0]===192&&[0,168].includes(n[1]))&&!(n[0]===100&&n[1]>=64&&n[1]<=127)&&!(n[0]===198&&[18,19].includes(n[1]));};
 export async function publicFetch(url,options={}){const safe=httpsUrl(url),u=new URL(safe);const answers=await Promise.all(['A','AAAA'].map(async type=>{const r=await fetch('https://dns.google/resolve?name='+encodeURIComponent(u.hostname)+'&type='+type,{signal:AbortSignal.timeout(10000)});insist(r.ok,'Could not verify the destination domain.',502);const d=await r.json();return(d.Answer||[]).filter(a=>a.type===1||a.type===28).map(a=>a.data)}));const ips=answers.flat();insist(ips.length&&ips.every(publicIP),'The destination must resolve only to public IP addresses.');return fetch(safe,{...options,redirect:'manual',signal:AbortSignal.timeout(25000)})}
@@ -206,6 +206,58 @@ export async function proposeKeywordFixes(env,user,client,input={}){
   for(const o of out){const it=items[o.i];const value=str(o.value,it?.kind==='title'?70:it?.kind==='h1'?80:170);if(!it||!value||value===it.before)continue;await createRecord(env,user,client.id,'fixes',label[it.kind]+': '+new URL(it.url).pathname,{kind:it.kind,url:it.url,post_id:it.post_id,post_type:it.post_type||'',before:it.before,after:value,reason:'Ranking fix for "'+it.keyword+'" (position '+it.position+', '+it.why+'). '+str(o.reason,300),batch_id:batch,ai:true},'in_review');created++}
   return{created,pages:picks.length,skipped:skipped.length,skipped_detail:skipped.slice(0,8),remaining:Math.max(0,pool-picks.length),batch_id:batch};
  }catch(e){await run(env,"UPDATE usage_log SET status='needs_reconciliation' WHERE id=? AND status='reserved'",reservation);throw e}
+}
+
+const SCHEMA_BUSINESS=new Set(['Organization','LocalBusiness','Dentist','MedicalClinic','MedicalBusiness','EducationalOrganization','CollegeOrUniversity','ProfessionalService','Store','Corporation','NGO','NewsMediaOrganization','Physician','Hospital']);
+const SCHEMA_SOCIAL=/^https:\/\/(www\.)?(facebook\.com|instagram\.com|linkedin\.com|youtube\.com|youtu\.be|twitter\.com|x\.com|pinterest\.com|tiktok\.com)\//i;
+function schemaTypes(data,out=new Set()){if(!data||typeof data!=='object')return out;if(Array.isArray(data)){for(const x of data)schemaTypes(x,out);return out}const t=[].concat(data['@type']||[]);for(const x of t)if(x)out.add(String(x));if(Array.isArray(data['@graph']))for(const x of data['@graph'])schemaTypes(x,out);return out}
+function schemaNodes(document){const nodes=[];for(const s of document.querySelectorAll('script[type="application/ld+json"]')){try{const data=JSON.parse(s.textContent);const list=Array.isArray(data)?data:data['@graph']?[...data['@graph']]:[data];for(const n of list)if(n&&typeof n==='object')nodes.push(n)}catch{}}return nodes}
+function schemaPlain(el){return (el?.textContent||'').replace(/\s+/g,' ').trim()}
+function schemaAbs(base,href){try{const u=new URL(href,base);return u.protocol==='https:'?u.href.split('#')[0]:''}catch{return ''}}
+// Labels built only from facts already on the page. Nothing is guessed.
+export function missingSchema(html,pageUrl,clientName,opts={}){
+ const {document}=parseHTML(String(html||'').slice(0,2e6)),present=schemaTypes(schemaNodes(document)),home=opts.home===true,nodes=[];
+ const meta=n=>(document.querySelector(`meta[property="${n}"],meta[name="${n}"]`)?.getAttribute('content')||'').trim();
+ const name=meta('og:site_name')||String(clientName||'').trim();
+ let logo='';for(const img of document.querySelectorAll('img')){const blob=((img.getAttribute('class')||'')+' '+(img.getAttribute('alt')||'')+' '+(img.getAttribute('id')||'')).toLowerCase();if(!blob.includes('logo'))continue;logo=schemaAbs(pageUrl,img.getAttribute('src')||'');if(logo)break}if(!logo)logo=schemaAbs(pageUrl,document.querySelector('link[rel="apple-touch-icon"]')?.getAttribute('href')||'');
+ const tel=(document.querySelector('a[href^="tel:"]')?.getAttribute('href')||'').replace(/^tel:/i,'').trim();
+ const email=(document.querySelector('a[href^="mailto:"]')?.getAttribute('href')||'').replace(/^mailto:/i,'').split('?')[0].trim();
+ const sameAs=[];for(const a of document.querySelectorAll('a[href]')){const href=schemaAbs(pageUrl,a.getAttribute('href'));if(SCHEMA_SOCIAL.test(href)&&!sameAs.includes(href))sameAs.push(href)}
+ const hasBusiness=[...present].some(t=>SCHEMA_BUSINESS.has(t)||/Business$/.test(t));
+ if(home&&name&&!hasBusiness){const org={'@context':'https://schema.org','@type':'Organization',name,url:new URL(pageUrl).origin+'/'};if(logo)org.logo=logo;if((tel.match(/\d/g)||[]).length>=8)org.telephone=tel;if(/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))org.email=email;if(sameAs.length)org.sameAs=sameAs.slice(0,6);nodes.push(org)}
+ if(!present.has('FAQPage')){let faq=[];for(const d of document.querySelectorAll('details')){const q=schemaPlain(d.querySelector('summary'));const copy=d.cloneNode(true);copy.querySelector('summary')?.remove();const a=schemaPlain(copy);if(q.length>=12&&q.length<=180&&a.length>=40&&a.length<=800)faq.push({q,a})}if(faq.length<2){faq=[];for(const h of document.querySelectorAll('h2,h3')){const q=schemaPlain(h);if(!q.endsWith('?')||q.length<12||q.length>180)continue;let a='';for(let n=h.nextElementSibling;n&&!/^H[1-3]$/.test(n.tagName);n=n.nextElementSibling){a=(a+' '+schemaPlain(n)).trim();if(a.length>800)break}if(a.length>=40)faq.push({q,a:a.slice(0,800)})}}if(faq.length>=2)nodes.push({'@context':'https://schema.org','@type':'FAQPage',mainEntity:faq.slice(0,8).map(x=>({'@type':'Question',name:x.q,acceptedAnswer:{'@type':'Answer',text:x.a}}))})}
+ const article=present.has('Article')||present.has('BlogPosting')||present.has('NewsArticle');
+ const date=(meta('article:published_time')+' '+(document.querySelector('time[datetime]')?.getAttribute('datetime')||'')).match(/\d{4}-\d{2}-\d{2}/)?.[0]||'';
+ const author=meta('author')||schemaPlain(document.querySelector('[rel="author"]'));
+ const headline=schemaPlain(document.querySelector('h1'))||meta('og:title');
+ const ogType=meta('og:type').toLowerCase();
+ if(!article&&(opts.post||ogType==='article')&&headline.length>=10&&headline.length<=110&&author&&date){const item={'@context':'https://schema.org','@type':'Article',headline,author:{'@type':'Person',name:author},datePublished:date,publisher:{'@type':'Organization',name:name||author,url:new URL(pageUrl).origin+'/'}};const image=schemaAbs(pageUrl,meta('og:image'));if(image)item.image=image;if(meta('description'))item.description=meta('description').slice(0,300);nodes.push(item)}
+ if(!home&&!present.has('BreadcrumbList')){const u=new URL(pageUrl),parts=u.pathname.split('/').filter(Boolean);if(parts.length){const items=[{'@type':'ListItem',position:1,name:name||'Home',item:u.origin+'/'}];let path='';for(const p of parts){path+='/'+p;const label=decodeURIComponent(p).replace(/[-_]+/g,' ').replace(/\s+/g,' ').trim();if(label)items.push({'@type':'ListItem',position:items.length+1,name:label,item:u.origin+path+'/'})}if(items.length>1)nodes.push({'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:items})}}
+ return nodes.filter(n=>validateSchema(n).passed);
+}
+async function loadClientPage(client,url){const site=new URL(client.url),bare=h=>h.replace(/^www\./,''),start=new URL(httpsUrl(url));insist(bare(start.hostname)===bare(site.hostname),'Page is on another website.');let u=start,r=await publicFetch(u.href);for(let hop=0;hop<3&&r.status>=300&&r.status<400&&r.headers.get('location');hop++){const next=new URL(r.headers.get('location'),u);if(bare(next.hostname)!==bare(site.hostname))break;u=next;r=await publicFetch(u.href)}insist(r.ok,'The page answered with HTTP '+r.status+'.');const m=(r.headers.get('link')||'').match(/wp\/v2\/(pages|posts)\/(\d+)/);return{html:await r.text(),postId:m?Number(m[2]):0,postType:m&&m[1]==='posts'?'post':'page',finalUrl:u.href}}
+export async function prepareSchema(env,user,client){
+ insist(client.data.wp_user,'Connect WordPress first (Settings, Connect WordPress).',409);
+ const home=new URL(client.url).href,seen=new Set(),picks=[home];
+ const kws=(await rows(env,"SELECT title,data FROM records WHERE client_id=? AND kind='keywords' AND status!='archived'",client.id)).map(r=>({title:r.title,...JSON.parse(r.data)})).filter(k=>k.url).sort((a,b)=>(Number(b.impressions)||0)-(Number(a.impressions)||0));
+ for(const k of kws){let path='';try{const u=new URL(k.url);if(u.hostname.replace(/^www\./,'')!==new URL(home).hostname.replace(/^www\./,''))continue;path=u.pathname.replace(/\/+$/,'')||'/'}catch{continue}if(path==='/'||seen.has(path))continue;seen.add(path);picks.push(String(k.url).split('#')[0]);if(picks.length>=8)break}
+ const open=(await rows(env,"SELECT data FROM records WHERE client_id=? AND kind='fixes' AND status IN ('draft','in_review','approved','applying')",client.id)).map(r=>JSON.parse(r.data));
+ const skipped=[];let created=0;
+ for(const url of picks){
+  let page;try{page=await loadClientPage(client,url)}catch(e){skipped.push(url+' ('+e.message+')');continue}
+  if(!page.postId){skipped.push(new URL(page.finalUrl).pathname+' (not a WordPress page)');continue}
+  if(open.some(f=>f.kind==='schema'&&Number(f.post_id)===page.postId)){skipped.push(new URL(page.finalUrl).pathname+' (already waiting for approval)');continue}
+  const homePage=new URL(page.finalUrl).pathname.replace(/\/+$/,'')==='';
+  let existing=[];try{const v=await wp(env,client,'/wp-json/ch-seo/v1/schema/'+page.postId);existing=Array.isArray(v)?v:Array.isArray(v.items)?v.items:[]}catch{skipped.push(new URL(page.finalUrl).pathname+' (could not read schema from WordPress)');continue}
+  const have=schemaTypes(existing),want=missingSchema(page.html,page.finalUrl,client.name,{home:homePage,post:page.postType==='post'}).filter(n=>!have.has(n['@type']));
+  if(!want.length){skipped.push(new URL(page.finalUrl).pathname+' (schema already on the page)');continue}
+  const after=[...existing,...want].slice(0,10);if(after.length===existing.length){skipped.push(new URL(page.finalUrl).pathname+' (WordPress schema list is full)');continue}
+  const added=after.slice(existing.length).map(n=>n['@type']);
+  await createRecord(env,user,client.id,'fixes','Schema: '+new URL(page.finalUrl).pathname,{kind:'schema',url:page.finalUrl,post_id:page.postId,post_type:page.postType,before:existing,after,reason:'Missing '+added.join(', ')+'. Built from the name, links, questions and dates already on the page.',ai:false},'in_review');
+  created++;
+ }
+ if(!created)return{created:0,pages:picks.length,skipped:skipped.length,skipped_detail:skipped.slice(0,8),already:true};
+ return{created,pages:picks.length,skipped:skipped.length,skipped_detail:skipped.slice(0,8)};
 }
 
 // Fix form helper: find the WordPress post behind a URL on the client's own site and read its current live value.

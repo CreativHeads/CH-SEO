@@ -9,7 +9,7 @@ export const SECTIONS={
   tickets:{label:'Dev Tickets',kinds:['tickets'],jobs:[]},
   content:{label:'Content & Plan',kinds:['content','plans','refresh'],jobs:['generate_draft','push_content']},
   aeo:{label:'AI Visibility',kinds:['questions','aeo'],jobs:['aeo_check']},
-  schema:{label:'Schema',kinds:['schemas'],jobs:[]},
+  schema:{label:'Schema',kinds:['schemas'],jobs:['prepare_schema']},
   reports:{label:'Reports',kinds:['reports'],jobs:['ask']}
 };
 export const LIMITS={ai_drafts:{label:'AI article drafts',job:'generate_draft'},ai_fixes:{label:'AI fix runs',job:'propose_fixes'},keyword_research:{label:'Keyword research searches',job:'keyword_research'},aeo_checks:{label:'AI visibility checks',job:'aeo_check'},full_crawls:{label:'Full site crawls',job:'full_audit'},ai_questions:{label:'Ask Studio AI questions',job:'ask'}};
