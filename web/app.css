@@ -169,9 +169,9 @@ main.work-ui>p:only-child{color:#5b5d72;animation:studio-fade-up .3s ease both}
 .work-ui .sync-line .material-symbols-outlined{font-size:15px!important;color:var(--st-primary)}
 .work-ui .dash-head-side{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;justify-content:flex-end;max-width:56%}
 .work-ui .dash-head-side .btn{height:44px}
-.work-ui .range-chip{display:flex;align-items:center;gap:8px;border:1px solid var(--st-high);border-radius:10px;padding:4px 12px;height:44px}
+.work-ui .range-chip{display:flex;align-items:center;gap:8px;border:1px solid var(--st-high);border-radius:10px;padding:4px 12px;height:44px;min-width:176px}
 .work-ui .range-chip .material-symbols-outlined{color:var(--st-primary);font-size:20px!important}
-.work-ui .range-chip b{display:block;font:600 12px/16px 'Plus Jakarta Sans',sans-serif}
+.work-ui .range-chip b,.work-ui .range-chip select{display:block;border:0;background:transparent;font:600 12px/16px 'Plus Jakarta Sans',sans-serif;color:inherit;padding:0 18px 0 0;margin:0;cursor:pointer;width:132px}
 .work-ui .range-chip div span{display:block;font:500 10px/14px 'JetBrains Mono',monospace;color:var(--st-outline)}
 .work-ui .dash-head .btn.danger{background:#ffdad6;border-color:#ffb4ab;color:#93000a}
 .work-ui .lift{display:flex;align-items:center;gap:14px;background:var(--st-low);border:1px solid #c0c1ff80;border-radius:14px;padding:12px 18px;margin-bottom:16px}
