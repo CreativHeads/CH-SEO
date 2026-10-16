@@ -78,6 +78,12 @@ input{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--lin
    return json({ok:true},200,{'Set-Cookie':sessionCookie(email)});
   }
 
+  // Daily autopilot, called by Vercel Cron with the CRON_SECRET (never from a browser session).
+  if(p==='/api/cron/daily'){const secret=String(env.CRON_SECRET||''),got=request.headers.get('authorization')||'',want='Bearer '+secret;
+   if(secret.length<16||got.length!==want.length||!timingSafeEqual(Buffer.from(got),Buffer.from(want)))return json({error:'Not allowed.'},401);
+   const admin=await env.DB.prepare("SELECT email FROM members WHERE role='admin' AND active=1 ORDER BY created_at").first();if(!admin)return json({error:'No active Admin.'},409);
+   const headers=new Headers({'oai-authenticated-user-email':admin.email,'content-type':'application/json',origin:url.origin,'x-studio-cron':'1'});
+   return worker.fetch(new Request(url.origin+'/api/autopilot/run',{method:'POST',headers,body:'{}'}),env,{waitUntil(){},passThroughOnException(){}});}
   // Everything else goes to SEO Studio with the verified email only.
   const headers=new Headers(request.headers);
   for(const k of [...headers.keys()])if(k.startsWith('oai-authenticated-'))headers.delete(k);

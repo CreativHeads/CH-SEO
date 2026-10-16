@@ -26,5 +26,11 @@
       "source": "/:path*",
       "destination": "/api/index?__path=/:path*"
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/daily",
+      "schedule": "30 1 * * *"
+    }
   ]
 }
