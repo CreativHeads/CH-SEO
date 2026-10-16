@@ -1,16 +1,16 @@
 <?php
  /**
   * Plugin Name: CreativHeads SEO Connector
-  * Description: Small, reviewed bridge for SEO Studio: reads and writes SEO titles, meta descriptions and noindex
+  * Description: Small, reviewed bridge for SEO Studio: reads and writes SEO titles, meta descriptions, noindex and canonical
   *              through the active SEO plugin (Yoast or Rank Math), adds JSON-LD schema, and serves 301 redirects
   *              for URLs that would otherwise 404. No outbound calls, no tracking, no settings page.
-  * Version:     1.0.0
+  * Version:     1.1.0
   * Author:      DIGI CREATIVHEADS LLP
   * Requires PHP: 7.4
   */
  if ( ! defined( 'ABSPATH' ) ) { exit; }
 
- const CH_SEO_VERSION = '1.0.0';
+ const CH_SEO_VERSION = '1.1.0';
  const CH_SEO_CAP     = 'ch_seo_manage';   // needed for redirects and site schema
 
  register_activation_hook( __FILE__, function () {
@@ -37,6 +37,7 @@
              'title'       => (string) get_post_meta( $id, '_yoast_wpseo_title', true ),
              'description' => (string) get_post_meta( $id, '_yoast_wpseo_metadesc', true ),
              'noindex'     => '1' === get_post_meta( $id, '_yoast_wpseo_meta-robots-noindex', true ),
+             'canonical'   => (string) get_post_meta( $id, '_yoast_wpseo_canonical', true ),
          );
      }
      if ( 'rank_math' === $p ) {
@@ -46,9 +47,10 @@
              'title'       => (string) get_post_meta( $id, 'rank_math_title', true ),
              'description' => (string) get_post_meta( $id, 'rank_math_description', true ),
              'noindex'     => in_array( 'noindex', $robots, true ),
+             'canonical'   => (string) get_post_meta( $id, 'rank_math_canonical_url', true ),
          );
      }
-     return array( 'plugin' => 'none', 'title' => '', 'description' => '', 'noindex' => false );
+     return array( 'plugin' => 'none', 'title' => '', 'description' => '', 'noindex' => false, 'canonical' => '' );
  }
 
  add_action( 'rest_api_init', function () {
@@ -98,6 +100,13 @@
 
 
                           }
+                      }
+                      if ( null !== $r->get_param( 'canonical' ) ) {   // empty string removes the custom canonical
+                          $canonical = esc_url_raw( (string) $r->get_param( 'canonical' ) );
+                          if ( '' !== $canonical && wp_validate_redirect( $canonical, '' ) !== $canonical ) {
+                              return new WP_Error( 'bad_canonical', 'canonical must be on this site', array( 'status' => 400 ) );
+                          }
+                          update_post_meta( $id, 'yoast' === $p ? '_yoast_wpseo_canonical' : 'rank_math_canonical_url', $canonical );
                       }
                       if ( null !== $r->get_param( 'noindex' ) ) {
                           $noindex = rest_sanitize_boolean( $r->get_param( 'noindex' ) );
@@ -182,6 +191,68 @@
                     return array( 'before' => $before, 'after' => $all[ $from ] );
                 } ),
         ) );
+ } );
+
+ // Links inside a page: list them, and swap exact link targets (normal content and Elementor layouts).
+ function ch_seo_is_builder( $id ) { return 'builder' === get_post_meta( $id, '_elementor_edit_mode', true ); }
+ function ch_seo_links_in( $id ) {
+     $urls = array();
+     $post = get_post( $id );
+     if ( $post && preg_match_all( '/href\s*=\s*["\']([^"\']+)["\']/i', (string) $post->post_content, $m ) ) { $urls = array_merge( $urls, $m[1] ); }
+     $el = (string) get_post_meta( $id, '_elementor_data', true );
+     if ( '' !== $el && preg_match_all( '/"url":"((?:[^"\\\\]|\\\\.)*)"/', $el, $m ) ) {
+         foreach ( $m[1] as $u ) { $urls[] = str_replace( '\/', '/', $u ); }
+     }
+     return array_values( array_unique( array_filter( array_map( 'html_entity_decode', $urls ) ) ) );
+ }
+ add_action( 'rest_api_init', function () {
+     register_rest_route( 'ch-seo/v1', '/links/(?P<id>\d+)', array(
+         array( 'methods' => 'GET', 'permission_callback' => 'ch_seo_can_edit',
+             'callback' => function ( WP_REST_Request $r ) {
+                 $id = (int) $r['id'];
+                 if ( ! get_post( $id ) ) { return new WP_Error( 'not_found', 'No such post', array( 'status' => 404 ) ); }
+                 return array( 'builder' => ch_seo_is_builder( $id ), 'urls' => ch_seo_links_in( $id ) );
+             } ),
+         array( 'methods' => 'POST', 'permission_callback' => 'ch_seo_can_edit',
+             'callback' => function ( WP_REST_Request $r ) {
+                 $id   = (int) $r['id'];
+                 $post = get_post( $id );
+                 if ( ! $post ) { return new WP_Error( 'not_found', 'No such post', array( 'status' => 404 ) ); }
+                 $list = $r->get_param( 'replacements' );
+                 if ( ! is_array( $list ) || ! $list || count( $list ) > 200 ) {
+                     return new WP_Error( 'bad_list', 'replacements must be 1-200 {from,to} pairs', array( 'status' => 400 ) );
+                 }
+                 $content = (string) $post->post_content;
+                 $el      = (string) get_post_meta( $id, '_elementor_data', true );
+                 $changed = 0;
+                 foreach ( $list as $pair ) {
+                     $from = is_array( $pair ) ? (string) ( $pair['from'] ?? '' ) : '';
+                     $to   = is_array( $pair ) ? esc_url_raw( (string) ( $pair['to'] ?? '' ) ) : '';
+                     if ( '' === $from || '' === $to || wp_validate_redirect( $to, '' ) !== $to ) {
+                         return new WP_Error( 'bad_pair', 'Each link must move to a page on this site', array( 'status' => 400 ) );
+                     }
+                     foreach ( array( '"', "'" ) as $q ) {
+                         $content = str_replace( 'href=' . $q . $from . $q, 'href=' . $q . $to . $q, $content, $n ); $changed += $n;
+                         $content = str_replace( 'href=' . $q . esc_attr( $from ) . $q, 'href=' . $q . esc_attr( $to ) . $q, $content, $n ); $changed += $n;
+                     }
+                     if ( '' !== $el ) {
+                         $el = str_replace( '"' . str_replace( '/', '\/', $from ) . '"', '"' . str_replace( '/', '\/', $to ) . '"', $el, $n ); $changed += $n;
+                         $el = str_replace( '"' . $from . '"', '"' . $to . '"', $el, $n ); $changed += $n;
+                     }
+                 }
+                 if ( $content !== (string) $post->post_content ) {
+                     wp_update_post( wp_slash( array( 'ID' => $id, 'post_content' => $content ) ) );
+                 }
+                 if ( '' !== $el && $el !== (string) get_post_meta( $id, '_elementor_data', true ) ) {
+                     update_post_meta( $id, '_elementor_data', wp_slash( $el ) );
+                     delete_post_meta( $id, '_elementor_css' );
+                     if ( class_exists( '\Elementor\Plugin' ) ) { \Elementor\Plugin::$instance->files_manager->clear_cache(); }
+                 }
+                 clean_post_cache( $id );
+                 do_action( 'ch_seo_meta_updated', $id );
+                 return array( 'changed' => $changed, 'urls' => ch_seo_links_in( $id ) );
+             } ),
+     ) );
  } );
 
  function ch_seo_norm_path( $url ) {
