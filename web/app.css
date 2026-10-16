@@ -1031,3 +1031,15 @@ header .tip{background:#ffffff33;color:#fff}
 
 /* Connection status (GSC / GA4 / WordPress / knowledge base) is not shown in the header. */
 header div:has(> span.animate-ping){display:none!important}
+
+/* Settings: panels stack in two columns without empty gaps */
+.work-ui .settings-grid{display:block;column-count:2;column-gap:18px}
+.work-ui .settings-grid>.panel{display:block;width:100%;break-inside:avoid;-webkit-column-break-inside:avoid;margin:0 0 18px}
+.work-ui .settings-grid .plain-list b{font-weight:600}
+@media (max-width:900px){.work-ui .settings-grid{column-count:1}}
+/* Autopilot form: tick boxes in line with their labels */
+.work-ui .ap-form{display:grid;gap:12px;margin:14px 0 6px}
+.work-ui .ap-form label.check{display:flex;align-items:center;gap:10px;font-weight:500;color:#171b26;margin:0}
+.work-ui .ap-form label.check input{width:18px;height:18px;margin:0;flex:0 0 auto;accent-color:#4648d4}
+.work-ui .ap-form label:not(.check){display:grid;gap:6px;font-weight:500;color:#171b26;max-width:260px}
+.work-ui .ap-form .row{margin-top:2px}
