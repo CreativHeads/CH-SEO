@@ -11,7 +11,7 @@ const settingsOf=async env=>{const g=JSON.parse((await one(env,"SELECT value FRO
 const decode=r=>({...r,data:JSON.parse(r.data||'{}')});
 
 async function job(env,user,c,kind,input={}){const j=await queueJob(env,user,c,kind,input);if(j.status==='blocked')return{kind,ok:false,error:j.error||'Connection required'};
- try{const r=await executeJob(env,user,j);return{kind,ok:true,result:r.result||{}}}catch(e){return{kind,ok:false,error:e.message}}}
+ try{const r=await executeJob(env,user,await one(env,'SELECT * FROM jobs WHERE id=?',j.id));return{kind,ok:true,result:r.result||{}}}catch(e){return{kind,ok:false,error:e.message}}}
 
 export async function runAutopilot(baseEnv,{user=null,deadline=Date.now()+240000,source='schedule',sendEmail=true}={}){
  const env=await integrationEnv(baseEnv),cfg=await settingsOf(env);
@@ -35,7 +35,8 @@ export async function runAutopilot(baseEnv,{user=null,deadline=Date.now()+240000
    const open=(await rows(env,"SELECT * FROM records WHERE client_id=? AND kind='issues' AND status='open'",c.id)).map(decode),pendingFor=new Set((await rows(env,"SELECT data FROM records WHERE client_id=? AND kind='fixes' AND status IN ('draft','in_review','approved','applying')",c.id)).map(r=>JSON.parse(r.data||'{}').issue_id).filter(Boolean));
    const sev={critical:0,high:1,medium:2,low:3},todo=open.filter(i=>(fixKindForIssue(i)||autoFixOf(i))&&!pendingFor.has(i.id)&&!(i.data.autopilot_at&&Date.now()-Date.parse(i.data.autopilot_at)<6.5*DAY)).sort((a,b)=>(sev[a.data.severity]??9)-(sev[b.data.severity]??9)).slice(0,cfg.fixesPerClient);
    for(const i of todo){if(!time())break;const r=await job(env,user,c,'propose_fixes',{record_id:i.id});r.issue=i.title;out.steps.push(r);
-    await run(env,'UPDATE records SET data=? WHERE id=?',JSON.stringify({...i.data,autopilot_at:now()}),i.id);
+    // Only a finished attempt waits a week; a failure (budget, outage, missing plugin) is retried tomorrow.
+    if(r.ok)await run(env,'UPDATE records SET data=? WHERE id=?',JSON.stringify({...i.data,autopilot_at:now()}),i.id);
     if(!r.ok&&/budget|limit/i.test(r.error||''))break}}}
  const summary={started,finished:now(),source,clients:report};
  await run(env,"INSERT INTO settings(key,value) VALUES('autopilot:last',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value",JSON.stringify(summary));

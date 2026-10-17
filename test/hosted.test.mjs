@@ -66,3 +66,13 @@ await test('Admin sets a login password when saving a team member; others cannot
   const plain=await r2('/api/people',{cookie:admin,body:{name:'Lead',email:'lead@creativheads.com',role:'seo_lead',active:true}});assert.equal(plain.status,200);assert.equal(calls.length,n,'no password, no login change');
  }finally{globalThis.fetch=prev}
 });
+await test('Daily autopilot really runs each step on Postgres (cron path)',async()=>{
+ const {runAutopilot}=await import('../worker/autopilot.js');
+ await DB.prepare("INSERT INTO clients(id,name,url,platform,data,archived,revision,created_at,updated_at) VALUES('ap1','AP Client','https://ap.example/','Other','{}',0,1,'2026-01-01','2026-01-01')").run();
+ const prev=globalThis.fetch;globalThis.fetch=async(u,o)=>String(u).startsWith('https://dns.google/resolve?name=ap.example')?new Response(JSON.stringify({Answer:String(u).endsWith('type=A')?[{type:1,data:'93.184.216.34'}]:[]})):String(u).startsWith('https://ap.example')?new Response('<html><head><title>AP Client home page title here</title><meta name="description" content="A description that is long enough for the quick homepage check to accept it."></head><body><h1>Hello</h1></body></html>',{headers:{'content-type':'text/html'}}):prev(u,o);
+ try{const r=await runAutopilot(env,{sendEmail:false});const c=r.clients.find(x=>x.client_id==='ap1');
+  assert.ok(c.steps.length>0);for(const s of c.steps)assert.equal(s.ok,true,s.kind+': '+s.error);
+  assert.equal((await DB.prepare("SELECT COUNT(*) n FROM jobs WHERE client_id='ap1' AND status='succeeded'").first()).n>0,true);
+  assert.ok(await DB.prepare("SELECT 1 FROM settings WHERE key='autopilot:last'").first());
+ }finally{globalThis.fetch=prev}
+});
