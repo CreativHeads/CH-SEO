@@ -1,5 +1,5 @@
 // Automatic fixes end to end against a simulated WordPress site and a simulated OpenAI.
-import{test}from'node:test';import assert from'node:assert/strict';import{api}from'../worker/api.js';import{database}from'./helpers.mjs';import{sha}from'../worker/autofix.js';
+import{test}from'node:test';import assert from'node:assert/strict';import{api}from'../worker/api.js';import{database}from'./helpers.mjs';import{sha,systemPath}from'../worker/autofix.js';
 const{DB,sqlite}=database(),env={DB,CREDENTIAL_ENCRYPTION_KEY:Buffer.alloc(32,6).toString('base64'),OPENAI_API_KEY:'sk-test-local-only-not-real',OPENAI_MODEL:'gpt-5.4-mini',OPENAI_DRAFT_MAX_USD:'0.5',OPENAI_INPUT_USD_PER_MILLION:'2',OPENAI_OUTPUT_USD_PER_MILLION:'10'},O='https://studio.example',S='https://site.example';
 const call=async(m,p,b)=>{const r=await api(new Request(O+'/api/'+p,{method:m,headers:{'oai-authenticated-user-email':'admin@creativheads.com','content-type':'application/json',Origin:O},body:b?JSON.stringify(b):undefined}),env);return{status:r.status,data:await r.json()}};
 
@@ -69,4 +69,8 @@ await test('Orphan pages get a link from a related page',async()=>{
 });
 await test('Issues that need the server or hosting are refused with a clear message',async()=>{
  const run=await propose(issue('high_loading_time',['/about/'],'Slow loading pages'));assert.equal(run.status,409);
+});
+await test('System addresses (Cloudflare email protection, WordPress admin) are never redirected',()=>{
+ for(const u of ['https://level8.in/cdn-cgi/l/email-protection','https://x.com/wp-admin/post.php','https://x.com/wp-login.php','https://x.com/xmlrpc.php'])assert.equal(systemPath(u),true,u);
+ for(const u of ['https://level8.in/store/','https://x.com/cdn-cgi-guide/','https://x.com/blog/wp-admin-tips/'])assert.equal(systemPath(u),false,u);
 });

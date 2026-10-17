@@ -16,6 +16,8 @@ export async function sha(text){const b=await crypto.subtle.digest('SHA-256',new
 const bare=h=>String(h).toLowerCase().replace(/^www\./,'');
 const sameSite=(u,client)=>{try{return bare(new URL(u).hostname)===bare(new URL(client.url).hostname)}catch{return false}};
 const pathOf=u=>{try{return new URL(u).pathname}catch{return u}};
+// Addresses made by the server, Cloudflare or WordPress itself (e.g. Cloudflare's email protection): never redirect or rewrite them.
+export const systemPath=u=>/^\/(cdn-cgi|wp-admin|wp-json|wp-includes)\/|^\/(wp-login|xmlrpc|wp-cron)\.php/.test(pathOf(u));
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const SKIP_EXT=/\.(jpe?g|png|gif|webp|svg|pdf|zip|mp4|mp3|css|js|xml|ico|woff2?)(\?|$)/i;
 
@@ -75,7 +77,7 @@ export async function proposeAutoFixes(env,user,client,issue){
 
  if(how==='redirect'){
   const map=await redirects(),broken=[];
-  for(const u of urls.slice(0,30)){if(map[norm(u)]){skipped.push(pathOf(u)+' already redirects');continue}const f=await follow(u,cache);if(![404,410].includes(f.status)){skipped.push(pathOf(u)+` now answers ${f.status||'no response'}`);continue}broken.push(u)}
+  for(const u of urls.slice(0,30)){if(systemPath(u)){skipped.push(pathOf(u)+' is a system address (Cloudflare/WordPress), not a page');continue}if(map[norm(u)]){skipped.push(pathOf(u)+' already redirects');continue}const f=await follow(u,cache);if(![404,410].includes(f.status)){skipped.push(pathOf(u)+` now answers ${f.status||'no response'}`);continue}broken.push(u)}
   if(broken.length){const pages=(await sitemapUrls(client)).filter(u=>!broken.includes(u));insist(pages.length,'Could not read the site map to choose redirect targets.',409);
    const ans=await aiJson(env,client,'auto_fix',{instructions:'You choose 301 redirect targets for broken URLs on a website. For each broken URL pick the single most relevant live page from the candidates (same topic, service or product). If nothing is clearly related, choose the closest parent section; use "" only if there is truly no sensible page. Never invent URLs.',input:{site:client.url,broken:broken.map(pathOf),candidates:pages.map(pathOf)},schema:{type:'object',additionalProperties:false,required:['items'],properties:{items:{type:'array',items:{type:'object',additionalProperties:false,required:['i','target','why'],properties:{i:{type:'integer'},target:{type:'string'},why:{type:'string'}}}}}}});
    const byPath=new Map(pages.map(u=>[pathOf(u),u]));
@@ -94,7 +96,7 @@ export async function proposeAutoFixes(env,user,client,issue){
   const map=await redirects();let checks=0;const pending=[];
   for(const u of urls.slice(0,15)){const info=await pageInfo(u);if(!info.post_id){skipped.push(pathOf(u)+': listing page (edit its links in the theme or menu)');continue}
    const {urls:links}=await connectorLinks(env,client,info.post_id),reps=[],dead=[];
-   for(const href of links){if(checks>=80)break;let abs;try{abs=new URL(href,client.url).href}catch{continue}if(!/^https?:/.test(abs)||!sameSite(abs,client)||SKIP_EXT.test(abs)||/\/wp-(admin|content|json)\//.test(abs))continue;
+   for(const href of links){if(checks>=80)break;let abs;try{abs=new URL(href,client.url).href}catch{continue}if(!/^https?:/.test(abs)||!sameSite(abs,client)||SKIP_EXT.test(abs)||/\/wp-(admin|content|json)\//.test(abs)||systemPath(abs))continue;
     checks++;const f=await follow(abs.split('#')[0],cache);
     if(f.hops>0&&f.status===200&&f.final!==abs)reps.push({from:href,to:f.final,why:`redirects to ${pathOf(f.final)}`});
     else if([404,410].includes(f.status)){const m=map[norm(abs)];if(m?.to)reps.push({from:href,to:m.to,why:`was removed; ${pathOf(m.to)} replaces it`});else dead.push(href)}}
