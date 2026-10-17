@@ -25,6 +25,15 @@ export function createHosted({worker,env}){
   try{const s=JSON.parse(Buffer.from(v,'base64url').toString());return s.x>Date.now()&&s.e?s.e:null}catch{return null}
  }
  const member=async email=>env.DB.prepare('SELECT id,email,active FROM members WHERE email=?').bind(email).first();
+ // Server-only key for creating logins. It never reaches the browser.
+ const service=String(env.SUPABASE_SERVICE_ROLE_KEY||'');
+ async function setLoginPassword(email,password){
+  const call=async(path,method,data)=>{const r=await fetch(supa+'/auth/v1/admin/'+path,{method,headers:{apikey:service,Authorization:'Bearer '+service,'content-type':'application/json'},body:data?JSON.stringify(data):undefined});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.msg||d.message||d.error_description||('Supabase answered '+r.status));return d};
+  let found=null;
+  for(let page=1;page<=20&&!found;page++){const d=await call(`users?page=${page}&per_page=200`,'GET');const list=d.users||[];found=list.find(u=>String(u.email||'').toLowerCase()===email);if(list.length<200)break}
+  if(found)await call('users/'+found.id,'PUT',{password,email_confirm:true});
+  else await call('users','POST',{email,password,email_confirm:true});
+ }
 
  const page=(title,inner,script='')=>html(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} · SEO Studio</title><link rel="icon" href="/favicon.svg"><style>
 :root{--ink:#16182b;--mut:#5b6078;--line:#e3e5ef;--pri:#4648d4;--bg:#f6f7fb;--card:#fff}
@@ -88,6 +97,19 @@ input{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--lin
   const headers=new Headers(request.headers);
   for(const k of [...headers.keys()])if(k.startsWith('oai-authenticated-'))headers.delete(k);
   const email=readSession(request);
+  // Admin saves a team member with a password: SEO Studio saves the role first, then the login is set in Supabase Auth.
+  if(p==='/api/people'&&request.method==='POST'&&email){
+   let body;try{body=await request.json()}catch{return json({error:'Invalid request.'},400)}
+   const password=typeof body.password==='string'?body.password:'';delete body.password;
+   if(password){if(!service)return json({error:'Passwords cannot be set yet: add SUPABASE_SERVICE_ROLE_KEY in Vercel, then redeploy.'},400);
+    if(password.length<8)return json({error:'Use a password of at least 8 characters.'},400)}
+   headers.set('oai-authenticated-user-email',email);headers.set('content-type','application/json');
+   const res=await worker.fetch(new Request(url,{method:'POST',headers,body:JSON.stringify(body)}),env,{waitUntil(){},passThroughOnException(){}});
+   if(!res.ok||!password)return res;
+   const saved=await res.json();
+   try{await setLoginPassword(String(body.email||'').trim().toLowerCase(),password)}catch(e){return json({error:'The member was saved, but the password could not be set: '+e.message},502)}
+   return json({...saved,login:'Password set. They can sign in now.'});
+  }
   if(email)headers.set('oai-authenticated-user-email',email);
   else if(!p.startsWith('/api/')&&!p.startsWith('/oauth/')&&!/\.(css|js|svg|zip|png|ico)$/.test(p)&&request.method==='GET')
    return new Response(null,{status:302,headers:{Location:'/login?return_to='+encodeURIComponent(p+url.search),'Cache-Control':'no-store'}});

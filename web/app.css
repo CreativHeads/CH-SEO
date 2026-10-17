@@ -1043,3 +1043,4 @@ header div:has(> span.animate-ping){display:none!important}
 .work-ui .ap-form label.check input{width:18px;height:18px;margin:0;flex:0 0 auto;accent-color:#4648d4}
 .work-ui .ap-form label:not(.check){display:grid;gap:6px;font-weight:500;color:#171b26;max-width:260px}
 .work-ui .ap-form .row{margin-top:2px}
+.pw-row{display:flex;gap:8px;align-items:stretch}.pw-row input{flex:1;min-width:0;font-family:ui-monospace,Consolas,monospace}

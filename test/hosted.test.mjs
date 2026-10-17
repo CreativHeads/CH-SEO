@@ -49,3 +49,20 @@ await test('Saving, history and stale-edit protection work on Postgres',async()=
  assert.equal((await DB.prepare('SELECT COUNT(*) n FROM record_history WHERE record_id=?').bind(rec.data.id).first()).n,1);
  const ov=await call('admin/overview');assert.equal(ov.status,200);
 });
+await test('Admin sets a login password when saving a team member; others cannot',async()=>{
+ const calls=[],users=[{id:'u-lead',email:'lead@creativheads.com'}],prev=globalThis.fetch;
+ globalThis.fetch=async(u,o={})=>{u=String(u);if(!u.includes('/auth/v1/admin/'))return prev(u,o);calls.push({u,method:o.method,auth:o.headers.Authorization,body:o.body&&JSON.parse(o.body)});return new Response(JSON.stringify(o.method==='GET'?{users}:{id:'new'}))};
+ try{
+  const noKey=await req('/api/people',{method:'POST',cookie:(await signIn('tok-admin')).cookie,body:{name:'N',email:'new@creativheads.com',role:'seo_lead',password:'longenough1'}});assert.equal(noKey.status,400);assert.match((await noKey.json()).error,/SUPABASE_SERVICE_ROLE_KEY/);
+  const h2=createHosted({worker,env:{...env,SUPABASE_SERVICE_ROLE_KEY:'service-key'}});
+  const r2=(path,{body,cookie})=>h2(new Request(origin+path,{method:'POST',headers:{cookie,'content-type':'application/json',origin},body:JSON.stringify(body)}));
+  const admin=(await signIn('tok-admin')).cookie,lead=(await signIn('tok-lead')).cookie;
+  assert.equal((await r2('/api/people',{cookie:admin,body:{name:'N',email:'new@creativheads.com',role:'seo_lead',password:'short'}})).status,400);
+  const made=await r2('/api/people',{cookie:admin,body:{name:'New',email:'New@CreativHeads.com',role:'seo_lead',active:true,password:'longenough1'}});assert.equal(made.status,200);assert.match((await made.json()).login,/Password set/);
+  assert.ok(calls.some(c=>c.method==='POST'&&c.body.email==='new@creativheads.com'&&c.body.password==='longenough1'&&c.body.email_confirm===true&&c.auth==='Bearer service-key'));
+  assert.equal((await DB.prepare("SELECT role FROM members WHERE email='new@creativheads.com'").first()).role,'seo_lead');
+  const reset=await r2('/api/people',{cookie:admin,body:{name:'Lead',email:'lead@creativheads.com',role:'seo_lead',active:true,password:'another-pass'}});assert.equal(reset.status,200);assert.ok(calls.some(c=>c.method==='PUT'&&c.u.endsWith('/users/u-lead')&&c.body.password==='another-pass'));
+  const n=calls.length;const denied=await r2('/api/people',{cookie:lead,body:{name:'X',email:'x@creativheads.com',role:'admin',password:'longenough1'}});assert.equal(denied.status,403);assert.equal(calls.length,n,'a refused save never touches logins');
+  const plain=await r2('/api/people',{cookie:admin,body:{name:'Lead',email:'lead@creativheads.com',role:'seo_lead',active:true}});assert.equal(plain.status,200);assert.equal(calls.length,n,'no password, no login change');
+ }finally{globalThis.fetch=prev}
+});

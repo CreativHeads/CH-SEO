@@ -33,6 +33,8 @@ Keep the repository **Private**.
 | `SUPABASE_DB_URL` | from step 1.3 |
 | `CREDENTIAL_ENCRYPTION_KEY` | contents of `.local/encryption.key` on this PC (must be the same, or saved API keys can't be read) |
 | `ADMIN_EMAIL` | `admin@creativheads.com` |
+| `SUPABASE_SERVICE_ROLE_KEY` | Project Settings → API Keys → **service_role / secret** key. Lets Admin set passwords from Manage users. Server only; never share it. |
+| `CRON_SECRET` | any random text of 16+ characters. Turns on the daily autopilot. |
 | everything else in `.env` | except `DEV_PASSWORD` (local only) |
 
 3. **Deploy**. Note the address, e.g. `https://seo-studio.vercel.app`.
