@@ -71,7 +71,7 @@ export async function proposeAutoFixes(env,user,client,issue){
  const urls=[...new Set(String(issue.data.urls||'').split('\n').map(s=>s.trim().split('#')[0]).filter(u=>u&&sameSite(u,client)))];
  const batch=id(),skipped=[],made=[],cache=new Map(),reason=t=>`Automatic fix for audit issue "${issue.title}". ${t}`;
  const add=async(title,data)=>{await createRecord(env,user,client.id,'fixes',str(title,240),{...data,issue_id:issue.id,batch_id:batch,ai:true,auto:how},'in_review');made.push(title)};
- const done=()=>{insist(made.length,'Nothing to fix right now'+(skipped.length?': '+skipped.slice(0,4).join('; '):'.'),409);return{created:made.length,kind:how,pages:urls.length,skipped:skipped.length,skipped_detail:skipped.slice(0,6),remaining:0,batch_id:batch}};
+  const done=()=>{if(!made.length)return{created:0,kind:how,pages:urls.length,skipped:skipped.length,skipped_detail:skipped.slice(0,6),remaining:0,batch_id:batch,already:true};return{created:made.length,kind:how,pages:urls.length,skipped:skipped.length,skipped_detail:skipped.slice(0,6),remaining:0,batch_id:batch}};
  const redirects=async()=>{try{return await wp(env,client,'/wp-json/ch-seo/v1/redirects')}catch{return{}}};
  const norm=u=>{const p='/'+decodeURIComponent(pathOf(u)).toLowerCase().replace(/^\/+|\/+$/g,'');return p==='/'?'/':p+'/'};
 

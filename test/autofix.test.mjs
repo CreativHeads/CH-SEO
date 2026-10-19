@@ -74,3 +74,9 @@ await test('System addresses (Cloudflare email protection, WordPress admin) are 
  for(const u of ['https://level8.in/cdn-cgi/l/email-protection','https://x.com/wp-admin/post.php','https://x.com/wp-login.php','https://x.com/xmlrpc.php'])assert.equal(systemPath(u),true,u);
  for(const u of ['https://level8.in/store/','https://x.com/cdn-cgi-guide/','https://x.com/blog/wp-admin-tips/'])assert.equal(systemPath(u),false,u);
 });
+await test('Broken pages that are only system addresses finish with nothing to write',async()=>{
+ const run=await propose(issue('is_broken',['/cdn-cgi/l/email-protection'],'Broken pages'));
+ assert.equal(run.status,200,JSON.stringify(run.data));
+ assert.equal(run.data.result.created,0);
+ assert.equal(run.data.result.already,true);
+});
