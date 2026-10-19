@@ -11,6 +11,7 @@ export const SECTIONS={
   aeo:{label:'AI Visibility',kinds:['questions','aeo'],jobs:['aeo_check']},
   schema:{label:'Schema',kinds:['schemas'],jobs:['prepare_schema']},
   reports:{label:'Reports',kinds:['reports'],jobs:['ask']}
+  ,backlinks:{label:'Backlinking',kinds:['backlinks'],jobs:['backlink_research']}
 };
 export const LIMITS={ai_drafts:{label:'AI article drafts',job:'generate_draft'},ai_fixes:{label:'AI fix runs',job:'propose_fixes'},keyword_research:{label:'Keyword research searches',job:'keyword_research'},aeo_checks:{label:'AI visibility checks',job:'aeo_check'},full_crawls:{label:'Full site crawls',job:'full_audit'},ai_questions:{label:'Ask Studio AI questions',job:'ask'}};
 const LEVEL={none:0,view:1,edit:2};
