@@ -75,8 +75,17 @@ await test('System addresses (Cloudflare email protection, WordPress admin) are 
  for(const u of ['https://level8.in/store/','https://x.com/cdn-cgi-guide/','https://x.com/blog/wp-admin-tips/'])assert.equal(systemPath(u),false,u);
 });
 await test('Broken pages that are only system addresses finish with nothing to write',async()=>{
- const run=await propose(issue('is_broken',['/cdn-cgi/l/email-protection'],'Broken pages'));
+ const rid=issue('is_broken',['/cdn-cgi/l/email-protection'],'Broken pages');
+ const run=await propose(rid);
  assert.equal(run.status,200,JSON.stringify(run.data));
  assert.equal(run.data.result.created,0);
  assert.equal(run.data.result.already,true);
+ assert.equal(sqlite.prepare('SELECT status FROM records WHERE id=?').get(rid).status,'resolved');
+});
+await test('Site Audit live check clears pages that now load, without a new crawl',async()=>{
+ const rid=issue('is_5xx_code',['/about/'],'Server errors (5xx)');
+ const r=await call('POST','clients/'+client.id+'/recheck-audit',{});
+ assert.equal(r.status,200,JSON.stringify(r.data));
+ assert.ok(r.data.resolved>=1,JSON.stringify(r.data));
+ assert.equal(sqlite.prepare('SELECT status FROM records WHERE id=?').get(rid).status,'resolved');
 });

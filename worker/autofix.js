@@ -2,7 +2,7 @@
 // Every proposal is checked against the live site first and is created "in review": nothing changes
 // on a website until an Admin or Head of SEO approves it, and every change can be rolled back.
 import {parseHTML} from 'linkedom';
-import {run,insist,createRecord,id} from './db.js';
+import {run,rows,insist,createRecord,updateRecord,recordFor,id} from './db.js';
 import {str,httpsUrl} from './validation.js';
 import {publicFetch,wp,reserve,writingContext} from './providers.js';
 
@@ -61,6 +61,27 @@ function cleanHtml(html,client){const {document}=parseHTML('<div id="x">'+String
   return c.tagName==='BR'?'<br>':`<${c.tagName.toLowerCase()}>${inner}</${c.tagName.toLowerCase()}>`}).join('');
  return walk(document.getElementById('x')).trim()}
 
+const LIVE_TYPES=new Set(['crawl:is_broken','crawl:is_4xx_code','crawl:is_5xx_code']);
+function stillBroken(type,status){return type==='crawl:is_5xx_code'?status>=500&&status<600:[404,410].includes(status)}
+async function applyLiveIssueStatus(env,user,issue,keepUrls){
+ const before=String(issue.data.urls||'').split('\n').map(s=>s.trim()).filter(Boolean);
+ const keep=new Set(keepUrls),next=before.filter(u=>keep.has(u));
+ if(next.length===before.length)return{changed:false,status:issue.status,remaining:next.length};
+ const fresh=await recordFor(env,issue.id);
+ if(!next.length){await updateRecord(env,user,fresh,{status:'resolved',data:{...fresh.data,urls:'',affected:0,change:'fixed',resolution:'Live check: these URLs now load, or they are system addresses, so they are not dead pages.'}},'audit_live_fixed');return{changed:true,status:'resolved',remaining:0}}
+ await updateRecord(env,user,fresh,{data:{...fresh.data,urls:next.join('\n'),affected:next.length,change:'better'}},'audit_live_better');
+ return{changed:true,status:'open',remaining:next.length}
+}
+export async function recheckCrawlIssues(env,user,client){
+ const open=(await rows(env,"SELECT * FROM records WHERE client_id=? AND kind='issues' AND status='open'",client.id)).map(r=>({...r,data:JSON.parse(r.data||'{}')}));
+ const cache=new Map();let resolved=0,updated=0;
+ for(const issue of open.filter(r=>LIVE_TYPES.has(String(r.data.issue_type||'')))){
+  const urls=String(issue.data.urls||'').split('\n').map(s=>s.trim()).filter(Boolean).slice(0,40),keep=[];
+  for(const u of urls){if(systemPath(u))continue;const f=await follow(u,cache);if(stillBroken(issue.data.issue_type,f.status))keep.push(u)}
+  const r=await applyLiveIssueStatus(env,user,issue,keep);if(r.changed&&r.status==='resolved')resolved++;else if(r.changed)updated++;
+ }
+ return{resolved,updated}
+}
 async function connectorLinks(env,client,postId){try{return await wp(env,client,'/wp-json/ch-seo/v1/links/'+postId)}catch(e){insist(!/HTTP 404/.test(e.message),'Update the CreativHeads SEO Connector plugin on this site to version 1.1 (Client Setup → download), then try again.',409);throw e}}
 async function rawContent(env,client,info){const v=await wp(env,client,'/wp-json/wp/v2/'+(info.post_type==='post'?'posts':'pages')+'/'+info.post_id+'?context=edit');return String(v.content?.raw||'')}
 
@@ -71,13 +92,14 @@ export async function proposeAutoFixes(env,user,client,issue){
  const urls=[...new Set(String(issue.data.urls||'').split('\n').map(s=>s.trim().split('#')[0]).filter(u=>u&&sameSite(u,client)))];
  const batch=id(),skipped=[],made=[],cache=new Map(),reason=t=>`Automatic fix for audit issue "${issue.title}". ${t}`;
  const add=async(title,data)=>{await createRecord(env,user,client.id,'fixes',str(title,240),{...data,issue_id:issue.id,batch_id:batch,ai:true,auto:how},'in_review');made.push(title)};
-  const done=()=>{if(!made.length)return{created:0,kind:how,pages:urls.length,skipped:skipped.length,skipped_detail:skipped.slice(0,6),remaining:0,batch_id:batch,already:true};return{created:made.length,kind:how,pages:urls.length,skipped:skipped.length,skipped_detail:skipped.slice(0,6),remaining:0,batch_id:batch}};
+ const done=()=>{if(!made.length)return{created:0,kind:how,pages:urls.length,skipped:skipped.length,skipped_detail:skipped.slice(0,6),remaining:0,batch_id:batch,already:true};return{created:made.length,kind:how,pages:urls.length,skipped:skipped.length,skipped_detail:skipped.slice(0,6),remaining:0,batch_id:batch}};
  const redirects=async()=>{try{return await wp(env,client,'/wp-json/ch-seo/v1/redirects')}catch{return{}}};
  const norm=u=>{const p='/'+decodeURIComponent(pathOf(u)).toLowerCase().replace(/^\/+|\/+$/g,'');return p==='/'?'/':p+'/'};
 
  if(how==='redirect'){
   const map=await redirects(),broken=[];
   for(const u of urls.slice(0,30)){if(systemPath(u)){skipped.push(pathOf(u)+' is a system address (Cloudflare/WordPress), not a page');continue}if(map[norm(u)]){skipped.push(pathOf(u)+' already redirects');continue}const f=await follow(u,cache);if(![404,410].includes(f.status)){skipped.push(pathOf(u)+` now answers ${f.status||'no response'}`);continue}broken.push(u)}
+  const checked=new Set(urls.slice(0,30));await applyLiveIssueStatus(env,user,issue,[...broken,...urls.filter(u=>!checked.has(u))]);
   if(broken.length){const pages=(await sitemapUrls(client)).filter(u=>!broken.includes(u));insist(pages.length,'Could not read the site map to choose redirect targets.',409);
    const ans=await aiJson(env,client,'auto_fix',{instructions:'You choose 301 redirect targets for broken URLs on a website. For each broken URL pick the single most relevant live page from the candidates (same topic, service or product). If nothing is clearly related, choose the closest parent section; use "" only if there is truly no sensible page. Never invent URLs.',input:{site:client.url,broken:broken.map(pathOf),candidates:pages.map(pathOf)},schema:{type:'object',additionalProperties:false,required:['items'],properties:{items:{type:'array',items:{type:'object',additionalProperties:false,required:['i','target','why'],properties:{i:{type:'integer'},target:{type:'string'},why:{type:'string'}}}}}}});
    const byPath=new Map(pages.map(u=>[pathOf(u),u]));
