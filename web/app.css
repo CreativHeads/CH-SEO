@@ -493,6 +493,9 @@ main.work-ui>p:only-child{color:#5b5d72;animation:studio-fade-up .3s ease both}
 /* Fixes & Approvals (Stitch layout) */
 .work-ui .safe-strip{display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap;background:#fff;border:1px solid #c7c4d74d;border-radius:12px;padding:10px 14px;margin-bottom:18px;font:500 11px/16px 'JetBrains Mono',monospace;color:var(--st-variant)}
 .work-ui .safe-strip b{color:var(--st-on-surface)}.work-ui .safe-strip b.red{color:#ba1a1a}
+.work-ui .safe-client-pick{display:inline-flex;align-items:center;gap:6px;margin-left:auto;background:var(--st-low);border:1px solid #c7c4d74d;border-radius:8px;padding:2px 4px 2px 8px;cursor:pointer}
+.work-ui .safe-client-pick .material-symbols-outlined{font-size:16px!important;color:var(--st-primary)}
+.work-ui .safe-client-pick select{border:0;background:transparent;font:600 12px/18px 'Plus Jakarta Sans',sans-serif;color:var(--st-on-surface);cursor:pointer;padding:4px 18px 4px 0}
 .work-ui .fix-tabs{flex-wrap:wrap}
 .work-ui .tabs .count.bad{background:#ffdad6;color:#93000a}
 .work-ui .fix-queue{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px}
