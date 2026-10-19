@@ -4,7 +4,7 @@ const{DB,sqlite}=database(),env={DB,CREDENTIAL_ENCRYPTION_KEY:Buffer.alloc(32,6)
 const call=async(m,p,b)=>{const r=await api(new Request(O+'/api/'+p,{method:m,headers:{'oai-authenticated-user-email':'admin@creativheads.com','content-type':'application/json',Origin:O},body:b?JSON.stringify(b):undefined}),env);return{status:r.status,data:await r.json()}};
 
 // The simulated site: pages, a 404, a 301, a WordPress connector and a sitemap.
-const site={redirects:{},meta:{42:{plugin:'rank_math',title:'About',description:'',noindex:false,canonical:''}},content:{42:'<p>Read <a href="/old-service/">our service</a> and <a href="https://site.example/gone/">this</a>.</p>'},canonicalTag:{42:'https://site.example/about-us/'}};
+const site={redirects:{},meta:{42:{plugin:'rank_math',title:'About',description:'',noindex:false,canonical:''}},content:{42:'<p>Read <a href="/old-service/">our service</a> and <a href="https://site.example/gone/">this</a>.</p>'},canonicalTag:{42:'https://site.example/about-us/'},h1:{}};
 const pages={'/about/':42,'/services/clear-aligners/':0,'/services/':0,'/contact/':0};
 const page=(path)=>{const id=pages[path];return new Response(`<html><head><title>${path}</title>${id&&site.canonicalTag[id]?`<link rel="canonical" href="${site.canonicalTag[id]}">`:''}</head><body><main><h1>${path}</h1>${id?site.content[id]:'<p>Page</p>'}</main></body></html>`,{status:200,headers:{'content-type':'text/html',...(id?{link:`<${S}/wp-json/wp/v2/pages/${id}>; rel="alternate"`}:{})}})};
 const links=id=>[...String(site.content[id]).matchAll(/href="([^"]+)"/g)].map(m=>m[1]);
@@ -15,7 +15,9 @@ globalThis.fetch=async(u,o={})=>{u=String(u);const method=(o.method||'GET').toUp
  const url=new URL(u);if(url.origin!==S)return new Response('no',{status:500});const p=url.pathname;
  if(p.startsWith('/wp-json/')){wpCalls.push(method+' '+p);
   if(p==='/wp-json/ch-seo/v1/redirects'){if(method==='POST'){const from=body.from.toLowerCase().replace(/\/?$/,'/');if(body.to)site.redirects[from]={to:body.to};else delete site.redirects[from]}return Response.json(site.redirects)}
+  if(p==='/wp-json/ch-seo/v1/info')return Response.json({connector:'1.2.0',builder:'elementor',seo_plugin:'rank_math'});
   let m=p.match(/^\/wp-json\/ch-seo\/v1\/seo-meta\/(\d+)$/);if(m){if(method==='POST'){Object.assign(site.meta[m[1]],body);if('canonical' in body)site.canonicalTag[m[1]]=body.canonical||'https://site.example/about/'}return Response.json(site.meta[m[1]])}
+  m=p.match(/^\/wp-json\/ch-seo\/v1\/h1\/(\d+)$/);if(m){if(method==='POST')site.h1[m[1]]=String(body.value||'');return Response.json({h1:site.h1[m[1]]||'',builder:true})}
   m=p.match(/^\/wp-json\/ch-seo\/v1\/links\/(\d+)$/);if(m){if(method==='POST')for(const r of body.replacements)site.content[m[1]]=site.content[m[1]].split(`href="${r.from}"`).join(`href="${r.to}"`);return Response.json({builder:false,urls:links(m[1])})}
   m=p.match(/^\/wp-json\/wp\/v2\/pages\/(\d+)$/);if(m){if(method==='POST')site.content[m[1]]=body.content;return Response.json({id:Number(m[1]),content:{raw:site.content[m[1]]}})}
   return new Response('{}',{status:404})}
@@ -23,6 +25,7 @@ globalThis.fetch=async(u,o={})=>{u=String(u);const method=(o.method||'GET').toUp
  if(p==='/old-service/')return new Response('',{status:301,headers:{location:S+'/services/clear-aligners/'}});
  if(p==='/about-us/')return new Response('',{status:301,headers:{location:S+'/about/'}});
  if(p==='/gone/'||p==='/old-page/')return site.redirects[p]?new Response('',{status:301,headers:{location:site.redirects[p].to}}):new Response('not found',{status:404});
+ if(p==='/course/')return new Response(`<html><head><title>Course</title></head><body><main><h2>Digital marketing bootcamp</h2><p>Learn with live classes.</p></main></body></html>`,{status:200,headers:{'content-type':'text/html',link:`<${S}/wp-json/wp/v2/pages/99>; rel="alternate"`}});
  if(p in pages)return page(p);return new Response('not found',{status:404})};
 
 await call('GET','bootstrap');
@@ -88,4 +91,12 @@ await test('Site Audit live check clears pages that now load, without a new craw
  assert.equal(r.status,200,JSON.stringify(r.data));
  assert.ok(r.data.resolved>=1,JSON.stringify(r.data));
  assert.equal(sqlite.prepare('SELECT status FROM records WHERE id=?').get(rid).status,'resolved');
+});
+await test('Missing H1 on a page-builder site is sent for approval and written on approve',async()=>{
+ const run=await propose(issue('no_h1_tag',['/course/'],'Missing H1 heading'));
+ assert.equal(run.status,200,JSON.stringify(run.data));
+ assert.ok(run.data.result.created>=1,JSON.stringify(run.data));
+ const [f]=fixes(run.data.result.batch_id);assert.equal(f.data.kind,'h1');assert.equal(f.data.after,'Digital marketing bootcamp');
+ const a=await approve(f);assert.ok(['applied','verification_pending'].includes(a.data.status),JSON.stringify(a.data.auto_apply_error||a.data.status));
+ assert.equal(site.h1[99],'Digital marketing bootcamp');
 });

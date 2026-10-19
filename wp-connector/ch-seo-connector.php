@@ -1,16 +1,17 @@
 <?php
  /**
   * Plugin Name: CreativHeads SEO Connector
-  * Description: Small, reviewed bridge for SEO Studio: reads and writes SEO titles, meta descriptions, noindex and canonical
-  *              through the active SEO plugin (Yoast or Rank Math), adds JSON-LD schema, and serves 301 redirects
-  *              for URLs that would otherwise 404. No outbound calls, no tracking, no settings page.
-  * Version:     1.1.0
+ * Description: Small, reviewed bridge for SEO Studio: reads and writes SEO titles, meta descriptions, H1 headings
+ *              (including Elementor), noindex and canonical through the active SEO plugin (Yoast or Rank Math),
+ *              adds JSON-LD schema, and serves 301 redirects for URLs that would otherwise 404.
+ *              No outbound calls, no tracking, no settings page.
+ * Version:     1.2.0
   * Author:      DIGI CREATIVHEADS LLP
   * Requires PHP: 7.4
   */
  if ( ! defined( 'ABSPATH' ) ) { exit; }
 
- const CH_SEO_VERSION = '1.1.0';
+ const CH_SEO_VERSION = '1.2.0';
  const CH_SEO_CAP     = 'ch_seo_manage';   // needed for redirects and site schema
 
  register_activation_hook( __FILE__, function () {
@@ -284,3 +285,169 @@
          }
      }
  }, 30 );
+
+ // H1 headings, including Elementor. Approving an H1 fix writes here; rollback sends an empty value.
+ function ch_seo_el_elements( $id ) {
+     $raw = get_post_meta( $id, '_elementor_data', true );
+     if ( is_array( $raw ) ) { return $raw; }
+     if ( ! is_string( $raw ) || '' === $raw ) { return array(); }
+     $data = json_decode( $raw, true );
+     return is_array( $data ) ? $data : array();
+ }
+ function ch_seo_el_save( $id, $elements ) {
+     update_post_meta( $id, '_elementor_data', wp_slash( wp_json_encode( $elements ) ) );
+     delete_post_meta( $id, '_elementor_css' );
+     if ( class_exists( '\Elementor\Plugin' ) ) { \Elementor\Plugin::$instance->files_manager->clear_cache(); }
+ }
+ function ch_seo_el_is_heading( $el ) {
+     $type = isset( $el['widgetType'] ) ? $el['widgetType'] : '';
+     return 'heading' === $type || 'theme-post-title' === $type;
+ }
+ function ch_seo_el_heading_info( $elements ) {
+     foreach ( $elements as $el ) {
+         if ( ! is_array( $el ) ) { continue; }
+         if ( ch_seo_el_is_heading( $el ) ) {
+             $s = isset( $el['settings'] ) && is_array( $el['settings'] ) ? $el['settings'] : array();
+             return array(
+                 'type'         => $el['widgetType'],
+                 'title'        => isset( $s['title'] ) && is_string( $s['title'] ) ? $s['title'] : '',
+                 'header_size'  => isset( $s['header_size'] ) ? (string) $s['header_size'] : '',
+             );
+         }
+         if ( ! empty( $el['elements'] ) && is_array( $el['elements'] ) ) {
+             $found = ch_seo_el_heading_info( $el['elements'] );
+             if ( $found ) { return $found; }
+         }
+     }
+     return null;
+ }
+ function ch_seo_el_apply_h1( &$elements, $value, $size, &$changed ) {
+     foreach ( $elements as &$el ) {
+         if ( ! is_array( $el ) ) { continue; }
+         if ( ch_seo_el_is_heading( $el ) ) {
+             if ( ! isset( $el['settings'] ) || ! is_array( $el['settings'] ) ) { $el['settings'] = array(); }
+             $el['settings']['header_size'] = $size;
+             $dynamic = ! empty( $el['settings']['__dynamic__']['title'] );
+             if ( 'heading' === $el['widgetType'] && ! $dynamic && is_string( $value ) ) {
+                 $el['settings']['title'] = $value;
+             }
+             $changed = true;
+             return true;
+         }
+         if ( ! empty( $el['elements'] ) && is_array( $el['elements'] ) && ch_seo_el_apply_h1( $el['elements'], $value, $size, $changed ) ) {
+             return true;
+         }
+     }
+     unset( $el );
+     return false;
+ }
+ function ch_seo_h1_from_html( $html ) {
+     if ( preg_match( '/<h1\b[^>]*>([\s\S]*?)<\/h1>/i', (string) $html, $m ) ) {
+         return trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( $m[1] ) ) );
+     }
+     return '';
+ }
+ function ch_seo_h1_get( $id ) {
+     $stored = get_post_meta( $id, '_ch_seo_h1', true );
+     if ( is_string( $stored ) && '' !== $stored ) { return $stored; }
+     $post = get_post( $id );
+     $from_content = $post ? ch_seo_h1_from_html( $post->post_content ) : '';
+     if ( '' !== $from_content ) { return $from_content; }
+     $info = ch_seo_el_heading_info( ch_seo_el_elements( $id ) );
+     if ( $info && 'h1' === strtolower( $info['header_size'] ) && '' !== $info['title'] ) { return $info['title']; }
+     return '';
+ }
+ function ch_seo_h1_set( $id, $value ) {
+     $post = get_post( $id );
+     if ( ! $post ) { return new WP_Error( 'not_found', 'No such post', array( 'status' => 404 ) ); }
+     $value = sanitize_text_field( (string) $value );
+     if ( strlen( $value ) > 200 ) { $value = substr( $value, 0, 200 ); }
+     if ( '' === $value ) {
+         $backup = get_post_meta( $id, '_ch_seo_h1_backup', true );
+         delete_post_meta( $id, '_ch_seo_h1' );
+         if ( is_array( $backup ) ) {
+             if ( ch_seo_is_builder( $id ) ) {
+                 $elements = ch_seo_el_elements( $id );
+                 $changed  = false;
+                 $size     = ( isset( $backup['header_size'] ) && '' !== $backup['header_size'] ) ? $backup['header_size'] : 'h2';
+                 ch_seo_el_apply_h1( $elements, isset( $backup['title'] ) ? (string) $backup['title'] : '', $size, $changed );
+                 if ( $changed ) { ch_seo_el_save( $id, $elements ); }
+             } elseif ( isset( $backup['content'] ) ) {
+                 wp_update_post( wp_slash( array( 'ID' => $id, 'post_content' => $backup['content'] ) ) );
+             }
+             delete_post_meta( $id, '_ch_seo_h1_backup' );
+         }
+         clean_post_cache( $id );
+         do_action( 'ch_seo_meta_updated', $id );
+         return array( 'h1' => '' );
+     }
+     if ( ! get_post_meta( $id, '_ch_seo_h1_backup', true ) ) {
+         $info = ch_seo_el_heading_info( ch_seo_el_elements( $id ) );
+         update_post_meta( $id, '_ch_seo_h1_backup', array(
+             'title'        => $info ? (string) $info['title'] : '',
+             'header_size'  => $info ? (string) $info['header_size'] : '',
+             'content'      => (string) $post->post_content,
+         ) );
+     }
+     update_post_meta( $id, '_ch_seo_h1', $value );
+     if ( ch_seo_is_builder( $id ) ) {
+         $elements = ch_seo_el_elements( $id );
+         $changed  = false;
+         ch_seo_el_apply_h1( $elements, $value, 'h1', $changed );
+         if ( $changed ) { ch_seo_el_save( $id, $elements ); }
+     } else {
+         $raw  = (string) $post->post_content;
+         $safe = esc_html( $value );
+         $next = preg_match( '/<h1\b/i', $raw )
+             ? preg_replace( '/<h1\b[^>]*>[\s\S]*?<\/h1>/i', '<h1>' . $safe . '</h1>', $raw, 1 )
+             : '<h1>' . $safe . '</h1>' . "\n" . $raw;
+         if ( $next !== $raw ) {
+             wp_update_post( wp_slash( array( 'ID' => $id, 'post_content' => $next ) ) );
+         }
+     }
+     clean_post_cache( $id );
+     do_action( 'ch_seo_meta_updated', $id );
+     return array( 'h1' => $value );
+ }
+ add_action( 'rest_api_init', function () {
+     register_rest_route( 'ch-seo/v1', '/h1/(?P<id>\d+)', array(
+         array( 'methods' => 'GET', 'permission_callback' => 'ch_seo_can_edit',
+             'callback' => function ( WP_REST_Request $r ) {
+                 $id = (int) $r['id'];
+                 if ( ! get_post( $id ) ) { return new WP_Error( 'not_found', 'No such post', array( 'status' => 404 ) ); }
+                 return array( 'h1' => ch_seo_h1_get( $id ), 'builder' => ch_seo_is_builder( $id ) );
+             } ),
+         array( 'methods' => 'POST', 'permission_callback' => 'ch_seo_can_edit',
+             'callback' => function ( WP_REST_Request $r ) {
+                 return ch_seo_h1_set( (int) $r['id'], (string) $r->get_param( 'value' ) );
+             } ),
+     ) );
+ } );
+ add_action( 'elementor/frontend/widget/before_render', function ( $widget ) {
+     if ( is_admin() || ! is_singular() ) { return; }
+     $id = get_queried_object_id();
+     $h1 = (string) get_post_meta( $id, '_ch_seo_h1', true );
+     if ( '' === $h1 ) { return; }
+     $name = $widget->get_name();
+     if ( 'heading' !== $name && 'theme-post-title' !== $name ) { return; }
+     if ( ! empty( $GLOBALS['ch_seo_h1_printed'] ) ) { return; }
+     $GLOBALS['ch_seo_h1_printed'] = true;
+     $widget->set_settings( 'header_size', 'h1' );
+     if ( 'heading' === $name ) { $widget->set_settings( 'title', $h1 ); }
+     if ( 'theme-post-title' === $name ) {
+         $once = null;
+         $once = function ( $title, $post_id ) use ( $h1, $id, &$once ) {
+             if ( $once ) { remove_filter( 'the_title', $once, 20 ); }
+             return ( (int) $post_id === (int) $id ) ? $h1 : $title;
+         };
+         add_filter( 'the_title', $once, 20, 2 );
+     }
+ } );
+ add_filter( 'elementor/frontend/the_content', function ( $content ) {
+     if ( ! empty( $GLOBALS['ch_seo_h1_printed'] ) || ! is_singular() ) { return $content; }
+     $id = get_queried_object_id();
+     $h1 = (string) get_post_meta( $id, '_ch_seo_h1', true );
+     if ( '' === $h1 ) { return $content; }
+     $GLOBALS['ch_seo_h1_printed'] = true;
+     return '<h1 class="ch-seo-h1">' . esc_html( $h1 ) . '</h1>' . $content;
+ }, 5 );
