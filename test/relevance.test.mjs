@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {keywordMatchesServices,competingPages} from '../worker/providers.js';
-import {quality,pageKind,shapeBlogFields,scheduleSlots,blogPhoto,pickBlogMedia,placeBlogImages,placeBlogFaq} from '../worker/validation.js';
+import {quality,pageKind,shapeBlogFields,scheduleSlots,blogPhoto,pickBlogMedia,placeBlogImages,placeBlogFaq,ensureBlogInternalLinks} from '../worker/validation.js';
 import {reportWindow,reportSpotlight} from '../worker/report-data.js';
 
 const services='digital marketing courses, SEO training, Google Ads, content writing';
@@ -50,6 +50,14 @@ test('blog meta keeps the focus keyword inside the length limits',()=>{
   assert.ok(shaped.slug.length<=75&&shaped.slug.includes('seo-course'));
   assert.equal(shaped.tags.split(',').filter(Boolean).length,5);
   assert.equal(shaped.categories.split(',').filter(Boolean).length,3);
+});
+
+test('blog generation restores required internal links when the model omits them',()=>{
+  const body=ensureBlogInternalLinks('# Guide\n\nIntro paragraph.\n\n## What should you learn?\n\nHelpful advice.\n\n## FAQs\n\nQ1. What is this?\n\nA. It is a guide.\n',{brand:'Level8',home:'https://level8.in/',contact:'https://level8.in/contact/',blogs:['https://level8.in/instagram-reels-and-youtube-shorts-marketing-best-practices-for-kerala-uae-markets/','https://level8.in/blog/seo-guide/'],landings:['https://level8.in/digital-marketing-course-in-kottakkal/']});
+  assert.match(body,/\[Level8\]\(https:\/\/level8\.in\/\)/);
+  assert.match(body,/\[related guide\]\(https:\/\/level8\.in\/instagram-reels-and-youtube-shorts-marketing-best-practices-for-kerala-uae-markets\/\)/);
+  assert.match(body,/\[digital marketing course\]\(https:\/\/level8\.in\/digital-marketing-course-in-kottakkal\/\)/);
+  assert.match(body,/\[Contact Level8\]\(https:\/\/level8\.in\/contact\/\)/);
 });
 
 test('a formatted blog passes the blog quality gate',()=>{
