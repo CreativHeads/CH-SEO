@@ -1,7 +1,7 @@
 // Daily autopilot: keeps every client up to date and prepares fixes, then emails the Admin a summary.
 // It only ever prepares work: fixes still wait for an Admin or Head of SEO to approve them.
 import {one,rows,run,now} from './db.js';
-import {queueJob,executeJob,writeDueContent} from './workflows.js';
+import {queueJob,executeJob,writeDueContent,ensureCadenceReports} from './workflows.js';
 import {fixKindForIssue,pruneOffServiceKeywords,resolveServices,serviceCores} from './providers.js';
 import {autoFixOf} from './autofix.js';
 import {integrationEnv} from './integrations.js';
@@ -26,6 +26,7 @@ export async function runAutopilot(baseEnv,{user=null,deadline=Date.now()+240000
   if(conns.gsc==='connected'&&time())out.steps.push(await job(env,user,c,'import_gsc_queries'));
   if(time()){try{const services=await resolveServices(env,c);if(serviceCores(services,c.data.location).length){const pruned=await pruneOffServiceKeywords(env,user,c,services);if(pruned.archived)out.steps.push({kind:'prune_keywords',ok:true,result:pruned})}}catch(e){out.steps.push({kind:'prune_keywords',ok:false,error:e.message})}}
   if(env.OPENAI_API_KEY&&time()){try{const due=await writeDueContent(env,user,c,{deadline});if(due.written.length){const failed=due.written.filter(w=>w.error);out.steps.push({kind:'write_scheduled',ok:!failed.length,result:due,error:failed.map(w=>w.error).join('; ')||undefined})}}catch(e){out.steps.push({kind:'write_scheduled',ok:false,error:e.message})}}
+  if(time()){try{const made=await ensureCadenceReports(env,user,c);if(made.day)out.steps.push({kind:'daily_report',ok:true,result:made.day});if(made.week)out.steps.push({kind:'weekly_report',ok:true,result:made.week})}catch(e){out.steps.push({kind:'daily_report',ok:false,error:e.message})}}
   // 2. Finish any crawl that was running, or start the weekly one (DataForSEO, about $0.02).
   const audits=(await rows(env,"SELECT * FROM records WHERE client_id=? AND kind='audits' ORDER BY created_at DESC LIMIT 30",c.id)).map(decode);
   for(const a of audits.filter(a=>a.status==='crawling'))if(time())out.steps.push(await job(env,user,c,'poll_audit',{record_id:a.id}));
@@ -50,7 +51,7 @@ export async function runAutopilot(baseEnv,{user=null,deadline=Date.now()+240000
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const n=v=>Number(v||0).toLocaleString('en-IN');
 const pct=(a,b)=>b?Math.round((a-b)/b*100):null;
-const STEP={sync_gsc:'Search Console synced',sync_ga4:'Analytics synced',import_gsc_queries:'Keywords refreshed',write_scheduled:'Scheduled blog or landing page written',poll_audit:'Crawl checked',full_audit:'Weekly crawl started',quick_audit:'Homepage checked',propose_fixes:'Fixes prepared'};
+const STEP={sync_gsc:'Search Console synced',sync_ga4:'Analytics synced',import_gsc_queries:'Keywords refreshed',write_scheduled:'Scheduled blog or landing page written',daily_report:'Daily report saved',weekly_report:'Weekly report saved',poll_audit:'Crawl checked',full_audit:'Weekly crawl started',quick_audit:'Homepage checked',propose_fixes:'Fixes prepared'};
 
 export async function buildDailyReport(env,summary){
  const app=String(env.APP_URL||'https://seo.creativheads.com').replace(/\/$/,''),since=new Date(Date.now()-DAY).toISOString(),month=new Date().toISOString().slice(0,7);
@@ -64,6 +65,7 @@ export async function buildDailyReport(env,summary){
   const newIssues=Number((await one(env,"SELECT COUNT(*) n FROM records WHERE client_id=? AND kind='issues' AND status='open' AND created_at>=?",c.client_id,since))?.n||0);
   const open=Number((await one(env,"SELECT COUNT(*) n FROM records WHERE client_id=? AND kind='issues' AND status='open'",c.client_id))?.n||0);
   const prepared=c.steps.filter(s=>s.kind==='propose_fixes'&&s.ok).reduce((s,x)=>s+Number(x.result?.created||0),0),problems=c.steps.filter(s=>!s.ok);
+  let spot=null;try{const daily=await one(env,"SELECT data FROM records WHERE client_id=? AND kind='reports' AND json_extract(data,'$.period')='day' ORDER BY json_extract(data,'$.period_end') DESC LIMIT 1",c.client_id);spot=daily?JSON.parse(daily.data).snapshot?.spotlight:null}catch{}
   blocks.push(`<tr><td style="padding:16px 0;border-top:1px solid #e3e5ef"><div style="font:700 16px Arial,sans-serif;color:#171b26">${esc(c.client)}</div><div style="font:13px Arial,sans-serif;color:#5b5d72;margin:2px 0 10px">${esc(String(c.url).replace(/^https?:\/\//,''))}</div>
    <table cellpadding="0" cellspacing="0" style="font:13px Arial,sans-serif;color:#171b26"><tr>
    <td style="padding:0 18px 6px 0"><b style="font-size:18px">${n(clicks)}</b><br><span style="color:#5b5d72">Google clicks, last 7 days${ch===null?'':` <b style="color:${ch>=0?'#006c49':'#ba1a1a'}">${ch>=0?'▲':'▼'} ${Math.abs(ch)}%</b>`}</span></td>
@@ -71,6 +73,7 @@ export async function buildDailyReport(env,summary){
    <td style="padding:0 18px 6px 0"><b style="font-size:18px">${n(applied)}</b><br><span style="color:#5b5d72">fixes applied (24 h)</span></td>
    <td style="padding:0 0 6px 0"><b style="font-size:18px">${n(open)}</b><br><span style="color:#5b5d72">open issues${newIssues?` (${n(newIssues)} new)`:''}</span></td></tr></table>
    <div style="font:13px Arial,sans-serif;color:#464554;margin-top:6px">Autopilot: ${c.steps.filter(s=>s.ok).map(s=>STEP[s.kind]||s.kind).filter((v,i,a)=>a.indexOf(v)===i).join(' · ')||'nothing to do'}${prepared?` · <b>${n(prepared)} new fix${prepared===1?'':'es'} prepared</b>`:''}${c.stopped?' · stopped early (time limit), continues tomorrow':''}</div>
+   ${spot?`<div style="margin-top:8px;padding:10px 12px;background:#f4f5ff;border-radius:8px;font:13px Arial,sans-serif;color:#171b26"><b>${esc(spot.headline)}</b><br><span style="color:#5b5d72">${esc(spot.detail)}</span>${spot.action?`<br><b>Next:</b> ${esc(spot.action)}`:''}</div>`:''}
    ${problems.length?`<div style="font:13px Arial,sans-serif;color:#93000a;margin-top:6px">Needs attention: ${problems.slice(0,4).map(p=>esc((STEP[p.kind]||p.kind)+': '+String(p.error||'').slice(0,140))).join('<br>')}</div>`:''}
    ${waiting?`<div style="margin-top:10px"><a href="${app}/fixes-and-approvals/?client=${c.client_id}&tab=review" style="display:inline-block;background:#4648d4;color:#fff;text-decoration:none;font:600 13px Arial,sans-serif;padding:8px 14px;border-radius:6px">Review ${n(waiting)} waiting</a></div>`:''}</td></tr>`)}
  const caps={openai:Number(g.openai_cap_usd??15),dataforseo:Number(g.dataforseo_cap_usd??30)};
@@ -86,5 +89,27 @@ export async function sendDailyReport(env,summary){
  if(!env.RESEND_API_KEY)return{sent:false,reason:'Email is not set up (Settings → API keys → Email reports).'};
  const to=String(env.REPORT_TO||env.ADMIN_EMAIL||'').split(/[,;\s]+/).filter(x=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x)).slice(0,10);if(!to.length)return{sent:false,reason:'No report email address.'};
  const {subject,html,text}=await buildDailyReport(env,summary);
+ const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+env.RESEND_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({from:env.REPORT_FROM||'SEO Studio <onboarding@resend.dev>',to,subject,html,text}),signal:AbortSignal.timeout(20000)});
+ const d=await r.json().catch(()=>({}));if(!r.ok)return{sent:false,error:d.message||('Email service returned HTTP '+r.status)};return{sent:true,to,id:d.id}}
+
+// One client report, sent to the team address. The client inbox is unchanged until an Admin shares the approved PDF.
+export async function sendClientReport(env,report){
+ if(!env.RESEND_API_KEY)return{sent:false,reason:'Email is not set up. Add a Resend API key under Manage API keys → Email reports.'};
+ const to=String(env.REPORT_TO||env.ADMIN_EMAIL||'').split(/[,;\s]+/).filter(x=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x)).slice(0,10);if(!to.length)return{sent:false,reason:'No report email address. Add one under Manage API keys → Email reports.'};
+ const s=report.data?.snapshot||{},spot=s.spotlight||{},sr=s.search||{},sp=sr.previous||{},app=String(env.APP_URL||'https://seo.creativheads.com').replace(/\/$/,'');
+ const cadence=s.period==='day'?'daily':s.period==='week'?'weekly':'monthly',label=s.period_label||s.month||'';
+ const ch=(a,b)=>b?Math.round((a-b)/b*100):null,clickCh=sp.days?ch(sr.clicks,sp.clicks):null;
+ const subject=`${s.client_name||'SEO'} ${cadence} report · ${label}${spot.headline?' · '+spot.headline:''}`.slice(0,180);
+ const cell=(v,name)=>`<td style="padding:0 16px 8px 0"><b style="font-size:18px">${n(v)}</b><br><span style="color:#5b5d72">${name}</span></td>`;
+ const html=`<!doctype html><html><body style="margin:0;background:#f6f7fb;padding:24px 12px"><table align="center" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#fff;border:1px solid #e3e5ef;border-radius:12px;padding:24px"><tr><td>
+  <div style="font:700 12px Arial,sans-serif;letter-spacing:.04em;color:#4648d4">CREATIVHEADS · SEO STUDIO</div>
+  <div style="font:700 20px Arial,sans-serif;color:#171b26;margin-top:6px">${esc(s.client_name||'Client')} ${cadence} report</div>
+  <div style="font:13px Arial,sans-serif;color:#5b5d72;margin-top:4px">${esc(label)}${s.compare_label?` · compared with ${esc(s.compare_label)}`:''}</div>
+  ${spot.headline?`<div style="margin:16px 0;padding:12px 14px;background:${spot.tone==='down'?'#fff6f6':spot.tone==='up'?'#f3fbf7':'#f4f5ff'};border-radius:8px;font:14px Arial,sans-serif;color:#171b26"><b>${esc(spot.headline)}</b><br><span style="color:#5b5d72">${esc(spot.detail)}</span>${spot.action?`<br><b>Next:</b> ${esc(spot.action)}`:''}</div>`:''}
+  <table cellpadding="0" cellspacing="0" style="font:13px Arial,sans-serif;color:#171b26"><tr>${cell(sr.clicks,'Google clicks'+(clickCh===null?'':` · ${clickCh>=0?'+':''}${clickCh}%`))}${cell(sr.impressions,'Impressions')}${cell(sr.position??'—','Avg position')}${cell(sr.ctr!==undefined?sr.ctr+'%':'—','Click-through')}</tr></table>
+  <div style="margin-top:8px"><a href="${app}/reports-admin/?client=${report.client_id}" style="display:inline-block;background:#4648d4;color:#fff;text-decoration:none;font:600 13px Arial,sans-serif;padding:8px 14px;border-radius:6px">Open the report</a></div>
+  <div style="margin-top:16px;font:12px Arial,sans-serif;color:#5b5d72">This email goes to the team. It is not sent to the client. An Admin approves the report before it is shared.</div>
+  </td></tr></table></body></html>`;
+ const text=`${s.client_name||'Client'} ${cadence} report (${label})\n${spot.headline||''}\n${spot.detail||''}\nClicks ${n(sr.clicks)} · Impressions ${n(sr.impressions)}\n${app}/reports-admin/?client=${report.client_id}`;
  const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+env.RESEND_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({from:env.REPORT_FROM||'SEO Studio <onboarding@resend.dev>',to,subject,html,text}),signal:AbortSignal.timeout(20000)});
  const d=await r.json().catch(()=>({}));if(!r.ok)return{sent:false,error:d.message||('Email service returned HTTP '+r.status)};return{sent:true,to,id:d.id}}

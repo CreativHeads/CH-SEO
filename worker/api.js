@@ -6,7 +6,7 @@ import {providerStatus,encryptSecret,testConnection,kbGet,kbSlug,isBrandroom,wpL
 import {recheckCrawlIssues} from './autofix.js';
 import {transition,createPlan,createSchedule,writeDueContent,queueJob,executeJob,reportSnapshot,refreshReport} from './workflows.js';
 import {reportPDF} from './report-pdf.js';
-import {runAutopilot,buildDailyReport} from './autopilot.js';
+import {runAutopilot,buildDailyReport,sendClientReport} from './autopilot.js';
 const json=(d,status=200)=>new Response(JSON.stringify(d),{status,headers:{'Content-Type':'application/json;charset=utf-8','Cache-Control':'no-store'}});
 async function input(request){insist(Number(request.headers.get('Content-Length')||0)<220000,'Request too large.',413);const t=await request.text();insist(t.length<220000,'Request too large.',413);try{return JSON.parse(t||'{}')}catch{throw new Problem('Invalid JSON request.')}}
 const initial={keywords:'tracked',issues:'open',fixes:'draft',tickets:'open',content:'draft',refresh:'open',questions:'active',aeo:'recorded',schemas:'draft',traffic:'imported',backlinks:'identified'};
@@ -36,8 +36,9 @@ export async function api(request,env){try{insist(env.DB,'Database is not availa
  if(path[0]==='plans'&&path[1]==='schedule'&&method==='POST'){const b=await input(request),c=await clientFor(env,b.client_id);return json(await createSchedule(env,user,c,b),201)}
  if(path[0]==='plans'&&path[1]==='write'&&method==='POST'){const b=await input(request),c=await clientFor(env,b.client_id);return json(await writeDueContent(env,user,c))}
  if(path[0]==='plans'&&method==='POST'){const b=await input(request),c=await clientFor(env,b.client_id);return json(await createPlan(env,user,c,b),201)}
- if(path[0]==='reports'&&!path[1]&&method==='POST'){role(user,...editRoles);const b=await input(request),c=await clientFor(env,b.client_id);return json(await reportSnapshot(env,user,c,b.month,str(b.commentary)),201)}
+ if(path[0]==='reports'&&!path[1]&&method==='POST'){role(user,...editRoles);const b=await input(request),c=await clientFor(env,b.client_id);return json(await reportSnapshot(env,user,c,b.month,str(b.commentary),['day','week','month'].includes(b.period)?b.period:'month'),201)}
  if(path[0]==='reports'&&path[2]==='refresh'&&method==='POST'){const r=await recordFor(env,path[1]);await clientFor(env,r.client_id);return json(await refreshReport(env,user,r))}
+ if(path[0]==='reports'&&path[2]==='email'&&method==='POST'){role(user,'admin');const r=await recordFor(env,path[1]);insist(r.kind==='reports','Not a report.');const result=await sendClientReport(env,r);if(result.sent)await run(env,'UPDATE records SET data=? WHERE id=?',JSON.stringify({...r.data,emailed_at:now(),emailed_to:(result.to||[]).join(', ')}),r.id);return json(result)}
  if(path[0]==='reports'&&path[2]==='pdf'&&method==='GET'){const r=await recordFor(env,path[1]);insist(r.kind==='reports','Not a report.');return reportPDF(r)}
  if(path[0]==='jobs'&&method==='POST'){const b=await input(request);if(path[1]){const j=await one(env,'SELECT * FROM jobs WHERE id=?',path[1]);insist(j,'Job not found.',404);if(j.kind==='ask')insist(j.actor===user.email||user.role==='admin','This assistant request belongs to another user.',403);await requireSection(env,user,sectionOfJob(j.kind),'edit');return json(await executeJob(env,user,j))}const c=await clientFor(env,b.client_id);await requireSection(env,user,sectionOfJob(b.kind),'edit');await checkLimit(env,user,b.kind);return json(await queueJob(env,user,c,b.kind,b.input||{}),201)}
  if(path[0]==='admin'&&path[1]==='overview'&&method==='GET'){role(user,'admin');return json(await adminOverview(env))}

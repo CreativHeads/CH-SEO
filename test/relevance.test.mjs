@@ -2,6 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {keywordMatchesServices,competingPages} from '../worker/providers.js';
 import {quality,pageKind,shapeBlogFields,scheduleSlots} from '../worker/validation.js';
+import {reportWindow,reportSpotlight} from '../worker/report-data.js';
 
 const services='digital marketing courses, SEO training, Google Ads, content writing';
 const place='Kochi, Kerala';
@@ -106,6 +107,33 @@ test('a daily blog schedule uses every working day and skips Sundays',()=>{
 
 test('three blogs a week are spread across the working days',()=>{
   assert.deepEqual(scheduleSlots('2026-10',3,0,'2026-10-26').map(s=>s.date),['2026-10-26','2026-10-29','2026-10-31']);
+});
+
+test('daily and weekly report windows follow the latest search day',()=>{
+  const days=['2026-10-12','2026-10-13','2026-10-14','2026-10-15','2026-10-16','2026-10-17','2026-10-18'].map(date=>({date}));
+  const day=reportWindow('day',days);
+  assert.equal(day.end,'2026-10-18');
+  assert.equal(day.prevEnd,'2026-10-17');
+  assert.equal(day.period_key,'2026-10-18');
+  const week=reportWindow('week',days);
+  assert.equal(week.start,'2026-10-12');
+  assert.equal(week.end,'2026-10-18');
+  assert.equal(week.prevStart,'2026-10-05');
+  assert.equal(week.prevEnd,'2026-10-11');
+  assert.equal(week.period_key,'2026-10-12');
+  const locked=reportWindow('day',days,'2026-10-15');
+  assert.equal(locked.end,'2026-10-15');
+});
+
+test('the report spotlight names a rise and a fall',()=>{
+  const up=reportSpotlight({clicks:42,position:8.2,previous:{clicks:36,days:1,position:9.1}},{period:'day',query:'seo course',action:'Move “seo course” into the top 3'});
+  assert.equal(up.tone,'up');
+  assert.match(up.headline,/rose 17%/);
+  assert.match(up.detail,/seo course/);
+  assert.equal(up.action,'Move “seo course” into the top 3');
+  const down=reportSpotlight({clicks:10,previous:{clicks:20,days:1}},{period:'week'});
+  assert.equal(down.tone,'down');
+  assert.match(down.headline,/fell 50%/);
 });
 
 test('pages that are not blogs keep the original quality gate',()=>{
