@@ -2,7 +2,7 @@
 // It only ever prepares work: fixes still wait for an Admin or Head of SEO to approve them.
 import {one,rows,run,now} from './db.js';
 import {queueJob,executeJob} from './workflows.js';
-import {fixKindForIssue} from './providers.js';
+import {fixKindForIssue,pruneOffServiceKeywords,resolveServices,serviceCores} from './providers.js';
 import {autoFixOf} from './autofix.js';
 import {integrationEnv} from './integrations.js';
 
@@ -24,6 +24,7 @@ export async function runAutopilot(baseEnv,{user=null,deadline=Date.now()+240000
   // 1. Fresh Google data (free). Keyword queries refresh daily so new searches are saved for the keyword page.
   for(const [kind,p] of [['sync_gsc','gsc'],['sync_ga4','ga4']])if(conns[p]==='connected'&&time())out.steps.push(await job(env,user,c,kind));
   if(conns.gsc==='connected'&&time())out.steps.push(await job(env,user,c,'import_gsc_queries'));
+  if(time()){try{const services=await resolveServices(env,c);if(serviceCores(services,c.data.location).length){const pruned=await pruneOffServiceKeywords(env,user,c,services);if(pruned.archived)out.steps.push({kind:'prune_keywords',ok:true,result:pruned})}}catch(e){out.steps.push({kind:'prune_keywords',ok:false,error:e.message})}}
   // 2. Finish any crawl that was running, or start the weekly one (DataForSEO, about $0.02).
   const audits=(await rows(env,"SELECT * FROM records WHERE client_id=? AND kind='audits' ORDER BY created_at DESC LIMIT 30",c.id)).map(decode);
   for(const a of audits.filter(a=>a.status==='crawling'))if(time())out.steps.push(await job(env,user,c,'poll_audit',{record_id:a.id}));

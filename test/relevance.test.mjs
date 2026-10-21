@@ -11,7 +11,7 @@ test('service and place keywords match a digital marketing institute',()=>{
 });
 
 test('place-only and unrelated competitor keywords do not match',()=>{
-  for(const keyword of ['hospital administration courses','x ray search','ibis academy','professional network platform','professional networking platform','free ai tools','content creation','digital media academy','institutes in kerala'])
+  for(const keyword of ['hospital administration courses','x ray search','ibis academy','professional network platform','professional networking platform','free ai tools','content creation','digital media academy','institutes in kerala','zeed academy','dotin academy','zuan education','zeon academy','airport course','hospital management course','diploma of airport management'])
     assert.equal(keywordMatchesServices(keyword,services,place),false,keyword);
 });
 
