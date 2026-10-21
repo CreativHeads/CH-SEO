@@ -21,8 +21,9 @@ export async function runAutopilot(baseEnv,{user=null,deadline=Date.now()+240000
  for(const c of clients){const out={client:c.name,client_id:c.id,url:c.url,steps:[],stopped:false};report.push(out);
   const time=()=>{if(Date.now()>deadline){out.stopped=true;return false}return true};
   const conns=Object.fromEntries((await rows(env,'SELECT provider,status FROM connections WHERE client_id=?',c.id)).map(x=>[x.provider,x.status]));
-  // 1. Fresh Google data (free).
+  // 1. Fresh Google data (free). Keyword queries refresh daily so new searches are saved for the keyword page.
   for(const [kind,p] of [['sync_gsc','gsc'],['sync_ga4','ga4']])if(conns[p]==='connected'&&time())out.steps.push(await job(env,user,c,kind));
+  if(conns.gsc==='connected'&&time())out.steps.push(await job(env,user,c,'import_gsc_queries'));
   // 2. Finish any crawl that was running, or start the weekly one (DataForSEO, about $0.02).
   const audits=(await rows(env,"SELECT * FROM records WHERE client_id=? AND kind='audits' ORDER BY created_at DESC LIMIT 30",c.id)).map(decode);
   for(const a of audits.filter(a=>a.status==='crawling'))if(time())out.steps.push(await job(env,user,c,'poll_audit',{record_id:a.id}));
@@ -47,7 +48,7 @@ export async function runAutopilot(baseEnv,{user=null,deadline=Date.now()+240000
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const n=v=>Number(v||0).toLocaleString('en-IN');
 const pct=(a,b)=>b?Math.round((a-b)/b*100):null;
-const STEP={sync_gsc:'Search Console synced',sync_ga4:'Analytics synced',poll_audit:'Crawl checked',full_audit:'Weekly crawl started',quick_audit:'Homepage checked',propose_fixes:'Fixes prepared'};
+const STEP={sync_gsc:'Search Console synced',sync_ga4:'Analytics synced',import_gsc_queries:'Keywords refreshed',poll_audit:'Crawl checked',full_audit:'Weekly crawl started',quick_audit:'Homepage checked',propose_fixes:'Fixes prepared'};
 
 export async function buildDailyReport(env,summary){
  const app=String(env.APP_URL||'https://seo.creativheads.com').replace(/\/$/,''),since=new Date(Date.now()-DAY).toISOString(),month=new Date().toISOString().slice(0,7);
