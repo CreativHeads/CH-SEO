@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {keywordMatchesServices,competingPages} from '../worker/providers.js';
-import {quality,pageKind,shapeBlogFields,scheduleSlots} from '../worker/validation.js';
+import {quality,pageKind,shapeBlogFields,scheduleSlots,blogPhoto,pickBlogMedia,placeBlogImages,placeBlogFaq} from '../worker/validation.js';
 import {reportWindow,reportSpotlight} from '../worker/report-data.js';
 
 const services='digital marketing courses, SEO training, Google Ads, content writing';
@@ -79,17 +79,17 @@ Level8 is the team that teaches it. Join [Level8](${home}) when the next batch o
 
 [Talk to Level8](${contact}) today.
 
-## What are the common questions about an seo course?
+## FAQs
 
-### Who can join an seo course?
+Q1. Who can join an seo course?
 
-${filler(40)}
+A. ${filler(40)}
 
-### How much practice is included?
+Q2. How much practice is included?
 
-${filler(40)}
+A. ${filler(40)}
 `;
-  const data={blog:true,keyword:'seo course',focus_keyword:'seo course',related_keywords:'seo training, google ads course, content writing course, digital marketing course',meta_title:'SEO course guide for new students',meta_description:'Learn what an seo course covers, who should join, and how practice, classes and live projects are arranged for students.',slug:'seo-course',body,word_min:1200,word_max:3000,brand_name:'Level8',home_url:home,contact_url:contact,blog_images:img,blog_links:[post1,post2].join('\n'),landing_links:landing,avoid_hosts:'zeonacademy.com',tags:'SEO, Training, Course, Kerala, Students',categories:'Digital marketing, Courses, Career'};
+  const data={blog:true,keyword:'seo course',focus_keyword:'seo course',related_keywords:'seo training, google ads course, content writing course, digital marketing course',meta_title:'SEO course guide for new students',meta_description:'Learn what an seo course covers, who should join, and how practice, classes and live projects are arranged for students.',slug:'seo-course',body,word_min:1200,word_max:3000,brand_name:'Level8',home_url:home,contact_url:contact,blog_images:img,featured_image:'https://level8.in/wp-content/uploads/2026/10/seo-course-featured.webp',featured_media_id:'4065',blog_links:[post1,post2].join('\n'),landing_links:landing,avoid_hosts:'zeonacademy.com',tags:'SEO, Training, Course, Kerala, Students',categories:'Digital marketing, Courses, Career'};
   const gate=quality(data.meta_title,data);
   assert.equal(gate.passed,true,gate.checks.filter(c=>!c.passed).map(c=>c.name).join('; '));
   const broken=quality(data.meta_title,{...data,body:body.replace('## What is an seo course?','## What an seo course includes')});
@@ -134,6 +134,26 @@ test('the report spotlight names a rise and a fall',()=>{
   const down=reportSpotlight({clicks:10,previous:{clicks:20,days:1}},{period:'week'});
   assert.equal(down.tone,'down');
   assert.match(down.headline,/fell 50%/);
+});
+
+test('a heading-style FAQ is rewritten as Q1 and A',()=>{
+  const raw='## Why start an seo course?\n\nThe class starts with practice.\n\n## What are the common questions about an seo course?\n\n### Who can join an seo course?\n\nAnyone with a laptop can join.\n\n### How much practice is included?\n\nWeekly reviews are included.\n';
+  const out=placeBlogFaq(raw);
+  assert.match(out,/## FAQs\n\nQ1\. Who can join an seo course\?\n\nA\. Anyone with a laptop can join\.\n\nQ2\. How much practice is included\?\n\nA\. Weekly reviews are included\./);
+  assert.doesNotMatch(out,/^### /m);
+});
+
+test('blog photos reject logos and thin images, and the article gets two photos plus a featured image',()=>{
+  assert.equal(blogPhoto('https://level8.in/wp-content/uploads/2025/04/Asset-1@2x-1024x124.png',1024,124),false);
+  assert.equal(blogPhoto('https://level8.in/wp-content/uploads/2026/10/AI-Content.webp',2560,1344),true);
+  const picked=pickBlogMedia({featured:[{id:4065,url:'https://level8.in/wp-content/uploads/2026/10/featured.webp',alt:'AI writers'}],content:[{id:4060,url:'https://level8.in/wp-content/uploads/2026/10/one.webp'},{id:4062,url:'https://level8.in/wp-content/uploads/2026/10/two.webp'},{id:4065,url:'https://level8.in/wp-content/uploads/2026/10/featured.webp'}]},'seo course');
+  assert.equal(picked.featured.id,4065);
+  assert.deepEqual(picked.content.map(c=>c.id),[4060,4062]);
+  const body=placeBlogImages('# Title\n\nIntro\n\n![logo](https://level8.in/logo.png)\n\n## What is an seo course?\n\nFirst.\n\n## How long does an seo course take?\n\nSecond.\n',picked.content.map(c=>c.url),'seo course',['digital marketing course']);
+  assert.equal((body.match(/!\[/g)||[]).length,2);
+  assert.match(body,/!\[seo course\]\(https:\/\/level8\.in\/wp-content\/uploads\/2026\/10\/one\.webp\)/);
+  assert.match(body,/!\[digital marketing course\]\(https:\/\/level8\.in\/wp-content\/uploads\/2026\/10\/two\.webp\)/);
+  assert.doesNotMatch(body,/logo\.png/);
 });
 
 test('pages that are not blogs keep the original quality gate',()=>{

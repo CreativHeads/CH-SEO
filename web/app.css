@@ -651,6 +651,7 @@ main.work-ui>p:only-child{color:#5b5d72;animation:studio-fade-up .3s ease both}
 .work-ui .report-spotlight>.material-symbols-outlined{font-size:28px;color:#4648d4}
 .work-ui .report-spotlight.up>.material-symbols-outlined{color:#006c49}
 .work-ui .report-spotlight.down>.material-symbols-outlined{color:#ba1a1a}
+.work-ui .preview-feature{width:100%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 0 14px;background:#eef0f6}
 .work-ui .rep-sec h2{align-items:center}
 .work-ui .sec-n{width:26px;height:26px;border-radius:8px;background:#4648d4;color:#fff;font:700 13px/26px 'Plus Jakarta Sans',sans-serif;text-align:center;flex-shrink:0}
 .work-ui .mini-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:14px}
