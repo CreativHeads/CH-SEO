@@ -598,7 +598,7 @@ main.work-ui>p:only-child{color:#5b5d72;animation:studio-fade-up .3s ease both}
 .work-ui .article blockquote{border-left:3px solid #4648d4;background:var(--st-low);border-radius:0 10px 10px 0;padding:10px 14px;margin:0 0 14px}
 .work-ui .article .int-link{background:#6cf8bb66;color:#00513a;border-radius:4px;padding:0 3px;text-decoration:none;font-weight:600}
 .work-ui .article .ext-link{color:#4648d4}
-.work-ui .art-img{display:flex;align-items:center;gap:10px;background:var(--st-low);border:1px dashed var(--st-outline-v);border-radius:12px;padding:16px;margin:0 0 14px;font:500 12px 'JetBrains Mono',monospace}
+.work-ui .art-img{background:var(--st-low);border:1px dashed var(--st-outline-v);border-radius:12px;padding:10px;margin:0 0 14px;font:500 12px 'JetBrains Mono',monospace}.work-ui .art-img img{display:block;width:100%;max-height:360px;object-fit:cover;border-radius:8px}.work-ui .art-img figcaption{padding:8px 4px 0;color:var(--st-outline)}
 .work-ui .claim-blocked{background:#ffdad64d;border:1px solid #ffb4ab;border-radius:12px;padding:12px 14px;margin:0 0 14px}
 .work-ui .claim-blocked .row{justify-content:space-between}.work-ui .claim-blocked p{margin:8px 0 0;color:#5c0006}
 .work-ui .note{border:1px solid #c7c4d74d;border-radius:12px;padding:12px 14px;margin-bottom:10px}
