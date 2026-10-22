@@ -693,6 +693,10 @@ main.work-ui>p:only-child{color:#5b5d72;animation:studio-fade-up .3s ease both}
 .work-ui .budget{background:var(--st-low);border-radius:10px;padding:10px 12px}
 .work-ui .provider-warning{display:flex;align-items:flex-start;gap:8px;margin:0;padding:9px 11px;font-size:12px;line-height:17px}
 .work-ui .provider-warning .material-symbols-outlined{font-size:18px;flex:none}
+.work-ui .usage-bars{display:flex;flex-direction:column;gap:12px}
+.work-ui .usage-day{border:1px solid #c7c4d74d;border-radius:10px;padding:11px 12px}
+.work-ui .usage-day-head{display:flex;justify-content:space-between;gap:12px;font-size:12px;margin-bottom:7px}
+.work-ui .usage-day small{display:block;color:var(--st-variant);margin-top:5px}
 .work-ui .guard-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:13px}
 .work-ui .guard-list li{display:flex;gap:6px;align-items:flex-start}.work-ui .guard-list .material-symbols-outlined{color:#006c49;font-size:18px!important}
 .work-ui .perm td,.work-ui .perm th{white-space:normal;text-align:center;padding:12px 10px}.work-ui .perm td:first-child,.work-ui .perm th:first-child{text-align:left;min-width:220px}
