@@ -653,6 +653,11 @@ main.work-ui>p:only-child{color:#5b5d72;animation:studio-fade-up .3s ease both}
 .work-ui .report-spotlight.up>.material-symbols-outlined{color:#006c49}
 .work-ui .report-spotlight.down>.material-symbols-outlined{color:#ba1a1a}
 .work-ui .preview-feature{width:100%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 0 14px;background:#eef0f6}
+.work-ui .preview-image-placeholder{min-height:150px;display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 14px;border:1px dashed #c7c4d7;border-radius:12px;background:linear-gradient(135deg,#f2f3ff,#fafaff);color:#5b5d72;text-align:left}
+.work-ui .preview-image-placeholder>.material-symbols-outlined{font-size:38px;color:#7779d9}
+.work-ui .preview-image-placeholder b,.work-ui .preview-image-placeholder span{display:block}
+.work-ui .preview-image-placeholder b{font:600 13px 'Plus Jakarta Sans',sans-serif;color:#171b26}
+.work-ui .preview-image-placeholder span{margin-top:3px;font-size:12px}
 .work-ui .rep-sec h2{align-items:center}
 .work-ui .sec-n{width:26px;height:26px;border-radius:8px;background:#4648d4;color:#fff;font:700 13px/26px 'Plus Jakarta Sans',sans-serif;text-align:center;flex-shrink:0}
 .work-ui .mini-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:14px}
