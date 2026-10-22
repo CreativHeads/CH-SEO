@@ -731,6 +731,12 @@ main.work-ui>p:only-child{color:#5b5d72;animation:studio-fade-up .3s ease both}
 .work-ui .preview-facts span{display:block;font-size:11px;color:var(--st-variant)}
 .work-ui .preview-facts b{display:block;margin-top:2px;font-size:13px;font-weight:600;overflow-wrap:anywhere}
 .work-ui .preview-body{max-height:360px;overflow:auto}
+.studio-dialog .modal-preview{color:#171b26}
+.studio-dialog .modal-preview .panel{margin-bottom:14px}
+.studio-dialog .modal-preview .content-preview{padding:16px}
+.studio-dialog .modal-preview .content-preview h2{margin-bottom:0}
+.studio-dialog .modal-preview .gate{min-height:38px;margin-bottom:6px}
+.studio-dialog .modal-preview .detail-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:14px}
 .work-ui .content-review-list{display:grid;gap:14px}
 .work-ui .check-approve{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .work-ui .kw-line{display:flex;justify-content:space-between;gap:8px;background:var(--st-low);border-radius:8px;padding:5px 8px;font:500 11px 'JetBrains Mono',monospace}
