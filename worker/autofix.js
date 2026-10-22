@@ -4,7 +4,7 @@
 import {parseHTML} from 'linkedom';
 import {run,rows,insist,createRecord,updateRecord,recordFor,id} from './db.js';
 import {str,httpsUrl} from './validation.js';
-import {publicFetch,wp,reserve,writingContext} from './providers.js';
+import {publicFetch,wp,reserve,writingContext,completeOpenAIUsage} from './providers.js';
 
 // Crawl check -> how SEO Studio fixes it.
 const AUTO={is_4xx_code:'redirect',is_broken:'redirect',redirect_chain:'redirect_chain',broken_links:'links',has_links_to_redirects:'links',canonical_to_broken:'canonical',canonical_to_redirect:'canonical',duplicate_content:'duplicate',is_orphan_page:'orphan',low_character_count:'thin'};
@@ -49,8 +49,7 @@ async function aiJson(env,client,purpose,{instructions,input,schema,max=3000}){
  const reservation=await reserve(env,client,'openai',purpose,env.OPENAI_DRAFT_MAX_USD);
  try{const r=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{Authorization:'Bearer '+env.OPENAI_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({model:env.OPENAI_MODEL,max_output_tokens:Math.max(max,4000),...(/^(gpt-5|o[1-9])/i.test(env.OPENAI_MODEL)?{reasoning:{effort:'low'}}:{}),instructions,input:JSON.stringify(input),text:{format:{type:'json_schema',name:'fix',strict:true,schema}}}),signal:AbortSignal.timeout(120000)});
   const d=await r.json();insist(r.ok,'OpenAI: '+(d.error?.message||'request failed'),502);
-  const rateIn=Number(env.OPENAI_INPUT_USD_PER_MILLION),rateOut=Number(env.OPENAI_OUTPUT_USD_PER_MILLION);
-  if(Number.isFinite(rateIn)&&Number.isFinite(rateOut)&&d.usage)await run(env,"UPDATE usage_log SET actual_micros=?,status='completed' WHERE id=?",Math.ceil(d.usage.input_tokens*rateIn+d.usage.output_tokens*rateOut),reservation);else await run(env,"UPDATE usage_log SET status='needs_reconciliation' WHERE id=?",reservation);
+  await completeOpenAIUsage(env,reservation,d);
   return JSON.parse((d.output||[]).flatMap(x=>x.content||[]).filter(x=>x.type==='output_text').map(x=>x.text).join('')||'{}')}
  catch(e){await run(env,"UPDATE usage_log SET status='needs_reconciliation' WHERE id=? AND status='reserved'",reservation);throw e}}
 

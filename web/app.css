@@ -687,15 +687,18 @@ main.work-ui>p:only-child{color:#5b5d72;animation:studio-fade-up .3s ease both}
 .work-ui .conn-body p{font-size:12px;line-height:18px;color:var(--st-variant);margin:4px 0}
 .work-ui .conn-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
 .work-ui .limit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.work-ui .provider-plan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .work-ui .limit-card{border:1px solid #c7c4d74d;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px}
 .work-ui .limit-card h3{font:700 26px/34px 'Plus Jakarta Sans',sans-serif}
 .work-ui .budget{background:var(--st-low);border-radius:10px;padding:10px 12px}
+.work-ui .provider-warning{display:flex;align-items:flex-start;gap:8px;margin:0;padding:9px 11px;font-size:12px;line-height:17px}
+.work-ui .provider-warning .material-symbols-outlined{font-size:18px;flex:none}
 .work-ui .guard-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:13px}
 .work-ui .guard-list li{display:flex;gap:6px;align-items:flex-start}.work-ui .guard-list .material-symbols-outlined{color:#006c49;font-size:18px!important}
 .work-ui .perm td,.work-ui .perm th{white-space:normal;text-align:center;padding:12px 10px}.work-ui .perm td:first-child,.work-ui .perm th:first-child{text-align:left;min-width:220px}
 .work-ui .perm .yes{color:#006c49}.work-ui .perm .no{color:#c7c4d7}
 .work-ui .danger-zone{display:flex;align-items:center;justify-content:space-between;gap:16px;border-color:#ffb4ab}
-@media(max-width:1199px){.work-ui .set-grid,.work-ui .limit-grid{grid-template-columns:1fr 1fr}.work-ui .conn-grid{grid-template-columns:1fr}}
+@media(max-width:1199px){.work-ui .set-grid,.work-ui .limit-grid,.work-ui .provider-plan-grid{grid-template-columns:1fr 1fr}.work-ui .conn-grid{grid-template-columns:1fr}}
 /* Monthly Plan (Stitch layout) */
 .work-ui .month-nav{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--st-high);border-radius:12px;padding:3px}
 .work-ui .month-nav .btn{border:0;padding:6px;height:auto}.work-ui .month-nav b{font:600 13px 'Plus Jakarta Sans',sans-serif;padding:0 4px;white-space:nowrap}
@@ -889,7 +892,7 @@ main.work-ui{box-sizing:border-box;min-width:0;max-width:100%}
  main.work-ui{margin-left:220px;width:calc(100% - 220px)}
  .work-ui .audit-kpis,.work-ui .aeo-kpis,.work-ui .deck-kpis,.work-ui .adm-kpis,.work-ui .plan-kpis,.work-ui .art-stats,.work-ui .kb-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
  .work-ui .set-grid,.work-ui .limit-grid{grid-template-columns:1fr 1fr}
- .work-ui .conn-grid,.work-ui .grid2,.work-ui .dash-split,.work-ui .pf-layout,.work-ui .cs-layout,.work-ui .sch-layout,.work-ui .audit-split,.work-ui .insp-grid,.work-ui .snap-grid,.work-ui .diff-grid{grid-template-columns:1fr}
+ .work-ui .conn-grid,.work-ui .grid2,.work-ui .dash-split,.work-ui .pf-layout,.work-ui .cs-layout,.work-ui .sch-layout,.work-ui .audit-split,.work-ui .insp-grid,.work-ui .snap-grid,.work-ui .diff-grid,.work-ui .provider-plan-grid{grid-template-columns:1fr}
  .work-ui .sch-side,.work-ui .audit-detail{position:static}
  .work-ui .panel .table-wrap td:first-child,.work-ui .audit-list .table-wrap td:first-child{min-width:160px}
  .work-ui .hero-top,.work-ui .dash-head{display:flex;flex-direction:column;align-items:stretch}
