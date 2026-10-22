@@ -8,6 +8,7 @@ async function ready(){
  if(handler)return handler;
  const env={...process.env};
  env.DB=await supabaseDatabase(env.SUPABASE_DB_URL);
+ await env.DB.exec('ALTER TABLE usage_log ADD COLUMN IF NOT EXISTS model text; ALTER TABLE usage_log ADD COLUMN IF NOT EXISTS input_tokens bigint; ALTER TABLE usage_log ADD COLUMN IF NOT EXISTS output_tokens bigint; ALTER TABLE usage_log ADD COLUMN IF NOT EXISTS cached_input_tokens bigint;');
  handler=createHosted({worker,env});
  return handler;
 }
