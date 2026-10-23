@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {keywordMatchesServices,competingPages} from '../worker/providers.js';
-import {quality,pageKind,shapeBlogFields,scheduleSlots,blogPhoto,pickBlogMedia,placeBlogImages,placeBlogFaq,ensureBlogInternalLinks,articleScenes} from '../worker/validation.js';
+import {quality,pageKind,shapeBlogFields,scheduleSlots,blogPhoto,pickBlogMedia,placeBlogImages,placeBlogFaq,ensureBlogInternalLinks,articleScenes,imageFitsTopic} from '../worker/validation.js';
 import {reportWindow,reportSpotlight} from '../worker/report-data.js';
 
 const services='digital marketing courses, SEO training, Google Ads, content writing';
@@ -154,13 +154,15 @@ test('a heading-style FAQ is rewritten as Q1 and A',()=>{
 test('blog photos reject logos and thin images, and the article gets two photos plus a featured image',()=>{
   assert.equal(blogPhoto('https://level8.in/wp-content/uploads/2025/04/Asset-1@2x-1024x124.png',1024,124),false);
   assert.equal(blogPhoto('https://level8.in/wp-content/uploads/2026/10/AI-Content.webp',2560,1344),true);
-  const picked=pickBlogMedia({featured:[{id:4065,url:'https://level8.in/wp-content/uploads/2026/10/featured.webp',alt:'AI writers'}],content:[{id:4060,url:'https://level8.in/wp-content/uploads/2026/10/one.webp'},{id:4062,url:'https://level8.in/wp-content/uploads/2026/10/two.webp'},{id:4065,url:'https://level8.in/wp-content/uploads/2026/10/featured.webp'}]},'seo course');
+  assert.equal(imageFitsTopic('https://level8.in/wp-content/uploads/2026/10/social-media-marketing-vs-seo.webp','best digital marketing institute in malappuram'),false);
+  const picked=pickBlogMedia({featured:[{id:9,url:'https://level8.in/wp-content/uploads/2026/10/social-media-marketing-vs-seo.webp',alt:'Social Media Marketing vs SEO'},{id:4065,url:'https://level8.in/wp-content/uploads/2026/10/seo-course-featured.webp',alt:'seo course classroom'}],content:[{id:4060,url:'https://level8.in/wp-content/uploads/2026/10/seo-course-practice.webp',alt:'seo course'},{id:4062,url:'https://level8.in/wp-content/uploads/2026/10/seo-course-lab.webp',alt:'seo course practice'},{id:9,url:'https://level8.in/wp-content/uploads/2026/10/social-media-marketing-vs-seo.webp',alt:'Social Media Marketing vs SEO'}]},'seo course');
   assert.equal(picked.featured.id,4065);
   assert.deepEqual(picked.content.map(c=>c.id),[4060,4062]);
+  assert.equal(pickBlogMedia({featured:[{id:9,url:'https://level8.in/wp-content/uploads/2026/10/social-media-marketing-vs-seo.webp',alt:'Social Media Marketing vs SEO'}],content:[]},'best digital marketing institute in malappuram').featured,null);
   const body=placeBlogImages('# Title\n\nIntro\n\n![logo](https://level8.in/logo.png)\n\n## What is an seo course?\n\nFirst.\n\n## How long does an seo course take?\n\nSecond.\n',picked.content.map(c=>c.url),'seo course',['digital marketing course']);
   assert.equal((body.match(/!\[/g)||[]).length,2);
-  assert.match(body,/!\[seo course\]\(https:\/\/level8\.in\/wp-content\/uploads\/2026\/10\/one\.webp\)/);
-  assert.match(body,/!\[digital marketing course\]\(https:\/\/level8\.in\/wp-content\/uploads\/2026\/10\/two\.webp\)/);
+  assert.match(body,/!\[seo course\]\(https:\/\/level8\.in\/wp-content\/uploads\/2026\/10\/seo-course-practice\.webp\)/);
+  assert.match(body,/!\[digital marketing course\]\(https:\/\/level8\.in\/wp-content\/uploads\/2026\/10\/seo-course-lab\.webp\)/);
   assert.doesNotMatch(body,/logo\.png/);
   assert.deepEqual(articleScenes('# Title\n\n## What is an seo course?\n\nFirst.\n\n## How long does an seo course take?\n\nSecond.\n\n## FAQs\n\nQ1. Who can join?\n'),['What is an seo course?','How long does an seo course take?']);
 });
