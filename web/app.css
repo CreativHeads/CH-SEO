@@ -608,6 +608,9 @@ main.work-ui>p:only-child{color:#5b5d72;animation:studio-fade-up .3s ease both}
 .work-ui .article-editor{display:flex;flex-direction:column;gap:12px}
 .work-ui .article-editor label{display:flex;flex-direction:column;gap:6px;font:600 12px/16px 'Plus Jakarta Sans',sans-serif;color:#171b26}
 .work-ui .article-editor input,.work-ui .article-editor textarea{width:100%;box-sizing:border-box;border:1px solid #c7c4d7;border-radius:10px;background:#fff;color:#171b26;font:400 15px/24px Inter,sans-serif;padding:12px 14px}
+.work-ui .inline-article[contenteditable="true"]{outline:none;cursor:text;min-height:120px}
+.work-ui .inline-article[contenteditable="true"]:focus,.work-ui .serp-title[contenteditable="true"]:focus{box-shadow:0 0 0 2px #4648d433;border-radius:12px}
+.work-ui .serp-title[contenteditable="true"]{display:block;outline:none;cursor:text}
 .work-ui .article-editor textarea{min-height:480px;resize:vertical}
 .work-ui .article-editor input:focus,.work-ui .article-editor textarea:focus{outline:none;border-color:#4648d4;box-shadow:0 0 0 3px #4648d433}
 .work-ui .article h2,.work-ui .article h3,.work-ui .article h4,.work-ui .article h5{display:flex;justify-content:space-between;gap:10px;color:var(--st-on-surface);font-family:'Plus Jakarta Sans',sans-serif;margin:22px 0 10px}
