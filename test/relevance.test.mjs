@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {keywordMatchesServices,competingPages} from '../worker/providers.js';
-import {quality,pageKind,shapeBlogFields,scheduleSlots,blogPhoto,pickBlogMedia,placeBlogImages,placeBlogFaq,ensureBlogInternalLinks} from '../worker/validation.js';
+import {quality,pageKind,shapeBlogFields,scheduleSlots,blogPhoto,pickBlogMedia,placeBlogImages,placeBlogFaq,ensureBlogInternalLinks,articleScenes} from '../worker/validation.js';
 import {reportWindow,reportSpotlight} from '../worker/report-data.js';
 
 const services='digital marketing courses, SEO training, Google Ads, content writing';
@@ -162,6 +162,17 @@ test('blog photos reject logos and thin images, and the article gets two photos 
   assert.match(body,/!\[seo course\]\(https:\/\/level8\.in\/wp-content\/uploads\/2026\/10\/one\.webp\)/);
   assert.match(body,/!\[digital marketing course\]\(https:\/\/level8\.in\/wp-content\/uploads\/2026\/10\/two\.webp\)/);
   assert.doesNotMatch(body,/logo\.png/);
+  assert.deepEqual(articleScenes('# Title\n\n## What is an seo course?\n\nFirst.\n\n## How long does an seo course take?\n\nSecond.\n\n## FAQs\n\nQ1. Who can join?\n'),['What is an seo course?','How long does an seo course take?']);
+});
+
+test('a service landing page uses the search format',()=>{
+  const gate=quality('Digital marketing course',{landing:true,keyword:'digital marketing course',focus_keyword:'digital marketing course',meta_title:'Digital marketing course',meta_description:'Short.',slug:'x',body:'# Digital marketing course\n\nA short page.',word_min:900,word_max:1800});
+  const names=gate.checks.map(c=>c.name);
+  assert.ok(names.includes('At least four SEO headings, with the focus keyword in one H2'));
+  assert.ok(names.includes('Services FAQ uses Q1 and A, with three to five questions'));
+  assert.ok(names.includes('At least two images use the focus keyword or a related keyword in the alt text'));
+  assert.equal(gate.checks.find(c=>c.name==='At least four high-volume keywords appear on the page').passed,false);
+  assert.equal(gate.checks.some(c=>c.name==='Every H2 is a question'),false);
 });
 
 test('pages that are not blogs keep the original quality gate',()=>{

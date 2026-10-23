@@ -621,6 +621,12 @@ main.work-ui>p:only-child{color:#5b5d72;animation:studio-fade-up .3s ease both}
 .work-ui .article .int-link.long-link{display:inline-block;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:bottom}
 .work-ui .article .ext-link{color:#4648d4}
 .work-ui .art-img{background:var(--st-low);border:1px dashed var(--st-outline-v);border-radius:12px;padding:10px;margin:0 0 14px;font:500 12px 'JetBrains Mono',monospace}.work-ui .art-img img{display:block;width:100%;max-height:360px;object-fit:cover;border-radius:8px}.work-ui .art-img figcaption{padding:8px 4px 0;color:var(--st-outline)}
+.work-ui .art-img,.work-ui .preview-shot{position:relative}
+.work-ui .img-replace{position:absolute;top:16px;right:16px;z-index:2;display:inline-flex;align-items:center;gap:4px;border:0;border-radius:999px;background:#171b26e6;color:#fff;font:600 12px/16px 'Plus Jakarta Sans',sans-serif;padding:6px 10px;cursor:pointer}
+.work-ui .img-replace:hover{background:#4648d4}
+.work-ui .img-replace:focus-visible{outline:none;box-shadow:0 0 0 2px #fff,0 0 0 4px #4648d4}
+.work-ui .img-replace .material-symbols-outlined{font-size:16px}
+.work-ui .preview-shot .img-replace{top:12px;right:12px}
 .work-ui .claim-blocked{background:#ffdad64d;border:1px solid #ffb4ab;border-radius:12px;padding:12px 14px;margin:0 0 14px}
 .work-ui .claim-blocked .row{justify-content:space-between}.work-ui .claim-blocked p{margin:8px 0 0;color:#5c0006}
 .work-ui .note{border:1px solid #c7c4d74d;border-radius:12px;padding:12px 14px;margin-bottom:10px}
@@ -673,7 +679,9 @@ main.work-ui>p:only-child{color:#5b5d72;animation:studio-fade-up .3s ease both}
 .work-ui .report-spotlight>.material-symbols-outlined{font-size:28px;color:#4648d4}
 .work-ui .report-spotlight.up>.material-symbols-outlined{color:#006c49}
 .work-ui .report-spotlight.down>.material-symbols-outlined{color:#ba1a1a}
-.work-ui .preview-feature{width:100%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 0 14px;background:#eef0f6}
+.work-ui .preview-feature{width:100%;max-height:240px;min-height:160px;object-fit:cover;border-radius:12px;margin:0 0 14px;background:#eef0f6}
+.work-ui .preview-shot{display:block;margin:0 0 14px}
+.work-ui .preview-shot .preview-feature{display:block;margin:0}
 .work-ui .preview-image-placeholder{min-height:150px;display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 14px;border:1px dashed #c7c4d7;border-radius:12px;background:linear-gradient(135deg,#f2f3ff,#fafaff);color:#5b5d72;text-align:left}
 .work-ui .preview-image-placeholder>.material-symbols-outlined{font-size:38px;color:#7779d9}
 .work-ui .preview-image-placeholder b,.work-ui .preview-image-placeholder span{display:block}
