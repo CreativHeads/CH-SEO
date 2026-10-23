@@ -129,12 +129,14 @@ header button,header [data-action]{line-height:1.25}
 header div:has(>[data-provider]){gap:6px!important}
 @media(max-width:1499px){header div:has(>[data-provider]){display:none!important}}
 @media(max-width:1279px){header div:has(>kbd)>span:not(.material-symbols-outlined){display:none}}
-.work-ui .hero-top{display:grid;grid-template-columns:1fr;align-items:start;gap:20px}
-.work-ui .hero-text{display:grid;grid-template-columns:minmax(300px,.92fr) minmax(280px,1.08fr);column-gap:36px;align-items:start;width:100%;max-width:none}
-.work-ui .hero-text .eyebrow{grid-column:1;grid-row:1;margin-bottom:8px}
+.work-ui .hero{background:#fff;border:1px solid #c7c4d74d;border-radius:18px;padding:22px 26px 18px;margin-bottom:20px;box-shadow:0 1px 3px #171b260a}
+.work-ui .hero-top{display:grid;grid-template-columns:1fr;align-items:start;gap:16px}
+.work-ui .hero-text{display:grid;grid-template-columns:minmax(280px,.9fr) minmax(260px,1.1fr);column-gap:40px;align-items:start;width:100%;max-width:none}
+.work-ui .hero-text .eyebrow{grid-column:1 / -1;grid-row:1;margin-bottom:14px}
 .work-ui .hero-text h1{grid-column:1;grid-row:2;margin:0}
-.work-ui .hero-text p{grid-column:2;grid-row:2;align-self:start;margin:0;max-width:none;line-height:1.5;padding-top:.35em}
-.work-ui .hero-actions{width:100%;max-width:none;flex-wrap:wrap;gap:8px;padding-top:0;justify-content:flex-start}
+.work-ui .hero-text p{grid-column:2;grid-row:2;align-self:start;justify-self:start;margin:0;max-width:58ch;line-height:1.55;padding-top:.2em}
+.work-ui .hero-top>:last-child:not(.hero-text){border-top:1px solid #e5e7f6;padding-top:14px}
+.work-ui .hero-actions{width:100%;max-width:none;flex-wrap:wrap;gap:8px;padding-top:14px;justify-content:flex-start}
 .work-ui .hero .btn{height:40px;padding:0 14px}
 .work-ui .hero .btn.key-btn{width:auto}
 @media(max-width:1499px){.work-ui .key-btn .btn-label{display:none}.work-ui .hero .btn.key-btn{width:40px;padding:0}}
