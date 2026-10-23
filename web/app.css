@@ -135,6 +135,9 @@ header div:has(>[data-provider]){gap:6px!important}
 .work-ui .hero-text .eyebrow{grid-column:1;grid-row:1;margin-bottom:6px}
 .work-ui .hero-text h1{grid-column:1;grid-row:2;margin:0}
 .work-ui .hero-text p{grid-column:2;grid-row:1 / span 2;align-self:center;justify-self:stretch;margin:0;max-width:none;width:100%;font-size:13px;line-height:1.45;padding:0}
+.work-ui .hero-text .hero-note{grid-column:2;grid-row:1 / span 2;align-self:center;min-width:0}
+.work-ui .hero-text .hero-note p{grid-column:auto;grid-row:auto;width:auto;margin:0;font-size:12px;line-height:1.4}
+.work-ui .hero-text .hero-note p+p{margin-top:6px}
 .work-ui .hero-top>:last-child:not(.hero-text){border-top:1px solid #e5e7f6;padding-top:14px}
 .work-ui .hero-actions{width:100%;max-width:none;flex-wrap:wrap;gap:8px;padding-top:14px;justify-content:flex-start}
 .work-ui .hero .btn{height:40px;padding:0 14px}
