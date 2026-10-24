@@ -113,3 +113,12 @@ await test('AI Assisted editor rewrites the unsaved article or just a selection;
  assert.equal((await call('POST','ai-edit',{client_id:client.id,record_id:art.id,instruction:''})).status,400);
  const guide=await call('GET','brand-guide?client_id='+client.id);assert.equal(guide.status,200);assert.equal(guide.data.source,'none');
 });
+await test('AI Assisted chat: remembers earlier turns and only offers safe action buttons',async()=>{
+ env.OPENAI_ASK_MAX_USD='0.5';const client=(await call('GET','bootstrap')).data.clients.find(c=>c.name==='Auto Client');
+ let seen=null;aiAnswer=inp=>{seen=inp;return{answer:'## Fix titles first\n\nThree pages have long titles.',next_actions:['Review titles'],actions:[{type:'open',target:'site-audit',label:'Open Site Audit'},{type:'run',target:'quick_audit',label:'Check homepage'},{type:'run',target:'apply_fix',label:'Apply all fixes'},{type:'open',target:'settings',label:'Settings'}]}};
+ const q=await call('POST','jobs',{client_id:client.id,kind:'ask',input:{question:'And what about titles?',history:[{role:'user',text:'What should I fix first?'},{role:'assistant',text:'Start with titles.'}]}});assert.equal(q.status,201,JSON.stringify(q.data));
+ const r=await call('POST','jobs/'+q.data.id+'/run',{});assert.equal(r.status,200,JSON.stringify(r.data));
+ assert.equal(seen.history.length,2);assert.equal(seen.history[1].role,'assistant');assert.ok(seen.allowed_tasks.includes('quick_audit'));
+ assert.deepEqual(r.data.result.actions.map(a=>a.target),['site-audit','quick_audit'],'site-changing or unknown actions are dropped');
+ assert.match(r.data.result.answer,/Fix titles first/);
+});
