@@ -1170,3 +1170,12 @@ header div:has(> span.animate-ping){display:none!important}
 .brand-guide-text .bg-sec h4{margin:0 0 4px;font:700 13px/1.4 Inter,sans-serif;color:var(--st-primary)}
 .brand-guide-text .bg-d1,.brand-guide-text .bg-d2{padding-left:10px;border-left:2px solid var(--st-outline-v)}
 @media (max-width:640px){.brand-guide-text .bg-row{grid-template-columns:1fr;gap:2px}}
+/* App-wide work mode switch in the top bar */
+.top-mode{margin-right:10px;background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.16);padding:3px}
+.top-mode button{color:#c9cbe0;padding:6px 12px;font-size:12.5px}
+.top-mode button.on{background:#fff;color:#16182b}
+body[data-mode="ai"] .top-mode button.on{background:linear-gradient(135deg,#4648d4,#8b5cf6);color:#fff}
+body[data-mode="pro"] .ai-only{display:none!important}
+.mode-note{display:flex;align-items:center;gap:6px;margin:0;font:600 12px/1.4 Inter,sans-serif;color:var(--st-variant)}
+.mode-note .material-symbols-outlined{font-size:16px;color:var(--st-primary)}
+@media (max-width:1280px){.top-mode .mode-label{display:none}.top-mode button{padding:6px 9px}}
