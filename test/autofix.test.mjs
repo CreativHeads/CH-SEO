@@ -100,3 +100,16 @@ await test('Missing H1 on a page-builder site is sent for approval and written o
  const a=await approve(f);assert.ok(['applied','verification_pending'].includes(a.data.status),JSON.stringify(a.data.auto_apply_error||a.data.status));
  assert.equal(site.h1[99],'Digital marketing bootcamp');
 });
+await test('AI Assisted editor rewrites the unsaved article or just a selection; nothing is saved by itself',async()=>{
+ const client=(await call('GET','bootstrap')).data.clients.find(c=>c.name==='Auto Client');
+ const art=(await call('POST','records',{client_id:client.id,kind:'content',title:'Aligner guide',data:{keyword:'clear aligners',body:'## Clear aligners\n\nSaved text that is long enough to be an article for the editor test here.'}})).data;
+ let seen=null;aiAnswer=inp=>{seen=inp;return inp.selection?{body:'',text:'A friendlier sentence.',summary:'Made it friendlier.'}:{body:'## Clear aligners\n\nRewritten by AI with the brand voice and enough words to pass.',text:'',summary:'Rewrote the intro.'}};
+ const whole=await call('POST','ai-edit',{client_id:client.id,record_id:art.id,instruction:'Make it friendlier',body:'## Clear aligners\n\nUnsaved text typed in the editor, long enough to count as an article.'});
+ assert.equal(whole.status,200,JSON.stringify(whole.data));assert.match(whole.data.body,/Rewritten by AI/);assert.equal(whole.data.summary,'Rewrote the intro.');
+ assert.match(seen.article,/Unsaved text typed/,'AI works on what is in the editor, not the old saved copy');
+ const part=await call('POST','ai-edit',{client_id:client.id,record_id:art.id,instruction:'Friendlier',selection:'Saved text that is long'});
+ assert.equal(part.status,200);assert.equal(part.data.text,'A friendlier sentence.');assert.equal(part.data.body,undefined);
+ assert.match((await DB.prepare('SELECT data FROM records WHERE id=?').bind(art.id).first()).data,/Saved text that is long/,'AI never saves by itself');
+ assert.equal((await call('POST','ai-edit',{client_id:client.id,record_id:art.id,instruction:''})).status,400);
+ const guide=await call('GET','brand-guide?client_id='+client.id);assert.equal(guide.status,200);assert.equal(guide.data.source,'none');
+});

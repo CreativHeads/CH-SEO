@@ -44,7 +44,7 @@ async function sitemapUrls(client){const out=new Set(),base=new URL(client.data.
  return[...out].filter(u=>sameSite(u,client)&&!SKIP_EXT.test(u)).slice(0,600)}
 
 // One OpenAI call with a strict JSON answer; cost is reserved first and recorded after.
-async function aiJson(env,client,purpose,{instructions,input,schema,max=3000}){
+export async function aiJson(env,client,purpose,{instructions,input,schema,max=3000}){
  insist(env.OPENAI_API_KEY&&env.OPENAI_MODEL,'Configure OpenAI first: AI chooses the best fix.',409);
  const reservation=await reserve(env,client,'openai',purpose,env.OPENAI_DRAFT_MAX_USD);
  try{const r=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{Authorization:'Bearer '+env.OPENAI_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({model:env.OPENAI_MODEL,max_output_tokens:Math.max(max,4000),...(/^(gpt-5|o[1-9])/i.test(env.OPENAI_MODEL)?{reasoning:{effort:'low'}}:{}),instructions,input:JSON.stringify(input),text:{format:{type:'json_schema',name:'fix',strict:true,schema}}}),signal:AbortSignal.timeout(120000)});
