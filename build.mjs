@@ -5,9 +5,9 @@ fs.mkdirSync('configs',{recursive:true});
 for(const [name,route]of Object.entries(routes)){
  let html=fs.readFileSync(`reference/${name}.html`,'utf8');const ctx={tailwind:{}};const match=html.match(/<script id="tailwind-config">([\s\S]*?)<\/script>/);vm.runInNewContext(match[1],ctx);
  const config={...ctx.tailwind.config,content:[`./reference/${name}.html`]};fs.writeFileSync(`configs/${route}.cjs`,'module.exports='+JSON.stringify(config)+';');
- html=html.replace(/<script src="https:\/\/cdn.tailwindcss.com"><\/script>/,'').replace(match[0],`<link rel="stylesheet" href="/${route}.css"><link rel="icon" href="/favicon.svg"><script src="/navigation.js" defer></script>`);
+ html=html.replace(/<script src="https:\/\/cdn.tailwindcss.com"><\/script>/,'').replace(match[0],`<link rel="stylesheet" href="/${route}.css"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" href="/favicon.png"><script src="/navigation.js" defer></script>`);
  html=html.replace(/<a\b[^>]*\bdata-path="([^"]+)"[^>]*>/g,(tag,path)=>tag.replace(/href="[^"]*"/,`href="/${aliases[path]||path}/"`));
- if(!html.includes('<title>'))html=html.replace('</head>',`<title>SEO Studio · ${route.replaceAll('-',' ')}</title></head>`);
+ if(!html.includes('<title>'))html=html.replace('</head>',`<title>Climb · ${route.replaceAll('-',' ')}</title></head>`);
  fs.mkdirSync(`dist/${route}`,{recursive:true});fs.writeFileSync(`dist/${route}/index.html`,html);if(route==='client-dashboard')fs.writeFileSync('dist/index.html',html);
  // execFileSync(process.execPath,['node_modules/tailwindcss/lib/cli.js','-c',`configs/${route}.cjs`,'-i','input.css','-o',`dist/${route}.css`,'--minify'],{stdio:'pipe'});
 }

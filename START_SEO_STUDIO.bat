@@ -14,11 +14,11 @@ if errorlevel 1 (
  exit /b 1
 )
 if not exist node_modules (
- echo Installing SEO Studio dependencies. Internet access is required for this first setup.
+ echo Installing Climb dependencies. Internet access is required for this first setup.
  call npm ci
  if errorlevel 1 goto failed
 )
-echo Preparing SEO Studio...
+echo Preparing Climb...
 call npm run build
 if errorlevel 1 goto failed
 set STUDIO_OPEN_BROWSER=1

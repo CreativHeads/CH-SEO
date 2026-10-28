@@ -35,7 +35,7 @@ export function createHosted({worker,env}){
   else await call('users','POST',{email,password,email_confirm:true});
  }
 
- const page=(title,inner,script='')=>html(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} · SEO Studio</title><link rel="icon" href="/favicon.svg"><style>
+ const page=(title,inner,script='')=>html(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} · Climb by CreativHeads</title><link rel="icon" href="/favicon.svg"><style>
 :root{--ink:#16182b;--mut:#5b6078;--line:#e3e5ef;--pri:#4648d4;--bg:#f6f7fb;--card:#fff}
 @media (prefers-color-scheme:dark){:root{--ink:#eceefe;--mut:#a3a8c3;--line:#2b2f45;--bg:#0f1120;--card:#171a2e}}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);color:var(--ink);font:15px/1.5 "Segoe UI",Inter,system-ui,sans-serif;padding:16px}

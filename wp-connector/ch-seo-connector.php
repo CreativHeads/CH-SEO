@@ -1,7 +1,7 @@
 <?php
  /**
   * Plugin Name: CreativHeads SEO Connector
- * Description: Small, reviewed bridge for SEO Studio: reads and writes SEO titles, meta descriptions, H1 headings
+ * Description: Small, reviewed bridge for Climb by CreativHeads: reads and writes SEO titles, meta descriptions, H1 headings
  *              (including Elementor), noindex and canonical through the active SEO plugin (Yoast or Rank Math),
  *              adds JSON-LD schema, and serves 301 redirects for URLs that would otherwise 404.
  *              No outbound calls, no tracking, no settings page.
@@ -121,7 +121,7 @@
                          }
                       }
                       clean_post_cache( $id );
-                      do_action( 'ch_seo_meta_updated', $id );   // cache plugins can hook this; SEO Studio also verifies the live page
+                      do_action( 'ch_seo_meta_updated', $id );   // cache plugins can hook this; Climb also verifies the live page
                       return array( 'before' => $before, 'after' => ch_seo_get_meta( $id ) );
                   } ),
         ) );
@@ -273,7 +273,7 @@
      }
  }, 1 );
 
- // Print JSON-LD added by SEO Studio. JSON_HEX_TAG stops a value from closing the script tag.
+ // Print JSON-LD added by Climb. JSON_HEX_TAG stops a value from closing the script tag.
  add_action( 'wp_head', function () {
      $items = array();
      if ( is_front_page() ) { $items = array_merge( $items, ch_seo_arr( get_option( 'ch_seo_site_schema', array() ) ) ); }

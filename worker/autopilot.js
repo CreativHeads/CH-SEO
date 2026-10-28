@@ -78,19 +78,19 @@ export async function buildDailyReport(env,summary){
    ${problems.length?`<div style="font:13px Arial,sans-serif;color:#93000a;margin-top:6px">Needs attention: ${problems.slice(0,4).map(p=>esc((STEP[p.kind]||p.kind)+': '+String(p.error||'').slice(0,140))).join('<br>')}</div>`:''}
    ${waiting?`<div style="margin-top:10px"><a href="${app}/fixes-and-approvals/?client=${c.client_id}&tab=review" style="display:inline-block;background:#4648d4;color:#fff;text-decoration:none;font:600 13px Arial,sans-serif;padding:8px 14px;border-radius:6px">Review ${n(waiting)} waiting</a></div>`:''}</td></tr>`)}
  const caps={openai:Number(g.openai_cap_usd??15),dataforseo:Number(g.dataforseo_cap_usd??30)};
- const subject=`SEO Studio daily report · ${new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',timeZone:'Asia/Kolkata'})}${waitingAll?` · ${waitingAll} waiting for approval`:''}`;
+ const subject=`Climb daily report · ${new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',timeZone:'Asia/Kolkata'})}${waitingAll?` · ${waitingAll} waiting for approval`:''}`;
  const html=`<!doctype html><html><body style="margin:0;background:#f6f7fb;padding:24px 12px"><table align="center" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#fff;border:1px solid #e3e5ef;border-radius:12px;padding:24px">
-  <tr><td><div style="font:700 20px Arial,sans-serif;color:#171b26">SEO Studio daily report</div><div style="font:13px Arial,sans-serif;color:#5b5d72;margin-top:4px">${esc(new Date().toLocaleString('en-IN',{dateStyle:'full',timeStyle:'short',timeZone:'Asia/Kolkata'}))} · ${summary.clients.length} client${summary.clients.length===1?'':'s'}</div></td></tr>
+  <tr><td><div style="font:700 20px Arial,sans-serif;color:#171b26">Climb daily report</div><div style="font:13px Arial,sans-serif;color:#5b5d72;margin-top:4px">${esc(new Date().toLocaleString('en-IN',{dateStyle:'full',timeStyle:'short',timeZone:'Asia/Kolkata'}))} · ${summary.clients.length} client${summary.clients.length===1?'':'s'}</div></td></tr>
   ${blocks.join('')}
-  <tr><td style="padding-top:16px;border-top:1px solid #e3e5ef;font:13px Arial,sans-serif;color:#5b5d72">Spend this month: OpenAI $${(spend.openai||0).toFixed(2)} of $${caps.openai} · DataForSEO $${(spend.dataforseo||0).toFixed(2)} of $${caps.dataforseo}.<br>Nothing changes on a website until it is approved. <a href="${app}/" style="color:#4648d4">Open SEO Studio</a></td></tr></table></body></html>`;
- const text=`SEO Studio daily report\n\n`+summary.clients.map(c=>`${c.client}: ${c.steps.filter(s=>s.ok).length} tasks done, ${c.steps.filter(s=>!s.ok).length} problems`).join('\n')+`\n\nOpen: ${app}/`;
+  <tr><td style="padding-top:16px;border-top:1px solid #e3e5ef;font:13px Arial,sans-serif;color:#5b5d72">Spend this month: OpenAI $${(spend.openai||0).toFixed(2)} of $${caps.openai} · DataForSEO $${(spend.dataforseo||0).toFixed(2)} of $${caps.dataforseo}.<br>Nothing changes on a website until it is approved. <a href="${app}/" style="color:#4648d4">Open Climb</a></td></tr></table></body></html>`;
+ const text=`Climb daily report\n\n`+summary.clients.map(c=>`${c.client}: ${c.steps.filter(s=>s.ok).length} tasks done, ${c.steps.filter(s=>!s.ok).length} problems`).join('\n')+`\n\nOpen: ${app}/`;
  return{subject,html,text}}
 
 export async function sendDailyReport(env,summary){
  if(!env.RESEND_API_KEY)return{sent:false,reason:'Email is not set up (Settings → API keys → Email reports).'};
  const to=String(env.REPORT_TO||env.ADMIN_EMAIL||'').split(/[,;\s]+/).filter(x=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x)).slice(0,10);if(!to.length)return{sent:false,reason:'No report email address.'};
  const {subject,html,text}=await buildDailyReport(env,summary);
- const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+env.RESEND_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({from:env.REPORT_FROM||'SEO Studio <onboarding@resend.dev>',to,subject,html,text}),signal:AbortSignal.timeout(20000)});
+ const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+env.RESEND_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({from:env.REPORT_FROM||'Climb <onboarding@resend.dev>',to,subject,html,text}),signal:AbortSignal.timeout(20000)});
  const d=await r.json().catch(()=>({}));if(!r.ok)return{sent:false,error:d.message||('Email service returned HTTP '+r.status)};return{sent:true,to,id:d.id}}
 
 // One client report, sent to the team address. The client inbox is unchanged until an Admin shares the approved PDF.
@@ -103,7 +103,7 @@ export async function sendClientReport(env,report){
  const subject=`${s.client_name||'SEO'} ${cadence} report · ${label}${spot.headline?' · '+spot.headline:''}`.slice(0,180);
  const cell=(v,name)=>`<td style="padding:0 16px 8px 0"><b style="font-size:18px">${n(v)}</b><br><span style="color:#5b5d72">${name}</span></td>`;
  const html=`<!doctype html><html><body style="margin:0;background:#f6f7fb;padding:24px 12px"><table align="center" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#fff;border:1px solid #e3e5ef;border-radius:12px;padding:24px"><tr><td>
-  <div style="font:700 12px Arial,sans-serif;letter-spacing:.04em;color:#4648d4">CREATIVHEADS · SEO STUDIO</div>
+  <div style="font:700 12px Arial,sans-serif;letter-spacing:.04em;color:#4648d4">CREATIVHEADS · CLIMB</div>
   <div style="font:700 20px Arial,sans-serif;color:#171b26;margin-top:6px">${esc(s.client_name||'Client')} ${cadence} report</div>
   <div style="font:13px Arial,sans-serif;color:#5b5d72;margin-top:4px">${esc(label)}${s.compare_label?` · compared with ${esc(s.compare_label)}`:''}</div>
   ${spot.headline?`<div style="margin:16px 0;padding:12px 14px;background:${spot.tone==='down'?'#fff6f6':spot.tone==='up'?'#f3fbf7':'#f4f5ff'};border-radius:8px;font:14px Arial,sans-serif;color:#171b26"><b>${esc(spot.headline)}</b><br><span style="color:#5b5d72">${esc(spot.detail)}</span>${spot.action?`<br><b>Next:</b> ${esc(spot.action)}`:''}</div>`:''}
@@ -112,5 +112,5 @@ export async function sendClientReport(env,report){
   <div style="margin-top:16px;font:12px Arial,sans-serif;color:#5b5d72">This email goes to the team. It is not sent to the client. An Admin approves the report before it is shared.</div>
   </td></tr></table></body></html>`;
  const text=`${s.client_name||'Client'} ${cadence} report (${label})\n${spot.headline||''}\n${spot.detail||''}\nClicks ${n(sr.clicks)} · Impressions ${n(sr.impressions)}\n${app}/reports-admin/?client=${report.client_id}`;
- const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+env.RESEND_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({from:env.REPORT_FROM||'SEO Studio <onboarding@resend.dev>',to,subject,html,text}),signal:AbortSignal.timeout(20000)});
+ const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+env.RESEND_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({from:env.REPORT_FROM||'Climb <onboarding@resend.dev>',to,subject,html,text}),signal:AbortSignal.timeout(20000)});
  const d=await r.json().catch(()=>({}));if(!r.ok)return{sent:false,error:d.message||('Email service returned HTTP '+r.status)};return{sent:true,to,id:d.id}}
