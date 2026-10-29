@@ -8,7 +8,7 @@ export const log=(env,user,action,target,client=null,detail={})=>q(env,'INSERT I
 export class Problem extends Error{constructor(message,status=400){super(message);this.status=status}}
 export function insist(value,message,status=400){if(!value)throw new Problem(message,status)}
 export const role=(user,...roles)=>insist(roles.includes(user.role),'Your role cannot perform this action.',403);
-export const editRoles=['admin','seo_lead'];export const approveRoles=['admin','head'];
+export const editRoles=['admin','seo_lead'];export const approveRoles=['admin','head'];export const fixRoles=[...approveRoles,'seo_lead'];
 // Sites supplies a verified email header; some dispatch sessions omit the optional user-ID header.
 // Authorization still requires an active server-side member; never use a client-submitted email.
 export async function userFor(request,env){const uid=request.headers.get('oai-authenticated-user-id'),email=request.headers.get('oai-authenticated-user-email')?.trim().toLowerCase();insist(email&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),'Sign in to access Climb.',401);let member=await one(env,'SELECT * FROM members WHERE email=?',email);if(!member&&email===(env.ADMIN_EMAIL||'admin@creativheads.com').toLowerCase()){await run(env,'INSERT OR IGNORE INTO members(id,email,name,role,active,created_at) VALUES(?,?,?,?,?,?)',uid||id(),email,'Admin','admin',1,now());member=await one(env,'SELECT * FROM members WHERE email=?',email)}insist(member&&member.active,'Ask your Admin to invite or reactivate your email.',403);return {...member,identity:uid||member.id}}
