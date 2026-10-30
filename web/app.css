@@ -1635,3 +1635,4 @@ pre.story-val{font:12.5px/1.5 ui-monospace,Consolas,monospace;max-height:260px;o
 .fix-history>summary{cursor:pointer;list-style:none}
 .fix-history>summary::-webkit-details-marker{display:none}
 @media (max-width:640px){.story-vals{grid-template-columns:1fr}.story-vals .mono-sub{padding-top:0}}
+.image-note{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;font-size:13.5px}.image-note .material-symbols-outlined{font-size:18px}

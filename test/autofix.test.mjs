@@ -122,3 +122,21 @@ await test('AI Assisted chat: remembers earlier turns and only offers safe actio
  assert.deepEqual(r.data.result.actions.map(a=>a.target),['site-audit','quick_audit'],'site-changing or unknown actions are dropped');
  assert.match(r.data.result.answer,/Fix titles first/);
 });
+await test('When OpenAI has no credits, people see that plainly instead of a generic failure',async()=>{
+ env.OPENAI_ASK_MAX_USD='0.5';const client=(await call('GET','bootstrap')).data.clients.find(c=>c.name==='Auto Client'),prev=globalThis.fetch;
+ globalThis.fetch=async(u,o)=>String(u)==='https://api.openai.com/v1/responses'?new Response(JSON.stringify({error:{message:'You have no credits remaining.',type:'insufficient_quota',code:'credit_balance_exhausted'}}),{status:429}):prev(u,o);
+ try{const q=await call('POST','jobs',{client_id:client.id,kind:'ask',input:{question:'What next?'}});const r=await call('POST','jobs/'+q.data.id+'/run',{});
+  assert.equal(r.status,402);assert.match(r.data.error,/OpenAI has no credits left/);}finally{globalThis.fetch=prev}
+});
+await test('Blog draft is still saved when AI images fail, says why, and holds no image budget',async()=>{
+ env.OPENAI_IMAGE_MAX_USD='0.6';env.KB_API_URL='https://kb.test/api/kb/v1';env.KB_API_KEY='kb-test-not-real';const client=(await call('GET','bootstrap')).data.clients.find(c=>c.name==='Auto Client'),prev=globalThis.fetch;
+ globalThis.fetch=async(u,o)=>String(u).startsWith('https://kb.test')?new Response(JSON.stringify({error:'Brand not found'}),{status:404}):String(u)==='https://api.openai.com/v1/images/generations'?new Response(JSON.stringify({error:{message:'You have no credits remaining.',type:'insufficient_quota',code:'credit_balance_exhausted'}}),{status:429}):prev(u,o);
+ const body='# Clear aligners guide\n\nIntro about clear aligners with [Auto Client]('+S+'/).\n\n## What are clear aligners?\n\nText.\n\n## How long do clear aligners take?\n\nText.\n\n## FAQs\n\nQ1. Are clear aligners painful?\n\nA. Mild pressure.';
+ aiAnswer=()=>({meta_title:'Clear aligners guide for new patients',meta_description:'Everything about clear aligners: how they work, how long they take and what to expect from treatment.',slug:'clear-aligners',outline:'',body,tags:['a','b','c','d','e'],categories:['x','y','z'],cta:'Book now',related_keywords:['aligner cost','invisible braces','teeth straightening','aligner treatment']});
+ try{await call('PUT','clients/'+client.id,{...client,data:{...client.data,kb_client_id:'auto-kb'}});const rec=(await call('POST','records',{client_id:client.id,kind:'content',title:'clear aligners',data:{keyword:'clear aligners',blog:true,language:'English'}})).data;
+  const q=await call('POST','jobs',{client_id:client.id,kind:'generate_draft',input:{record_id:rec.id}});assert.equal(q.data.status,'queued',JSON.stringify(q.data));const r=await call('POST','jobs/'+q.data.id+'/run',{});assert.equal(r.status,200,JSON.stringify(r.data));
+  const d=JSON.parse((await DB.prepare('SELECT data FROM records WHERE id=?').bind(rec.id).first()).data);
+  assert.match(d.image_note,/AI images could not be created \(OpenAI has no credits left/);assert.match(d.body,/Rewritten|Clear aligners/);
+  const hold=await DB.prepare("SELECT status,actual_micros FROM usage_log WHERE purpose='blog_images' ORDER BY created_at DESC LIMIT 1").first();assert.equal(hold.status,'failed');assert.equal(Number(hold.actual_micros),0);
+ }finally{globalThis.fetch=prev;delete env.KB_API_URL;delete env.KB_API_KEY}
+});
