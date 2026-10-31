@@ -1,0 +1,30 @@
+# Climb (SEO Studio) at climb.creativheads.com.
+# HTTPS comes from the casting-manager Caddy (ports 80/443), which reaches the app over the
+# casting-manager_default network by the name "climb-app". The database stays on Supabase.
+# Secrets are in .env next to this file (never committed). Run from /opt/climb/deploy/vps:
+#   docker compose up -d --build
+name: climb
+
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: deploy/vps/Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      APP_URL: https://climb.creativheads.com
+      SECURE_COOKIES: "1"
+    networks:
+      web:
+        aliases: [climb-app]
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:3000/login"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  web:
+    external: true
+    name: casting-manager_default

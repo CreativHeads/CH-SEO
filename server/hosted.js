@@ -15,7 +15,7 @@ export function createHosted({worker,env}){
  const secret=createHmac('sha256',String(env.CREDENTIAL_ENCRYPTION_KEY||'')).update('studio-session-v1').digest();
  const sign=v=>createHmac('sha256',secret).update(v).digest('base64url');
  const supa=String(env.SUPABASE_URL||'').replace(/\/$/,''),anon=String(env.SUPABASE_ANON_KEY||'');
- const secure=env.VERCEL?'; Secure':'';
+ const secure=env.VERCEL||env.SECURE_COOKIES==='1'?'; Secure':'';
  const sessionCookie=email=>{const v=b64(JSON.stringify({e:email,x:Date.now()+DAYS*864e5}));return `${COOKIE}=${v}.${sign(v)}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${DAYS*86400}${secure}`};
  const clearCookie=`${COOKIE}=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0${secure}`;
  function readSession(request){
